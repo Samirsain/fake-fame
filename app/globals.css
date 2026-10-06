@@ -40,7 +40,7 @@
   --c-accent: #FF4FA8; --c-accent-dk: #B0207A; --c-accent-soft: #FBD5EE; --c-accent-slab: #8A1A62;
   --c-tape: #FF9AD5; --c-dash: #E87CC0; --c-cream: #F3D9EC;
   --h1: #0B0412; --h2: #5B1A7A; --on-sky: #fff; --bg-top: #2A0F3A; --cloud: #3A1457; --line: #E9B5D8; --ph: #B58AA8; --track: #EBD3F5;
-  --slab: #3A1B52; --slab-btn: #EBC6E0; --slab-pill: #E7BFD9; --slab-row: #3A1B52;
+  --slab: #3A1B52; --slab-btn: #EBC6E0; --slab-pill: #E7BFD9; --slab-row: #B97DD6;
   --paper: #FFF4FB; --ring: #E7A3D2; --tapeq: #FFC6E8; --shadow-rgb: 255 79 168; --ink-rgb: 251 231 246;
   --btn-border: #FFD6EE; --splash-end: #5B1A7A; --dot2: #C77BE8; --backdrop: rgb(8 2 16 / .75);
   --pink-hi: #FF6EC4; --pink-mid: #E0309A; --pink-lo: #8A2BB5; --pink-rgb: 224 48 154;
@@ -50,6 +50,11 @@
 [data-night="1"] body { color: var(--c-body); }
 [data-night="1"] .card, [data-night="1"] .opt, [data-night="1"] .row, [data-night="1"] .paper, [data-night="1"] dialog.sheet,
 [data-night="1"] .input, [data-night="1"] .modetoggle button { color: var(--c-ink); }
+/* every light surface (white boxes, ring, tinted chips, stat tiles) keeps dark text, whatever the page text colour is */
+[data-night="1"] :is([class*="bg-white"], .bg-yellow-100, .bg-sky-100, .bg-pink-100, .bg-ok-soft, .bg-bad-soft, .ring > div, .tape) { color: var(--c-ink); }
+/* the credit sits straight on the dark page: light text, white logo */
+[data-night="1"] .madeby, [data-night="1"] .madeby span { color: var(--c-body) !important; }
+[data-night="1"] .madeby img { filter: brightness(0) invert(1); }
 [data-night="1"] .btn { box-shadow: 0 0 28px rgb(224 48 154 / .55), inset 0 2px 0 rgb(255 255 255 / .3); }
 [data-night="1"] .card { box-shadow: 0 0 36px rgb(255 79 168 / .28); }
 [data-night="1"] body::before { background: radial-gradient(circle 280px at 10% 16%, rgb(224 48 154 / .35), transparent), radial-gradient(circle 340px at 92% 66%, rgb(123 44 191 / .35), transparent); }

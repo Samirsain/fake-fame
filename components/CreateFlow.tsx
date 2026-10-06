@@ -16,7 +16,7 @@ import { useT } from "@/lib/i18n";
 import { cleanName, extremeReady, packOf, type Level, type Mode } from "@/lib/questions";
 import { confirmAdult, isAdult, isAdult21, setMode, useNight, usePinMode } from "@/lib/theme";
 
-const PRON = [["he", "-rotate-[5deg]"], ["she", "rotate-3"], ["they", "-rotate-2"]] as const;
+const PRON = [["he", "-rotate-[4deg]"], ["she", "rotate-[4deg]"]] as const; // two characters: He = Pip, She = Boo
 const MAX_SKIPS = 10;
 
 const shuffle = <T,>(a: T[]) => {
@@ -145,16 +145,16 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
       <div className="px-4 space-y-5 text-center">
         <p className="hand text-2xl">{t("hi")} <span style={{ color: "#FF9F43" }}>{name.trim()}</span> 👋</p>
         <div className="card"><div className="in"><h2 className="text-3xl font-extrabold">{t("howCall")} <span className="text-pink-500">{t("callYou")}</span></h2></div></div>
-        <div className="flex justify-center gap-3">
+        <div className="flex justify-center gap-4">
           {PRON.map(([v, r]) => (
             <button key={v} onClick={() => {
               setPron(v);
               if (couples) { setTimeout(() => setStep("level"), 300); return; } // couples choose sweet or spicy next
               begin(v, "sweet");
             }}
-              className={`w-[106px] h-[132px] bg-white rounded-[22px] flex flex-col items-center justify-center gap-1 transition-transform ${r} ${pron === v ? "outline outline-[3px] outline-offset-[3px] outline-pink-500 scale-105" : ""}`}
+              className={`w-[140px] h-[160px] bg-white rounded-[22px] flex flex-col items-center justify-center gap-1 transition-transform ${r} ${pron === v ? "outline outline-[3px] outline-offset-[3px] outline-pink-500 scale-105" : ""}`}
               style={{ boxShadow: "0 6px 0 var(--slab), 0 12px 22px rgb(var(--shadow-rgb) / .10)" }}>
-              <span className={pron === v ? "hop" : ""}><Pip size={64} mood={pron === v ? "closed" : love ?? "happy"} /></span><span className="hand text-lg">{t(v)}</span>
+              <span className={pron === v ? "hop" : ""}>{v === "he" ? <Pip size={84} mood={pron === v ? "closed" : love ?? "happy"} /> : <Boo size={84} mood={pron === v ? "closed" : love ?? "happy"} />}</span><span className="hand text-lg">{t(v)}</span>
             </button>
           ))}
         </div>
