@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { MongoClient, type Db } from "mongodb";
 import { createHash, randomBytes, timingSafeEqual } from "crypto";
 
@@ -8,6 +9,7 @@ export type Answer = { questionId: string; optionId: string; correct: boolean };
 export type Quiz = {
   _id: string; // = slug
   slug: string; tokenHash: string; name: string; pronoun: string;
+  mode?: "friends" | "couples"; // missing on quizzes made before couples mode existed = friends
   items: { questionId: string; answerOptionId: string }[];
   at: number; expiresAt: Date;
 };
@@ -47,6 +49,9 @@ export const getQuiz = async (slug: string) => {
   const q = await (await quizzes()).findOne({ _id: slug });
   return q && q.expiresAt > new Date() ? q : null; // the TTL sweep runs about once a minute, so double-check
 };
+
+/** Same as getQuiz, but a layout, its metadata and the OG image of one request share a single DB read. */
+export const getQuizOnce = cache(getQuiz);
 
 export const createQuiz = async (q: Omit<Quiz, "_id" | "expiresAt">) => {
   await (await quizzes()).insertOne({ ...q, _id: q.slug, expiresAt: new Date(q.at + TTL) });

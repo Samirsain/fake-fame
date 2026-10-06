@@ -6,13 +6,12 @@ import Emoji from "@/components/Emoji";
 import LangPill from "@/components/LangPill";
 import Confirm from "@/components/Confirm";
 import { useToast } from "@/components/Toast";
-import { byId, tier } from "@/lib/questions";
+import { TIER_COLORS, byId, tier, type Mode } from "@/lib/questions";
 import { locQ, tl, useLang, useT } from "@/lib/i18n";
 
 type Opt = { emoji: string; label: string } | null;
 type Player = { id: string; name: string; score: number; detail: { qid: string; correct: boolean; you: Opt; they: Opt }[] };
-type Board = { name: string; players: Player[] };
-const TIER_C: Record<string, [string, string]> = { Bestie: ["#FFF4CC", "#8A6A00"], "Real one": ["#DDF8E6", "#167A3E"], Sus: ["#FFF1E8", "#9C4A12"], "Fake friend": ["#FFE1E4", "#C21F33"] };
+type Board = { name: string; mode?: Mode; players: Player[] };
 
 export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
   const { slug } = use(params);
@@ -31,7 +30,7 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
     const fromHash = location.hash.match(/k=([\w-]+)/)?.[1];
     let tok = fromHash ?? "";
     try {
-      if (!tok) tok = localStorage.getItem(`tok:${slug}`) ?? JSON.parse(localStorage.getItem("mine") ?? "null")?.token ?? "";
+      if (!tok) tok = localStorage.getItem(`tok:${slug}`) ?? ["mine", "mine:couples"].map((k) => JSON.parse(localStorage.getItem(k) ?? "null")).find((m) => m?.slug === slug)?.token ?? "";
       if (tok) localStorage.setItem(`tok:${slug}`, tok);
     } catch {}
     token.current = tok;
@@ -50,7 +49,7 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
   const link = () => `${location.origin}/q/${slug}`;
   const shareAgain = useCallback(async () => {
     if (!b) return;
-    const text = `${t("howWell1")} ${b.name} ${t("howWell2")} 👀`;
+    const text = `${t("howWell1")} ${b.name} ${t("howWell2")} ${b.mode === "couples" ? `💕 (${t("couplesTag")})` : "👀"}`;
     if (navigator.share) { navigator.share({ text, url: link() }).catch(() => {}); return; }
     try { await navigator.clipboard.writeText(link()); say(t("linkCopied")); } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,7 +64,10 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
     setAsking(false);
     const r = await fetch(`/api/quizzes/${slug}`, { method: "DELETE", headers: { Authorization: `Bearer ${token.current}` } });
     if (!r.ok) return;
-    try { localStorage.removeItem(`tok:${slug}`); const m = JSON.parse(localStorage.getItem("mine") ?? "null"); if (m?.slug === slug) localStorage.removeItem("mine"); } catch {}
+    try {
+      localStorage.removeItem(`tok:${slug}`);
+      for (const k of ["mine", "mine:couples"]) { if (JSON.parse(localStorage.getItem(k) ?? "null")?.slug === slug) localStorage.removeItem(k); }
+    } catch {}
     setGone(true);
   }
 
@@ -98,7 +100,7 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
         )}
 
         {b.players.map((p, i) => {
-          const tr = tier(p.score), [bg, fg] = TIER_C[tr.name];
+          const tr = tier(p.score, b.mode), [bg, fg] = TIER_COLORS[tr.band];
           return (
             <div key={p.id} className="space-y-2">
               <button className="row relative" onClick={() => setOpen(open === p.id ? null : p.id)} aria-expanded={open === p.id}>

@@ -3,6 +3,14 @@
 A friendship-quiz web app: make a 10-question quiz about yourself, share the link, and see which friends actually know you.
 Next.js 16 (App Router) · TypeScript · Tailwind v4 · MongoDB Atlas. English, हिन्दी and Hinglish.
 
+## Two quiz types
+
+A toggle at the top of the landing page switches the whole app between **Friends** (blue, playful, "block your fake friends") and **Couples 18+** (wine and rose, heart-eyed mascots, flirty questions, "test your partner").
+
+- **Couples pack:** 24 questions in `lib/questions.ts` (`COUPLES`, ids start with `c-`). Flirty and romantic, never explicit. A quiz only accepts questions from its own pack (checked on the server).
+- **18+ warning:** choosing Couples, opening `/create/couples` or opening a couples quiz link shows an "Adults only (18+)" sheet first, and every couples page has an "18+ · Adults only" strip. It is a self-declared warning saved on the device, **not age verification**. Get legal advice before relying on it (PRD §10).
+- **Theme:** `<html data-theme="friends|love">` flips the CSS variables in `app/globals.css`; the couples-only copy lives in `lib/i18n.ts` as `love:<key>` overrides. A quiz link pins its own theme, whatever the visitor last chose.
+
 ## Run it
 
 ```bash

@@ -8,6 +8,7 @@ export async function GET(req: Request, ctx: RouteContext<"/api/quizzes/[slug]/s
   const opt = (qid: string, oid: string) => byId(qid)?.options.find((o) => o.id === oid) ?? null;
   return Response.json({
     name: q.name,
+    mode: q.mode ?? "friends",
     players: (await listFinished(slug)).map((a) => ({
       id: a._id, name: a.name, score: a.score,
       detail: q.items.map((i) => {
