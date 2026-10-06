@@ -7,7 +7,8 @@ export async function generateMetadata({ params }: LayoutProps<"/q/[slug]">): Pr
   const q = await getQuizOnce((await params).slug);
   if (!q) return { title: "Fake or Fam" };
   const couples = q.mode === "couples";
-  const title = `How well do you know ${q.name}?${couples ? " (18+ couples quiz)" : ""}`;
+  const spicy = couples && q.level === "spicy";
+  const title = `How well do you know ${q.name}?${couples ? (spicy ? " (18+ spicy couples quiz)" : " (18+ couples quiz)") : ""}`;
   const description = couples ? "A flirty couples quiz for adults (18+). 10 questions." : "10 questions. Find out who your real friends are.";
   return { title, description, openGraph: { title, description } };
 }

@@ -18,13 +18,14 @@ export default function Home() {
   return (
     <>
       <header className="sky relative text-center px-4 pt-4 pb-6">
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex-1 max-w-[270px]"><ModeToggle /></div>
-          <LangPill />
+        {/* wraps instead of overflowing: the language pill drops to its own line only on very narrow phones */}
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="min-w-0 flex-1 basis-[210px] max-w-[270px]"><ModeToggle /></div>
+          <div className="ml-auto"><LangPill /></div>
         </div>
-        <Sparkle c="#fff" className="right-4 top-24" /><Sparkle className="left-6 top-28" s={30} delay={1} /><Sparkle c="#B79CFF" className="right-10 top-60" s={20} delay={2} />
-        <div className="absolute left-2 top-40 bob"><Pip mood={love ? "love" : "shock"} size={96} /></div>
-        <div className="absolute right-2 top-40 bob" style={{ animationDelay: "1s" }}><Boo mood={love ? "love" : "smug"} wave size={100} /></div>
+        <Sparkle c="#fff" className="right-4 top-24 max-[359px]:hidden" /><Sparkle className="left-6 top-28 max-[359px]:hidden" s={30} delay={1} /><Sparkle c="#B79CFF" className="right-10 top-60 max-[359px]:hidden" s={20} delay={2} />
+        <div className="absolute left-1 top-40 bob"><Pip mood={love ? "love" : "shock"} size={96} className="size-[68px] min-[400px]:size-24" /></div>
+        <div className="absolute right-1 top-40 bob" style={{ animationDelay: "1s" }}><Boo mood={love ? "love" : "smug"} wave size={100} className="size-[72px] min-[400px]:size-[100px]" /></div>
         <div className="mt-4"><Logo /></div>
         <p className="hand inline-block mt-6 bg-white/90 text-ink rounded-xl px-6 py-2 -rotate-1 shadow">{t("tagline")}</p>
         <div className="mt-6 -mx-4 -mb-6"><Clouds /></div>
@@ -38,7 +39,7 @@ export default function Home() {
             <div className="flex justify-center items-end gap-3 rounded-full bg-sky-100 mx-6 pt-4 px-4">
               <Pip size={110} mood={love ? "love" : "happy"} /><Boo size={110} mood={love ? "love" : "happy"} />
             </div>
-            <h2 className="text-[34px] leading-10 font-extrabold">
+            <h2 className="text-[28px] leading-9 min-[400px]:text-[34px] min-[400px]:leading-10 font-extrabold">
               {t("heroA")}<br /><span className="text-pink-500">&amp;</span><br />
               <span className="tape">{t("heroBlock")}</span> {t("heroB")}
             </h2>

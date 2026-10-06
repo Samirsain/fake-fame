@@ -6,5 +6,5 @@ export async function POST(req: Request, ctx: RouteContext<"/api/quizzes/[slug]/
   const { slug } = await ctx.params;
   const b = await req.json().catch(() => ({}));
   const [r, q] = await Promise.all([finishAttempt(slug, b.attemptId), getQuiz(slug)]);
-  return r ? Response.json({ ...r, tier: tier(r.score, q?.mode ?? "friends") }) : Response.json({ error: "bad input" }, { status: 400 });
+  return r ? Response.json({ ...r, tier: tier(r.score, q?.mode ?? "friends", q?.level ?? "sweet") }) : Response.json({ error: "bad input" }, { status: 400 });
 }

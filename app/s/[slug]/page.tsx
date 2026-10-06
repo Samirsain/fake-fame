@@ -6,12 +6,12 @@ import Emoji from "@/components/Emoji";
 import LangPill from "@/components/LangPill";
 import Confirm from "@/components/Confirm";
 import { useToast } from "@/components/Toast";
-import { TIER_COLORS, byId, tier, type Mode } from "@/lib/questions";
+import { TIER_COLORS, byId, tier, type Level, type Mode } from "@/lib/questions";
 import { locQ, tl, useLang, useT } from "@/lib/i18n";
 
 type Opt = { emoji: string; label: string } | null;
 type Player = { id: string; name: string; score: number; detail: { qid: string; correct: boolean; you: Opt; they: Opt }[] };
-type Board = { name: string; mode?: Mode; players: Player[] };
+type Board = { name: string; mode?: Mode; level?: Level; players: Player[] };
 
 export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
   const { slug } = use(params);
@@ -49,7 +49,7 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
   const link = () => `${location.origin}/q/${slug}`;
   const shareAgain = useCallback(async () => {
     if (!b) return;
-    const text = `${t("howWell1")} ${b.name} ${t("howWell2")} ${b.mode === "couples" ? `💕 (${t("couplesTag")})` : "👀"}`;
+    const text = `${t("howWell1")} ${b.name} ${t("howWell2")} ${b.mode === "couples" ? `${b.level === "spicy" ? "🔥" : "💕"} (${t(b.level === "spicy" ? "spicyTag" : "couplesTag")})` : "👀"}`;
     if (navigator.share) { navigator.share({ text, url: link() }).catch(() => {}); return; }
     try { await navigator.clipboard.writeText(link()); say(t("linkCopied")); } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,7 +100,7 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
         )}
 
         {b.players.map((p, i) => {
-          const tr = tier(p.score, b.mode), [bg, fg] = TIER_COLORS[tr.band];
+          const tr = tier(p.score, b.mode, b.level), [bg, fg] = TIER_COLORS[tr.band];
           return (
             <div key={p.id} className="space-y-2">
               <button className="row relative" onClick={() => setOpen(open === p.id ? null : p.id)} aria-expanded={open === p.id}>

@@ -66,9 +66,39 @@ export const COUPLES: Question[] = [
   { id: "c-first-date", emoji: "🦋", text: "How did {name} feel on your first date?", options: [o("😬", "Super nervous"), o("🦋", "Butterflies"), o("😌", "Totally calm"), o("🤯", "Overthinking everything"), o("🤤", "Honestly just hungry")] },
 ];
 
+// Spicy pack (18+): more adult than the sweet pack. Flirty, sensual and suggestive, never explicit. Ids start with "s-".
+export const SPICY: Question[] = [
+  { id: "s-kiss-spot", emoji: "💋", text: "Where does {name} love being kissed most?", options: [o("👄", "Lips"), o("🧣", "Neck"), o("🤍", "Forehead"), o("😊", "Cheek"), o("✋", "On the hands")] },
+  { id: "s-late-text", emoji: "🌙", text: "What does {name} text you late at night?", options: [o("🥺", "I miss you"), o("👀", "Are you awake?"), o("🏠", "Come over"), o("📺", "Netflix?"), o("💭", "Thinking of you")] },
+  { id: "s-swoon", emoji: "😍", text: "What makes {name} swoon fastest?", options: [o("🤫", "A whisper in the ear"), o("🫂", "A tight hug from behind"), o("😘", "A surprise kiss"), o("💬", "A sincere compliment"), o("👁️", "Eye contact across the room")] },
+  { id: "s-outfit-wow", emoji: "🥵", text: "Which look makes {name} weak at the knees?", options: [o("🥻", "Saree"), o("🖤", "Little black dress"), o("🕴️", "Sharp suit"), o("🏋️", "Gym fit"), o("👕", "Wearing their shirt")] },
+  { id: "s-night-in", emoji: "🕯️", text: "{name}'s idea of a perfect romantic night in?", options: [o("🕯️", "Candles and soft music"), o("📵", "Lights low, phones off"), o("🍳", "Cooking together"), o("💃", "Slow dancing at home"), o("🌧️", "Rain outside and cuddles")] },
+  { id: "s-daring", emoji: "😈", text: "What is the most daring romantic thing {name} would try?", options: [o("💋", "A kiss in a crowd"), o("🏊", "A midnight swim"), o("🧳", "A surprise weekend away"), o("🏙️", "A rooftop slow dance"), o("🌃", "Sneaking out for a date")] },
+  { id: "s-first-kiss", emoji: "💋", text: "Where would {name} want a perfect first kiss?", options: [o("🌧️", "In the rain"), o("🏙️", "On a rooftop"), o("🎬", "In a movie theatre"), o("🏖️", "On a beach"), o("✨", "Under the stars")] },
+  { id: "s-pda", emoji: "💑", text: "How does {name} feel about PDA?", options: [o("🤝", "Hand-holding only"), o("😘", "A quick kiss is fine"), o("😎", "Loves showing off"), o("🙈", "Totally private"), o("🤷", "Depends on the mood")] },
+  { id: "s-romantic-time", emoji: "🌅", text: "When is {name} at their most romantic?", options: [o("🌅", "Early morning"), o("🌤️", "Lazy afternoon"), o("🌇", "Sunset"), o("🌙", "Late at night"), o("🌧️", "Rainy days")] },
+  { id: "s-touch", emoji: "🫶", text: "What is {name}'s favourite kind of touch?", options: [o("💇", "Playing with hair"), o("💆", "A back rub"), o("🤝", "Holding hands"), o("🥰", "A gentle cheek stroke"), o("🤗", "A long hug")] },
+  { id: "s-line", emoji: "😏", text: "Which line would melt {name}?", options: [o("😍", "You look incredible"), o("💭", "I can't stop thinking about you"), o("💃", "Dance with me?"), o("🍳", "Let me cook for you"), o("😘", "Can I steal a kiss?")] },
+  { id: "s-blush", emoji: "😊", text: "What makes {name} blush fastest?", options: [o("🔥", "A bold compliment"), o("😘", "A surprise kiss"), o("🤫", "A whisper"), o("😉", "A wink"), o("😜", "Teasing in public")] },
+  { id: "s-pillow-talk", emoji: "💬", text: "What does {name} love talking about late at night?", options: [o("🏡", "Future plans"), o("😂", "Silly memories"), o("🤫", "Secrets and confessions"), o("✈️", "Dream trips"), o("✨", "Wild dreams")] },
+  { id: "s-after-date", emoji: "🌃", text: "What does {name} want after a perfect date night?", options: [o("🌅", "Cuddling till sunrise"), o("🍕", "A late-night snack run"), o("💋", "A long goodnight kiss"), o("💃", "Dancing in the kitchen"), o("📺", "Netflix and sleep")] },
+  { id: "s-notice", emoji: "👀", text: "What does {name} notice first about someone?", options: [o("😊", "Smile"), o("👀", "Eyes"), o("🎙️", "Voice"), o("💅", "Style"), o("✋", "Hands")] },
+  { id: "s-into-you", emoji: "😏", text: "How does {name} show they are into you?", options: [o("👀", "Stares a little too long"), o("🤚", "Finds reasons to touch your arm"), o("💬", "Texts nonstop"), o("😜", "Teases you"), o("🤐", "Goes shy and quiet")] },
+  { id: "s-mood-song", emoji: "🎶", text: "Which song vibe sets the mood for {name}?", options: [o("🎷", "Slow R&B"), o("🎸", "Soft acoustic"), o("🎻", "Old Bollywood romance"), o("🌙", "Lo-fi beats"), o("🎺", "Jazz")] },
+  { id: "s-type", emoji: "😈", text: "What is {name}'s guilty-pleasure type?", options: [o("🕶️", "Mysterious and quiet"), o("😄", "Funny and flirty"), o("🧔", "Tall, dark and striking"), o("🤗", "Sweet and caring"), o("😈", "Bad boy or bad girl")] },
+  { id: "s-kiss-length", emoji: "💋", text: "How long is {name}'s perfect kiss?", options: [o("⚡", "A quick peck"), o("⏳", "A few slow seconds"), o("🌌", "Long enough to lose track of time"), o("🎵", "As long as the song plays"), o("🤍", "Forehead, then a hug")] },
+  { id: "s-flirted", emoji: "😎", text: "What does {name} do when someone flirts with you?", options: [o("😏", "Smirks and plays it cool"), o("🫂", "Pulls you closer"), o("😒", "Gets visibly jealous"), o("😂", "Laughs it off"), o("🗣️", "Asks about it later")] },
+  { id: "s-bold-text", emoji: "📱", text: "What is the boldest thing {name} would text you?", options: [o("😘", "A flirty compliment"), o("🤗", "Missing your hugs"), o("🎙️", "A low-voice voice note"), o("😈", "A teasing dare"), o("💌", "A poem for you")] },
+  { id: "s-weakness", emoji: "💘", text: "What is {name}'s weakness in love?", options: [o("😊", "Your smile"), o("🎙️", "Your voice"), o("🤗", "Your hugs"), o("😂", "Your jokes"), o("🍳", "Your cooking")] },
+  { id: "s-dance", emoji: "💃", text: "If you two danced, how would {name} lead?", options: [o("💞", "Slow and close"), o("🌀", "Playful spins"), o("🤪", "Wild and silly"), o("🦶", "Stepping on your feet"), o("👀", "Eyes locked the whole time")] },
+  { id: "s-anniv", emoji: "💝", text: "What is {name}'s dream anniversary?", options: [o("🍽️", "A private dinner for two"), o("🧳", "A surprise trip"), o("📍", "Revisiting the first-date spot"), o("💌", "A letter and a gift"), o("🛋️", "Staying in and cuddling")] },
+];
+
 export type Mode = "friends" | "couples";
-export const packOf = (m: Mode) => (m === "couples" ? COUPLES : QUESTIONS);
-export const byId = (id: string) => QUESTIONS.find((q) => q.id === id) ?? COUPLES.find((q) => q.id === id);
+export type Level = "sweet" | "spicy";
+/** The question pool for a quiz: friends, or couples at the chosen level (sweet = romantic, spicy = more adult). */
+export const packOf = (m: Mode, level: Level = "sweet") => (m === "friends" ? QUESTIONS : level === "spicy" ? SPICY : COUPLES);
+export const byId = (id: string) => QUESTIONS.find((q) => q.id === id) ?? COUPLES.find((q) => q.id === id) ?? SPICY.find((q) => q.id === id);
 
 const TIERS = {
   friends: [
@@ -83,11 +113,18 @@ const TIERS = {
     { emoji: "🥰", name: "Partner in crime", copy: "You really know them." },
     { emoji: "💞", name: "Soulmate", copy: "Made for each other." },
   ],
+  spicy: [
+    { emoji: "🧊", name: "Cold feet", copy: "Time to warm things up." },
+    { emoji: "😏", name: "Warming up", copy: "Getting interesting…" },
+    { emoji: "🔥", name: "Hot stuff", copy: "You know exactly what they like." },
+    { emoji: "💘", name: "Perfect match", copy: "Sparks everywhere." },
+  ],
 } as const;
 
 /** 0–3 → 0, 4–6 → 1, 7–8 → 2, 9–10 → 3 */
 export const band = (s: number) => (s <= 3 ? 0 : s <= 6 ? 1 : s <= 8 ? 2 : 3);
-export const tier = (s: number, mode: Mode = "friends") => ({ ...TIERS[mode][band(s)], band: band(s) });
+export const tier = (s: number, mode: Mode = "friends", level: Level = "sweet") =>
+  ({ ...TIERS[mode === "couples" && level === "spicy" ? "spicy" : mode][band(s)], band: band(s) });
 /** [soft background, text, ring arc] per band (DESIGN.md §4.13) */
 export const TIER_COLORS = [
   ["#FFE1E4", "#C21F33", "#FF4D5E"],

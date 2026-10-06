@@ -53,11 +53,14 @@
   --color-cream: var(--c-cream);
 }
 
-body { background: linear-gradient(var(--bg-top), var(--c-page) 40%); color: var(--c-ink); font-family: var(--font-sans); font-weight: 600; }
+html, body { overflow-x: clip; } /* nothing may ever make the page wider than the screen (entrance slides, wide rows) */
+body { background: linear-gradient(var(--bg-top), var(--c-page) 40%); color: var(--c-ink); font-family: var(--font-sans); font-weight: 600; min-height: 100dvh; }
 /* desktop gutters: faint clouds drifting behind the 500px column (DESIGN.md §9) */
 body::before { content: ""; position: fixed; inset: 0; z-index: -1; opacity: .8; animation: drift 60s ease-in-out infinite alternate;
   background: radial-gradient(ellipse 90px 40px at 10% 18%, var(--cloud) 98%, transparent), radial-gradient(ellipse 130px 52px at 92% 62%, var(--cloud) 98%, transparent), radial-gradient(ellipse 70px 30px at 6% 80%, var(--cloud) 98%, transparent); }
-[data-theme="love"] body::before { background: radial-gradient(circle at 12% 18%, rgb(255 92 147 / .22) 0 80px, transparent 82px), radial-gradient(circle at 90% 65%, rgb(194 29 91 / .18) 0 110px, transparent 112px), radial-gradient(circle at 8% 82%, rgb(255 140 170 / .2) 0 60px, transparent 62px); }
+/* couples mode: soft rose glows (no hard-edged blobs) and the same tiny hearts as the column, so the side gutters on a big screen look designed too */
+[data-theme="love"] body::before { opacity: 1; background: radial-gradient(circle 260px at 10% 16%, rgb(255 92 147 / .30), transparent), radial-gradient(circle 320px at 92% 66%, rgb(194 29 91 / .22), transparent), radial-gradient(circle 200px at 6% 84%, rgb(255 140 170 / .26), transparent); }
+[data-theme="love"] body { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath d='M16 12c-1.6-3.4-6.8-2.4-6.8 1.4 0 3.8 6.8 8 6.8 8s6.8-4.2 6.8-8c0-3.8-5.2-4.8-6.8-1.4z' fill='%23FF5C93' fill-opacity='.10'/%3E%3Cpath d='M46 44c-1.6-3.4-6.8-2.4-6.8 1.4 0 3.8 6.8 8 6.8 8s6.8-4.2 6.8-8c0-3.8-5.2-4.8-6.8-1.4z' fill='%23C2185B' fill-opacity='.08'/%3E%3C/svg%3E"), linear-gradient(var(--bg-top), var(--c-page) 40%); }
 @keyframes drift { to { transform: translateX(40px); } }
 
 .phone { background-color: var(--c-page); box-shadow: 0 10px 30px rgb(var(--shadow-rgb) / .16); min-height: 100dvh; }
@@ -74,7 +77,9 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; opacity: .8;
 /* ---------- 18+ strip, mode toggle, age warning ---------- */
 .adult-banner { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 12px; background: #3B0F2E; color: #FFD9E6; font-weight: 800; font-size: 13px; letter-spacing: .07em; text-transform: uppercase; }
 .modetoggle { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 4px; border-radius: 999px; background: rgb(255 255 255 / .9); box-shadow: 0 4px 0 rgb(0 0 0 / .08); }
-.modetoggle button { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 10px; border-radius: 999px; font-weight: 800; font-size: 15px; color: #1E2640; white-space: nowrap; cursor: pointer; transition: color .2s; }
+.modetoggle { min-width: 0; }
+.modetoggle button { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 4px; min-width: 0; min-height: 44px; padding: 0 6px; border-radius: 999px; font-weight: 800; font-size: 14px; color: #1E2640; white-space: nowrap; cursor: pointer; transition: color .2s; }
+@media (min-width: 400px) { .modetoggle button { gap: 6px; padding: 0 10px; font-size: 15px; } }
 .modetoggle button[aria-checked="true"] { color: #fff; }
 .mt-thumb { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 999px; background: linear-gradient(180deg, var(--c-primary-hi), var(--c-primary) 40%, var(--c-primary-lo)); box-shadow: 0 4px 12px rgb(var(--c-primary-rgb) / .35); transition: transform .26s cubic-bezier(.23,1,.32,1); }
 .mt-age { margin-left: 2px; padding: 0 6px; border-radius: 8px; background: rgb(255 255 255 / .25); font-size: 12px; }
@@ -202,6 +207,21 @@ main > *, .stepin { animation: slidein .26s cubic-bezier(.23,1,.32,1) both; } /*
 @keyframes hop { 40% { transform: translateY(-14px) scale(1.04); } }
 .beat { transform-box: fill-box; transform-origin: 50% 50%; animation: beat 1.3s ease-in-out infinite; }
 @keyframes beat { 0%, 100% { transform: scale(1); } 30% { transform: scale(1.22); } 60% { transform: scale(1); } }
+
+/* ---------- small phones (DESIGN.md §9: 320–389 px) ---------- */
+@media (max-width: 389px) {
+  .card > .in { padding: 14px; }
+  .btn { font-size: 19px; min-height: 60px; }
+  .paper { padding: 24px 16px 20px 38px; }
+  .qtext { font-size: 24px; line-height: 30px; }
+  .opt { min-height: 92px; gap: 12px; }
+  .opt .thumb { width: 68px; height: 68px; }
+  .opt .lbl { font-size: 18px; }
+  .opt.tile { min-height: 140px; }
+  .opt.tile .thumb { width: 62px; height: 62px; }
+  .opt.tile .lbl { font-size: 16px; }
+  .input { height: 60px; font-size: 21px; }
+}
 
 /* Reduced motion = fewer, gentler animations, not zero: keep fades and colour changes, drop movement. */
 @keyframes fade { from { opacity: 0; } }

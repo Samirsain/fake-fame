@@ -6,12 +6,13 @@ import Stepper from "@/components/Stepper";
 import Logo from "@/components/Logo";
 import LangPill from "@/components/LangPill";
 import AgeGate from "@/components/AgeGate";
+import Emoji from "@/components/Emoji";
 import { Boo, Pip } from "@/components/Mascot";
 import { Confetti, Heart, Sparkle } from "@/components/Doodles";
 import { FaInstagram, FaShareNodes, FaSnapchat, FaWhatsapp } from "react-icons/fa6";
 import { useToast } from "@/components/Toast";
 import { useT } from "@/lib/i18n";
-import { cleanName, packOf, type Mode } from "@/lib/questions";
+import { cleanName, packOf, type Level, type Mode } from "@/lib/questions";
 import { confirmAdult, isAdult, setMode, usePinMode } from "@/lib/theme";
 
 const PRON = [["he", "-rotate-[5deg]"], ["she", "rotate-3"], ["they", "-rotate-2"]] as const;
@@ -45,9 +46,10 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
   const [adult, setAdult] = useState<boolean | null>(couples ? null : true);
   useEffect(() => { if (couples) setAdult(isAdult()); }, [couples]);
 
-  const [step, setStep] = useState<"name" | "pron" | "q" | "making" | "share">("name");
+  const [step, setStep] = useState<"name" | "pron" | "level" | "q" | "making" | "share">("name");
   const [name, setName] = useState("");
   const [pron, setPron] = useState("");
+  const [level, setLevel] = useState<Level>("sweet"); // couples only: sweet (romantic) or spicy (more adult)
   const [pool, setPool] = useState(() => packOf(mode));
   const [link, setLink] = useState("");
   const [token, setToken] = useState("");
@@ -60,15 +62,26 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
   useEffect(() => {
     try {
       const d = JSON.parse(sessionStorage.getItem(DRAFT) ?? "null");
-      if (d?.step === "q" && cleanName(d.name)) { setName(d.name); setPron(d.pron); setStep("q"); }
+      if (d?.step === "q" && cleanName(d.name)) {
+        const lv: Level = d.level === "spicy" ? "spicy" : "sweet";
+        setName(d.name); setPron(d.pron); setLevel(lv); setPool(packOf(mode, lv)); setStep("q");
+      }
     } catch {}
-  }, [DRAFT]);
+  }, [DRAFT, mode]);
+
+  // start the question round with a fresh random mix from the chosen pack
+  function begin(p: string, lv: Level) {
+    setLevel(lv);
+    setPool(shuffle(packOf(mode, lv)));
+    try { sessionStorage.setItem(DRAFT, JSON.stringify({ step: "q", name: name.trim(), pron: p, level: lv })); sessionStorage.removeItem(STEP); } catch {}
+    setTimeout(() => setStep("q"), 300);
+  }
 
   async function done(items: { questionId: string; optionId: string }[]) {
     setStep("making");
     try {
       const [res] = await Promise.all([
-        fetch("/api/quizzes", { method: "POST", body: JSON.stringify({ name: name.trim(), pronoun: pron, mode, items: items.map((i) => ({ questionId: i.questionId, answerOptionId: i.optionId })) }) }),
+        fetch("/api/quizzes", { method: "POST", body: JSON.stringify({ name: name.trim(), pronoun: pron, mode, level, items: items.map((i) => ({ questionId: i.questionId, answerOptionId: i.optionId })) }) }),
         new Promise((r) => setTimeout(r, 1200)), // anticipation beat (C7)
       ]);
       if (!res.ok) throw new Error(String(res.status));
@@ -133,9 +146,8 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
           {PRON.map(([v, r]) => (
             <button key={v} onClick={() => {
               setPron(v);
-              setPool(shuffle(packOf(mode))); // a fresh mix every quiz
-              try { sessionStorage.setItem(DRAFT, JSON.stringify({ step: "q", name: name.trim(), pron: v })); sessionStorage.removeItem(STEP); } catch {}
-              setTimeout(() => setStep("q"), 300);
+              if (couples) { setTimeout(() => setStep("level"), 300); return; } // couples choose sweet or spicy next
+              begin(v, "sweet");
             }}
               className={`w-[106px] h-[132px] bg-white rounded-[22px] flex flex-col items-center justify-center gap-1 transition-transform ${r} ${pron === v ? "outline outline-[3px] outline-offset-[3px] outline-pink-500 scale-105" : ""}`}
               style={{ boxShadow: "0 6px 0 var(--slab), 0 12px 22px rgb(var(--shadow-rgb) / .10)" }}>
@@ -145,6 +157,27 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
         </div>
         <p className="text-sm">{t("pronHint")}</p>
         <button className="btn ghost" onClick={() => setStep("name")}>{t("back")}</button>
+      </div>
+    </>
+  );
+
+  if (step === "level") return (
+    <>
+      <Band />
+      <div className="px-4 space-y-5 text-center">
+        <div className="card"><div className="in"><h2 className="text-3xl font-extrabold leading-9">{t("levelTitle")}</h2></div></div>
+        <div className="space-y-[18px]">
+          {([["sweet", "💕", "levelSweet", "levelSweetD", "#FFE3EE"], ["spicy", "🔥", "levelSpicy", "levelSpicyD", "#FFE0CC"]] as const).map(([lv, em, title, desc, tile], k) => (
+            <button key={lv} className="opt" style={{ animationDelay: `${k * 60}ms` }} onClick={() => begin(pron, lv)}>
+              <span className="thumb" style={{ background: tile }}><Emoji e={em} size={52} /></span>
+              <span className="min-w-0">
+                <b className="block text-2xl font-extrabold leading-tight">{t(title)}</b>
+                <span className="block text-sm font-semibold leading-5 mt-1">{t(desc)}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+        <button className="btn ghost" onClick={() => setStep("pron")}>{t("back")}</button>
       </div>
     </>
   );
@@ -162,7 +195,7 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
     </div>
   );
 
-  const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `💕 (${t("couplesTag")})` : "👀"} ${link}`;
+  const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `${level === "spicy" ? "🔥" : "💕"} (${t(level === "spicy" ? "spicyTag" : "couplesTag")})` : "👀"} ${link}`;
   const canShare = typeof navigator !== "undefined" && "share" in navigator;
   const slug = link.split("/q/")[1];
   return (

@@ -17,8 +17,12 @@ export default function LangPill() {
 
   return (
     <>
-      <button className="pillbtn" onClick={() => ref.current?.showModal()} aria-haspopup="dialog">
-        <span aria-hidden>🌐</span> {cur.label} <span aria-hidden className="text-sm">⌄</span>
+      {/* full name from 420px up, a short code ("EN") on phones so the header row never overflows */}
+      <button className="pillbtn" onClick={() => ref.current?.showModal()} aria-haspopup="dialog" aria-label={`${t("chooseLang")}: ${cur.label}`}>
+        <span aria-hidden>🌐</span>
+        <span aria-hidden className="hidden min-[420px]:inline">{cur.label}</span>
+        <span aria-hidden className="min-[420px]:hidden">{cur.short}</span>
+        <span aria-hidden className="text-sm">⌄</span>
       </button>
       <dialog ref={ref} className="sheet" aria-label={t("chooseLang")} onClick={(e) => e.target === ref.current && close()} onClose={() => setQ("")}>
         <div className="grab" aria-hidden />

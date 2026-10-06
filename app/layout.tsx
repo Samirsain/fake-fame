@@ -21,7 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-theme="friends" className={`${baloo.variable} ${shantell.variable}`} suppressHydrationWarning>
       <head><script dangerouslySetInnerHTML={{ __html: themeBoot }} /></head>
-      <body className="flex justify-center">
+      <body className="flex justify-center" suppressHydrationWarning> {/* extensions (ColorZilla etc.) add attributes to <body> before React hydrates */}
         <ThemeApplier />
         <main className="phone w-full max-w-[500px]"><AdultBanner />{children}<MadeBy /></main>
       </body>

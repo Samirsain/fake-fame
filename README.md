@@ -7,7 +7,7 @@ Next.js 16 (App Router) · TypeScript · Tailwind v4 · MongoDB Atlas. English, 
 
 A toggle at the top of the landing page switches the whole app between **Friends** (blue, playful, "block your fake friends") and **Couples 18+** (wine and rose, heart-eyed mascots, flirty questions, "test your partner").
 
-- **Couples pack:** 24 questions in `lib/questions.ts` (`COUPLES`, ids start with `c-`). Flirty and romantic, never explicit. A quiz only accepts questions from its own pack (checked on the server).
+- **Two couples levels, picked when creating the quiz:** *Sweet* (`COUPLES`, ids `c-`, 24 questions: cute and romantic) and *Spicy* (`SPICY`, ids `s-`, 24 questions: more adult, flirty and suggestive). Both stay **non-explicit**. Spicy quizzes have their own tier names (Cold feet → Perfect match). A quiz only accepts questions from its own pack (checked on the server).
 - **18+ warning:** choosing Couples, opening `/create/couples` or opening a couples quiz link shows an "Adults only (18+)" sheet first, and every couples page has an "18+ · Adults only" strip. It is a self-declared warning saved on the device, **not age verification**. Get legal advice before relying on it (PRD §10).
 - **Theme:** `<html data-theme="friends|love">` flips the CSS variables in `app/globals.css`; the couples-only copy lives in `lib/i18n.ts` as `love:<key>` overrides. A quiz link pins its own theme, whatever the visitor last chose.
 

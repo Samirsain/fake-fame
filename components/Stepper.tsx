@@ -114,7 +114,7 @@ export default function Stepper({ name, questions, onDone, check, skippable, sto
           <span className="washi" aria-hidden />
           <div className="rings" aria-hidden>{Array.from({ length: 7 }, (_, k) => <i key={k} />)}</div>
           <span className="tapeq hand">{t("question")} {i + 1}</span>
-          <h2 className={`font-extrabold mt-4 ${q.text.length > 60 ? "text-2xl leading-8" : "text-[28px] leading-9"}`}>
+          <h2 className={`qtext font-extrabold mt-4 ${q.text.length > 60 ? "text-2xl leading-8" : "text-[28px] leading-9"}`}>
             {parts[0]}<span className="text-pink-500 underline decoration-wavy decoration-sky-500 underline-offset-4">{name}</span>{parts[1]}
           </h2>
           <div className="flex items-end justify-between mt-2">

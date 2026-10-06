@@ -34,10 +34,10 @@ export default function ModeToggle() {
       <div role="radiogroup" aria-label={t("modeLabel")} className="modetoggle">
         <span className="mt-thumb" aria-hidden style={{ transform: mode === "couples" ? "translateX(100%)" : "translateX(0)" }} />
         <button role="radio" aria-checked={mode === "friends"} onClick={() => pick("friends")}>
-          <Emoji e="👫" size={22} />{t("modeFriends")}
+          <Emoji e="👫" size={22} className="max-[359px]:hidden" />{t("modeFriends")}
         </button>
         <button role="radio" aria-checked={mode === "couples"} onClick={() => pick("couples")}>
-          <Emoji e="💕" size={22} />{t("modeCouples")}<b className="mt-age">18+</b>
+          <Emoji e="💕" size={22} className="max-[359px]:hidden" />{t("modeCouples")}<b className="mt-age">18+</b>
         </button>
       </div>
       <AgeGate open={asking} onYes={() => { confirmAdult(); setAsking(false); apply("couples"); }} onNo={() => setAsking(false)} />

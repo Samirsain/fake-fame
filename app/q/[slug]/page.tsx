@@ -9,11 +9,11 @@ import { Boo, Pip } from "@/components/Mascot";
 import { Confetti } from "@/components/Doodles";
 import Emoji from "@/components/Emoji";
 import { useToast } from "@/components/Toast";
-import { TIER_COLORS, band, cleanName, type Mode, type Question } from "@/lib/questions";
+import { TIER_COLORS, band, cleanName, type Level, type Mode, type Question } from "@/lib/questions";
 import { useT } from "@/lib/i18n";
 import { confirmAdult, isAdult, setMode } from "@/lib/theme";
 
-type Quiz = { name: string; mode?: Mode; players: number; questions: Question[] };
+type Quiz = { name: string; mode?: Mode; level?: Level; players: number; questions: Question[] };
 type Result = { id: string; name: string; score: number; rank?: number; tier: { emoji: string; name: string; copy: string; band?: number }; top5: { id: string; name: string; score: number }[] };
 
 function CountUp({ to }: { to: number }) {
@@ -156,7 +156,7 @@ export default function Play({ params }: PageProps<"/q/[slug]">) {
           <div className="flex flex-wrap justify-center gap-2 text-sm font-extrabold">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-100 px-3 py-1"><Emoji e="👥" size={18} />{quiz.players} {t(quiz.players === 1 ? "playedOne" : "playedMany")}</span>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-pink-100 px-3 py-1"><Emoji e="❓" size={18} />{t("tenQ")}</span>
-            {couples && <span className="inline-flex items-center gap-1.5 rounded-full bg-pink-100 px-3 py-1"><Emoji e="💕" size={18} />{t("couplesTag")}</span>}
+            {couples && <span className="inline-flex items-center gap-1.5 rounded-full bg-pink-100 px-3 py-1"><Emoji e={quiz.level === "spicy" ? "🔥" : "💕"} size={18} />{t(quiz.level === "spicy" ? "spicyTag" : "couplesTag")}</span>}
           </div>
         </div></div>
         <input className="input" maxLength={15} value={me} onChange={(e) => setMe(e.target.value)} placeholder={t("yourName")} autoComplete="off" aria-label={t("yourName")} />
