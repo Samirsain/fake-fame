@@ -78,10 +78,17 @@ export default function Play({ params }: PageProps<"/q/[slug]">) {
     setRes(out);
   }
 
+  // Share the score card as an image where the browser can (phones: straight into Instagram/Snapchat/WhatsApp), else share the text + link.
+  const cardUrl = () => `/q/${slug}/card?a=${res?.id}`;
   const shareScore = async () => {
     if (!res || !quiz) return;
     const text = t("scoreText").replace("{s}", String(res.score)).replace("{name}", quiz.name);
     const url = location.href;
+    try {
+      const blob = await (await fetch(cardUrl())).blob();
+      const file = new File([blob], "my-score.png", { type: "image/png" });
+      if (navigator.canShare?.({ files: [file] })) { await navigator.share({ files: [file], text, url }); return; }
+    } catch (e) { if ((e as Error).name === "AbortError") return; }
     if (navigator.share) { navigator.share({ text, url }).catch(() => {}); return; }
     try { await navigator.clipboard.writeText(`${text} ${url}`); say(t("linkCopied")); } catch {}
   };
@@ -141,6 +148,7 @@ export default function Play({ params }: PageProps<"/q/[slug]">) {
         </div></div>
         <Link href={createHref} className="btn pink mt-2">{t("createOwn")} <span className="arrow">→</span></Link>
         <button className="btn ghost" onClick={shareScore}>{t("shareScore")}</button>
+        <a className="btn ghost" href={cardUrl()} download="my-score.png">{t("saveCard")}</a>
         {good && <p className="sr-only">{t("c:" + res.tier.name)}</p>}
         {toast}
       </div>

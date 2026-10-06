@@ -109,6 +109,12 @@ export const finishAttempt = async (slug: string, attemptId: string) => {
   return { id: a._id, name: a.name, score, rank: ahead + 1, players, top5: top.map((t) => ({ id: t._id, name: t.name, score: t.score })) };
 };
 
+/** A finished attempt, for the score-card image (null if unknown / not finished). */
+export const getAttempt = async (slug: string, id: string) => {
+  if (typeof id !== "string" || !SLUG.test(slug)) return null;
+  return (await (await attempts()).findOne({ _id: id, slug, done: true })) ?? null;
+};
+
 export const countFinished = async (slug: string) => (await attempts()).countDocuments(visible(slug));
 
 export const listFinished = async (slug: string) =>

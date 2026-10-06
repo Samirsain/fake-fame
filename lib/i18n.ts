@@ -23,6 +23,7 @@ export const useLang = () => useSyncExternalStore(subscribe, get, () => "en" as 
 // ---- UI strings ----
 type Dict = Record<string, string>;
 const en: Dict = {
+  saveCard: "Save score card",
   levelExtreme: "Extreme", levelExtremeD: "21+ only. We ask your name and date of birth; nothing is saved.", extremeTag: "Extreme · 21+",
   extTitle: "21+ only", extBody: "Enter your name and date of birth to continue. Your birth date is checked on this device and never saved.",
   extName: "Your name", extDob: "Date of birth", extGo: "Enter", extUnder: "Sorry, this level is only for people aged 21 or older.", extBad: "Please enter a valid date of birth.",
@@ -103,6 +104,7 @@ const en: Dict = {
   "t:Real one": "Real one", "c:Real one": "You actually pay attention.", "t:Bestie": "Bestie", "c:Bestie": "Certified fam.",
 };
 const hx: Dict = {
+  saveCard: "Score card save karo",
   levelExtreme: "Extreme", levelExtremeD: "Sirf 21+ ke liye. Naam aur date of birth poochte hain; kuch save nahi hota.", extremeTag: "Extreme · 21+",
   extTitle: "Sirf 21+ ke liye", extBody: "Aage badhne ke liye naam aur date of birth daalo. Birth date isi device pe check hoti hai, save nahi hoti.",
   extName: "Tumhara naam", extDob: "Date of birth", extGo: "Andar jao", extUnder: "Sorry, ye level sirf 21 ya usse zyada umar ke logon ke liye hai.", extBad: "Sahi date of birth daalo.",
@@ -183,6 +185,7 @@ const hx: Dict = {
   "t:Real one": "Asli dost", "c:Real one": "Tum sach me dhyaan dete ho.", "t:Bestie": "Bestie", "c:Bestie": "Certified fam.",
 };
 const hi: Dict = {
+  saveCard: "स्कोर कार्ड सेव करो",
   levelExtreme: "एक्सट्रीम", levelExtremeD: "सिर्फ़ 21+ के लिए। नाम और जन्मतिथि पूछते हैं; कुछ सेव नहीं होता।", extremeTag: "एक्सट्रीम · 21+",
   extTitle: "सिर्फ़ 21+ के लिए", extBody: "आगे बढ़ने के लिए नाम और जन्मतिथि डालो। जन्मतिथि इसी डिवाइस पर जाँची जाती है, सेव नहीं होती।",
   extName: "तुम्हारा नाम", extDob: "जन्मतिथि", extGo: "अंदर जाओ", extUnder: "माफ़ करना, यह लेवल सिर्फ़ 21 साल या उससे ज़्यादा उम्र वालों के लिए है।", extBad: "सही जन्मतिथि डालो।",
