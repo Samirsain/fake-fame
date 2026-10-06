@@ -5,13 +5,14 @@ import { use, useEffect, useState } from "react";
 import Stepper from "@/components/Stepper";
 import LangPill from "@/components/LangPill";
 import AgeGate from "@/components/AgeGate";
+import AgeGate21 from "@/components/AgeGate21";
 import { Boo, Pip } from "@/components/Mascot";
 import { Confetti } from "@/components/Doodles";
 import Emoji from "@/components/Emoji";
 import { useToast } from "@/components/Toast";
 import { TIER_COLORS, band, cleanName, type Level, type Mode, type Question } from "@/lib/questions";
 import { useT } from "@/lib/i18n";
-import { confirmAdult, isAdult, setMode } from "@/lib/theme";
+import { confirmAdult, isAdult, isAdult21, setMode } from "@/lib/theme";
 
 type Quiz = { name: string; mode?: Mode; level?: Level; players: number; questions: Question[] };
 type Result = { id: string; name: string; score: number; rank?: number; tier: { emoji: string; name: string; copy: string; band?: number }; top5: { id: string; name: string; score: number }[] };
@@ -47,7 +48,7 @@ export default function Play({ params }: PageProps<"/q/[slug]">) {
     fetch(`/api/quizzes/${slug}`).then((r) => (r.ok ? r.json() : null)).then(setQuiz).catch(() => setQuiz(null));
     try { setRes(JSON.parse(localStorage.getItem(`done:${slug}`) ?? "null")); } catch {} // one attempt per device (P5)
   }, [slug]);
-  useEffect(() => { if (quiz) setAdult(quiz.mode === "couples" ? isAdult() : true); }, [quiz]);
+  useEffect(() => { if (quiz) setAdult(quiz.mode === "couples" ? isAdult() && (quiz.level !== "extreme" || isAdult21()) : true); }, [quiz]);
 
   async function start() {
     if (!cleanName(me) || starting) return;
@@ -101,7 +102,9 @@ export default function Play({ params }: PageProps<"/q/[slug]">) {
   if (adult !== true) return (
     <>
       <div className="min-h-dvh" />
-      <AgeGate open={adult === false} onYes={() => { confirmAdult(); setAdult(true); }} onNo={() => { setMode("friends"); router.push("/"); }} />
+      {quiz.level === "extreme" && !isAdult21()
+        ? <AgeGate21 open={adult === false} onYes={() => { confirmAdult(); setAdult(true); }} onNo={() => { setMode("friends"); router.push("/"); }} />
+        : <AgeGate open={adult === false} onYes={() => { confirmAdult(); setAdult(true); }} onNo={() => { setMode("friends"); router.push("/"); }} />}
     </>
   );
 
@@ -156,7 +159,7 @@ export default function Play({ params }: PageProps<"/q/[slug]">) {
           <div className="flex flex-wrap justify-center gap-2 text-sm font-extrabold">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-100 px-3 py-1"><Emoji e="👥" size={18} />{quiz.players} {t(quiz.players === 1 ? "playedOne" : "playedMany")}</span>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-pink-100 px-3 py-1"><Emoji e="❓" size={18} />{t("tenQ")}</span>
-            {couples && <span className="inline-flex items-center gap-1.5 rounded-full bg-pink-100 px-3 py-1"><Emoji e={quiz.level === "spicy" ? "🔥" : "💕"} size={18} />{t(quiz.level === "spicy" ? "spicyTag" : "couplesTag")}</span>}
+            {couples && <span className="inline-flex items-center gap-1.5 rounded-full bg-pink-100 px-3 py-1"><Emoji e={quiz.level === "extreme" ? "🔞" : quiz.level === "spicy" ? "🔥" : "💕"} size={18} />{t(quiz.level === "extreme" ? "extremeTag" : quiz.level === "spicy" ? "spicyTag" : "couplesTag")}</span>}
           </div>
         </div></div>
         <input className="input" maxLength={15} value={me} onChange={(e) => setMe(e.target.value)} placeholder={t("yourName")} autoComplete="off" aria-label={t("yourName")} />

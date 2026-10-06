@@ -7,8 +7,8 @@ export default async function Layout({ children, params }: LayoutProps<"/s/[slug
   const mode = q?.mode === "couples" ? "couples" : "friends";
   return (
     <>
-      {q && <script dangerouslySetInnerHTML={{ __html: `document.documentElement.dataset.theme=${JSON.stringify(mode === "couples" ? "love" : "friends")}` }} />}
-      {q && <PinMode mode={mode} />}
+      {q && <script dangerouslySetInnerHTML={{ __html: `document.documentElement.dataset.theme=${JSON.stringify(mode === "couples" ? "love" : "friends")};${q.level === "extreme" ? `document.documentElement.dataset.night="1"` : ""}` }} />}
+      {q && <PinMode mode={mode} night={q.level === "extreme"} />}
       {children}
     </>
   );

@@ -10,7 +10,7 @@ export type Quiz = {
   _id: string; // = slug
   slug: string; tokenHash: string; name: string; pronoun: string;
   mode?: "friends" | "couples"; // missing on quizzes made before couples mode existed = friends
-  level?: "sweet" | "spicy"; // couples quizzes only; missing = sweet
+  level?: "sweet" | "spicy" | "extreme"; // couples quizzes only; missing = sweet
   items: { questionId: string; answerOptionId: string }[];
   at: number; expiresAt: Date;
 };

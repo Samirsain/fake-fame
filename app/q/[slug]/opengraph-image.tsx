@@ -64,7 +64,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         </div>
         {love && (
           <div style={{ marginTop: 18, display: "flex", background: "#3B0F2E", color: "#FFD9E6", borderRadius: 30, padding: "8px 28px", fontSize: 30, fontWeight: 800 }}>
-            {q?.level === "spicy" ? "Spicy couples quiz · 18+" : "Couples quiz · 18+"}
+            {q?.level === "extreme" ? "Couples quiz · 21+" : q?.level === "spicy" ? "Spicy couples quiz · 18+" : "Couples quiz · 18+"}
           </div>
         )}
       </div>

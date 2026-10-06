@@ -32,6 +32,29 @@
   --cf0: #FF5C93; --cf1: #FFC9A8; --cf2: #D81B60; --cf3: #FFD9E6; --cf4: #A3144C; --cf5: #FF8FB5;
 }
 
+
+/* Extreme (21+): dark romantic "night" look layered on the couples theme — deep purple and black with hot-pink neon. Cards stay light so text stays readable. */
+[data-night="1"] {
+  --c-ink: #2A0B3A; --c-body: #FBE7F6; --c-page: #150A1F; --c-sky500: #FF4FA8; --c-sky100: #F6DDF2;
+  --c-primary: #E0309A; --c-primary-hi: #FF6EC4; --c-primary-lo: #7B2CBF; --c-primary-rgb: 224 48 154;
+  --c-accent: #FF4FA8; --c-accent-dk: #B0207A; --c-accent-soft: #FBD5EE; --c-accent-slab: #8A1A62;
+  --c-tape: #FF9AD5; --c-dash: #E87CC0; --c-cream: #F3D9EC;
+  --h1: #0B0412; --h2: #5B1A7A; --on-sky: #fff; --bg-top: #2A0F3A; --cloud: #3A1457; --line: #E9B5D8; --ph: #B58AA8; --track: #EBD3F5;
+  --slab: #3A1B52; --slab-btn: #EBC6E0; --slab-pill: #E7BFD9; --slab-row: #3A1B52;
+  --paper: #FFF4FB; --ring: #E7A3D2; --tapeq: #FFC6E8; --shadow-rgb: 255 79 168; --ink-rgb: 251 231 246;
+  --btn-border: #FFD6EE; --splash-end: #5B1A7A; --dot2: #C77BE8; --backdrop: rgb(8 2 16 / .75);
+  --pink-hi: #FF6EC4; --pink-mid: #E0309A; --pink-lo: #8A2BB5; --pink-rgb: 224 48 154;
+  --boo-body: #F3D9FF; --boo-hand: #E4BDF5;
+  --cf0: #FF4FA8; --cf1: #C77BE8; --cf2: #7B2CBF; --cf3: #FFD9F0; --cf4: #E0309A; --cf5: #FF9AD5;
+}
+[data-night="1"] body { color: var(--c-body); }
+[data-night="1"] .card, [data-night="1"] .opt, [data-night="1"] .row, [data-night="1"] .paper, [data-night="1"] dialog.sheet,
+[data-night="1"] .input, [data-night="1"] .modetoggle button { color: var(--c-ink); }
+[data-night="1"] .btn { box-shadow: 0 0 28px rgb(224 48 154 / .55), inset 0 2px 0 rgb(255 255 255 / .3); }
+[data-night="1"] .card { box-shadow: 0 0 36px rgb(255 79 168 / .28); }
+[data-night="1"] body::before { background: radial-gradient(circle 280px at 10% 16%, rgb(224 48 154 / .35), transparent), radial-gradient(circle 340px at 92% 66%, rgb(123 44 191 / .35), transparent); }
+[data-night="1"] .adult-banner { background: #2A0830; }
+
 @theme inline {
   --font-sans: var(--font-baloo), system-ui, sans-serif;
   --font-hand: var(--font-shantell), var(--font-baloo), cursive;
@@ -54,7 +77,7 @@
 }
 
 html, body { overflow-x: clip; } /* nothing may ever make the page wider than the screen (entrance slides, wide rows) */
-body { background: linear-gradient(var(--bg-top), var(--c-page) 40%); color: var(--c-ink); font-family: var(--font-sans); font-weight: 600; min-height: 100dvh; }
+body { background: linear-gradient(var(--bg-top), var(--c-page) 40%); color: var(--c-body, var(--c-ink)); font-family: var(--font-sans); font-weight: 600; min-height: 100dvh; }
 /* desktop gutters: faint clouds drifting behind the 500px column (DESIGN.md §9) */
 body::before { content: ""; position: fixed; inset: 0; z-index: -1; opacity: .8; animation: drift 60s ease-in-out infinite alternate;
   background: radial-gradient(ellipse 90px 40px at 10% 18%, var(--cloud) 98%, transparent), radial-gradient(ellipse 130px 52px at 92% 62%, var(--cloud) 98%, transparent), radial-gradient(ellipse 70px 30px at 6% 80%, var(--cloud) 98%, transparent); }
@@ -118,7 +141,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; opacity: .8;
   box-shadow: 0 6px 0 var(--slab), 0 12px 22px rgb(var(--shadow-rgb) / .10); transition: transform .1s, box-shadow .1s, background .18s, border-color .18s, opacity .2s; animation: rise .28s cubic-bezier(.16,1,.3,1) both; }
 .opt:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 2px 0 var(--slab); }
 .opt:disabled { cursor: default; }
-.opt .thumb { display: grid; place-items: center; width: 80px; height: 80px; flex: none; border-radius: 18px; font-size: 42px; transition: background .18s; }
+.opt .thumb { overflow: hidden; display: grid; place-items: center; width: 80px; height: 80px; flex: none; border-radius: 18px; font-size: 42px; transition: background .18s; }
 .opt .lbl { font-size: 20px; font-weight: 800; line-height: 1.15; }
 .opt.tile { flex-direction: column; justify-content: center; gap: 8px; min-height: 152px; padding: 12px 8px; text-align: center; }
 .opt.tile .thumb { width: 72px; height: 72px; }

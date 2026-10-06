@@ -7,13 +7,13 @@
 
 | Kya | Kitne |
 |---|---|
-| Question ke topic icons | **78** (30 friends + 24 couples-sweet + 24 couples-spicy; 64 alag emoji) |
-| Option thumbnails (answer cards) | **406** slots (237 alag emoji) |
+| Question ke topic icons | **102** (30 friends + 24 couples-sweet + 24 couples-spicy + 24 couples-extreme; 81 alag emoji) |
+| Option thumbnails (answer cards) | **521** slots (247 alag emoji) |
 | Tier badges (friends, couples-sweet and couples-spicy: 4 each) | **12** |
 | How-to-play step icons | **3** |
 | Chips (players / questions) | **2** |
-| Kul alag image files `public/emoji/` me | **270** |
-| Abhi bhi **plain text** emoji (image nahi) | **25** jagah (Section 7) |
+| Kul alag image files `public/emoji/` me | **283** |
+| Abhi bhi **plain text** emoji (image nahi) | **27** jagah (Section 7) |
 
 ## 1. Image abhi kaise lagti hai
 
@@ -35,7 +35,7 @@
 | Option card | image ek **80×80 pastel tile** ke andar, 58 px (2-column wale question me 52 px) ki dikhti hai. Tile ke rang: `#FFE8D6 #E3F1FF #EAF9E3 #F3E8FF #FFF4CC #FFE3EE` |
 | Photo use karo to | square crop karke do. Abhi image tile ke andar **chhoti** dikhegi, poori tile bharne ke liye code me `object-fit: cover` + bada size lagana padega (main kar dunga) |
 
-## 3. Question ke topic icons (78)
+## 3. Question ke topic icons (102)
 
 Question card ke neeche-left me dikhta hai (44 px). Code: `components/Stepper.tsx`. **Couples-sweet** (18+) ke question ids `c-` se aur **couples-spicy** (18+) ke `s-` se shuru hote hain.
 
@@ -119,6 +119,30 @@ Question card ke neeche-left me dikhta hai (44 px). Code: `components/Stepper.ts
 | 76 | spicy | `s-weakness` | What is {name}'s weakness in love? | 💘 | `1f498.webp` | `public/topics/s-weakness.webp` |
 | 77 | spicy | `s-dance` | If you two danced, how would {name} lead? | 💃 | `1f483.webp` | `public/topics/s-dance.webp` |
 | 78 | spicy | `s-anniv` | What is {name}'s dream anniversary? | 💝 | `1f49d.webp` | `public/topics/s-anniv.webp` |
+| 79 | extreme | `x-late-night-text` | What does {name} usually text late at night? | 🌙 | `1f319.webp` | `public/topics/x-late-night-text.webp` |
+| 80 | extreme | `x-first-attraction` | What first attracted {name} to you the most? | 👀 | `1f440.webp` | `public/topics/x-first-attraction.webp` |
+| 81 | extreme | `x-secret-desire` | What is {name}'s biggest secret desire right now? | 🤫 | `1f92b.webp` | `public/topics/x-secret-desire.webp` |
+| 82 | extreme | `x-turn-on-style` | What turns {name} on the fastest? | ⚡ | `26a1.webp` | `public/topics/x-turn-on-style.webp` |
+| 83 | extreme | `x-kissing-pref` | How does {name} prefer kissing most? | 💋 | `1f48b.webp` | `public/topics/x-kissing-pref.webp` |
+| 84 | extreme | `x-after-midnight` | What does {name} want most after midnight? | 🕛 | `1f55b.webp` | `public/topics/x-after-midnight.webp` |
+| 85 | extreme | `x-control-pref` | Does {name} like to lead or follow in private? | 🎮 | `1f3ae.webp` | `public/topics/x-control-pref.webp` |
+| 86 | extreme | `x-body-language` | What body language of yours drives {name} crazy? | 🪞 | `1fa9e.webp` | `public/topics/x-body-language.webp` |
+| 87 | extreme | `x-fantasy-setting` | Where does {name} most want a private moment? | 🌆 | `1f306.webp` | `public/topics/x-fantasy-setting.webp` |
+| 88 | extreme | `x-tease-style` | How does {name} like to be teased? | 😈 | `1f608.webp` | `public/topics/x-tease-style.webp` |
+| 89 | extreme | `x-morning-mood` | What is {name} like right after waking up with you? | ☀️ | `2600-fe0f.webp` | `public/topics/x-morning-mood.webp` |
+| 90 | extreme | `x-jealous-trigger` | What makes {name} a little jealous fastest? | 💚 | `1f49a.webp` | `public/topics/x-jealous-trigger.webp` |
+| 91 | extreme | `x-compliment-love` | Which compliment does {name} melt over most? | 🥰 | `1f970.webp` | `public/topics/x-compliment-love.webp` |
+| 92 | extreme | `x-private-nickname` | What kind of private name does {name} like? | 🙊 | `1f64a.webp` | `public/topics/x-private-nickname.webp` |
+| 93 | extreme | `x-weekend-plan` | What does {name} want most on a free weekend? | 📅 | `1f4c5.webp` | `public/topics/x-weekend-plan.webp` |
+| 94 | extreme | `x-eye-contact` | When does {name} hold eye contact the longest? | 👁️ | `1f441-fe0f.webp` | `public/topics/x-eye-contact.webp` |
+| 95 | extreme | `x-touch-craving` | Where does {name} crave your touch most? | ✋ | `270b.webp` | `public/topics/x-touch-craving.webp` |
+| 96 | extreme | `x-mood-reader` | How well can you read {name}'s mood without words? | 🔮 | `1f52e.webp` | `public/topics/x-mood-reader.webp` |
+| 97 | extreme | `x-late-confession` | What does {name} confess more easily late at night? | 🌑 | `1f311.webp` | `public/topics/x-late-confession.webp` |
+| 98 | extreme | `x-energy-match` | What energy from you matches {name} best? | ⚡ | `26a1.webp` | `public/topics/x-energy-match.webp` |
+| 99 | extreme | `x-forbidden-thought` | What kind of thought does {name} have but rarely says? | 🚫 | `1f6ab.webp` | `public/topics/x-forbidden-thought.webp` |
+| 100 | extreme | `x-aftercare-style` | What does {name} need most after intense moments? | 🤍 | `1f90d.webp` | `public/topics/x-aftercare-style.webp` |
+| 101 | extreme | `x-risk-level` | How risky does {name} like things to feel? | 🎲 | `1f3b2.webp` | `public/topics/x-risk-level.webp` |
+| 102 | extreme | `x-last-thought` | What is usually {name}'s last thought before sleep with you? | 🌌 | `1f30c.webp` | `public/topics/x-last-thought.webp` |
 
 ## 4. Options (har question ke)
 
@@ -920,62 +944,311 @@ Answer cards ki thumbnail. Code: `components/Stepper.tsx`. "Proposed unique naam
 | A letter and a gift | 💌 | `1f48c.webp` | `public/options/s-anniv/a-letter-and-a-gift.webp` |
 | Staying in and cuddling | 🛋️ | `1f6cb-fe0f.webp` | `public/options/s-anniv/staying-in-and-cuddling.webp` |
 
+### 79. `x-late-night-text` — What does {name} usually text late at night? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Miss you | 😘 | `1f618.webp` | `public/options/x-late-night-text/miss-you.webp` |
+| Come over | 🔥 | `1f525.webp` | `public/options/x-late-night-text/come-over.webp` |
+| Can't sleep | 😏 | `1f60f.webp` | `public/options/x-late-night-text/can-t-sleep.webp` |
+| Thinking of you | 💭 | `1f4ad.webp` | `public/options/x-late-night-text/thinking-of-you.webp` |
+| Are you up | 🛏️ | `1f6cf-fe0f.webp` | `public/options/x-late-night-text/are-you-up.webp` |
+
+### 80. `x-first-attraction` — What first attracted {name} to you the most? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Your vibe | 💬 | `1f4ac.webp` | `public/options/x-first-attraction/your-vibe.webp` |
+| Your smile | 😌 | `1f60c.webp` | `public/options/x-first-attraction/your-smile.webp` |
+| Your mind | 🧠 | `1f9e0.webp` | `public/options/x-first-attraction/your-mind.webp` |
+| Your energy | ✨ | `2728.webp` | `public/options/x-first-attraction/your-energy.webp` |
+| Your voice | 🗣️ | `1f5e3-fe0f.webp` | `public/options/x-first-attraction/your-voice.webp` |
+
+### 81. `x-secret-desire` — What is {name}'s biggest secret desire right now? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Morning together | 🌅 | `1f305.webp` | `public/options/x-secret-desire/morning-together.webp` |
+| No limits night | 🔓 | `1f513.webp` | `public/options/x-secret-desire/no-limits-night.webp` |
+| Spontaneous plan | 📍 | `1f4cd.webp` | `public/options/x-secret-desire/spontaneous-plan.webp` |
+| Slow evening | 🕯️ | `1f56f-fe0f.webp` | `public/options/x-secret-desire/slow-evening.webp` |
+| Just us alone | 🚪 | `1f6aa.webp` | `public/options/x-secret-desire/just-us-alone.webp` |
+
+### 82. `x-turn-on-style` — What turns {name} on the fastest? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Flirty texts | 📱 | `1f4f1.webp` | `public/options/x-turn-on-style/flirty-texts.webp` |
+| Direct eye contact | 👀 | `1f440.webp` | `public/options/x-turn-on-style/direct-eye-contact.webp` |
+| Light touch | 🤏 | `1f90f.webp` | `public/options/x-turn-on-style/light-touch.webp` |
+| Soft voice | 🗣️ | `1f5e3-fe0f.webp` | `public/options/x-turn-on-style/soft-voice.webp` |
+| Confident talk | 😏 | `1f60f.webp` | `public/options/x-turn-on-style/confident-talk.webp` |
+
+### 83. `x-kissing-pref` — How does {name} prefer kissing most? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Slow and deep | ⏳ | `23f3.webp` | `public/options/x-kissing-pref/slow-and-deep.webp` |
+| Quick and hungry | ⚡ | `26a1.webp` | `public/options/x-kissing-pref/quick-and-hungry.webp` |
+| Soft and sweet | 😌 | `1f60c.webp` | `public/options/x-kissing-pref/soft-and-sweet.webp` |
+| Intense and long | 🔥 | `1f525.webp` | `public/options/x-kissing-pref/intense-and-long.webp` |
+| Playful | 😊 | `1f60a.webp` | `public/options/x-kissing-pref/playful.webp` |
+
+### 84. `x-after-midnight` — What does {name} want most after midnight? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Cuddle close | 🛋️ | `1f6cb-fe0f.webp` | `public/options/x-after-midnight/cuddle-close.webp` |
+| Deep talk | 💬 | `1f4ac.webp` | `public/options/x-after-midnight/deep-talk.webp` |
+| Stay up longer | 🔥 | `1f525.webp` | `public/options/x-after-midnight/stay-up-longer.webp` |
+| Sleep together | 😴 | `1f634.webp` | `public/options/x-after-midnight/sleep-together.webp` |
+| Music and vibes | 🎵 | `1f3b5.webp` | `public/options/x-after-midnight/music-and-vibes.webp` |
+
+### 85. `x-control-pref` — Does {name} like to lead or follow in private? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Always lead | 👑 | `1f451.webp` | `public/options/x-control-pref/always-lead.webp` |
+| Switch often | 🤝 | `1f91d.webp` | `public/options/x-control-pref/switch-often.webp` |
+| Prefer follow | 🙇 | `1f647.webp` | `public/options/x-control-pref/prefer-follow.webp` |
+| Depends on mood | 🎲 | `1f3b2.webp` | `public/options/x-control-pref/depends-on-mood.webp` |
+
+### 86. `x-body-language` — What body language of yours drives {name} crazy? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Looking back | 👀 | `1f440.webp` | `public/options/x-body-language/looking-back.webp` |
+| Biting lip | 😌 | `1f60c.webp` | `public/options/x-body-language/biting-lip.webp` |
+| Light touch back | 🤏 | `1f90f.webp` | `public/options/x-body-language/light-touch-back.webp` |
+| Confident walk | 😏 | `1f60f.webp` | `public/options/x-body-language/confident-walk.webp` |
+| Close whispering | 💬 | `1f4ac.webp` | `public/options/x-body-language/close-whispering.webp` |
+
+### 87. `x-fantasy-setting` — Where does {name} most want a private moment? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| In the car | 🚗 | `1f697.webp` | `public/options/x-fantasy-setting/in-the-car.webp` |
+| Hotel room | 🏨 | `1f3e8.webp` | `public/options/x-fantasy-setting/hotel-room.webp` |
+| At home | 🏠 | `1f3e0.webp` | `public/options/x-fantasy-setting/at-home.webp` |
+| Early morning | 🌅 | `1f305.webp` | `public/options/x-fantasy-setting/early-morning.webp` |
+| Late balcony | 🌃 | `1f303.webp` | `public/options/x-fantasy-setting/late-balcony.webp` |
+
+### 88. `x-tease-style` — How does {name} like to be teased? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Over text | 📱 | `1f4f1.webp` | `public/options/x-tease-style/over-text.webp` |
+| In ear | 👂 | `1f442.webp` | `public/options/x-tease-style/in-ear.webp` |
+| Across room | 👀 | `1f440.webp` | `public/options/x-tease-style/across-room.webp` |
+| With touch | 🤏 | `1f90f.webp` | `public/options/x-tease-style/with-touch.webp` |
+| All day long | ⏳ | `23f3.webp` | `public/options/x-tease-style/all-day-long.webp` |
+
+### 89. `x-morning-mood` — What is {name} like right after waking up with you? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Super clingy | 🤗 | `1f917.webp` | `public/options/x-morning-mood/super-clingy.webp` |
+| Still sleepy | 😴 | `1f634.webp` | `public/options/x-morning-mood/still-sleepy.webp` |
+| Already playful | 🔥 | `1f525.webp` | `public/options/x-morning-mood/already-playful.webp` |
+| Wants to talk | 💬 | `1f4ac.webp` | `public/options/x-morning-mood/wants-to-talk.webp` |
+| Quiet and soft | 😌 | `1f60c.webp` | `public/options/x-morning-mood/quiet-and-soft.webp` |
+
+### 90. `x-jealous-trigger` — What makes {name} a little jealous fastest? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Late replies | 📱 | `1f4f1.webp` | `public/options/x-jealous-trigger/late-replies.webp` |
+| Too much attention | 👀 | `1f440.webp` | `public/options/x-jealous-trigger/too-much-attention.webp` |
+| Flirty jokes | 💬 | `1f4ac.webp` | `public/options/x-jealous-trigger/flirty-jokes.webp` |
+| Busy all day | ⏰ | `23f0.webp` | `public/options/x-jealous-trigger/busy-all-day.webp` |
+| Someone else staring | 😏 | `1f60f.webp` | `public/options/x-jealous-trigger/someone-else-staring.webp` |
+
+### 91. `x-compliment-love` — Which compliment does {name} melt over most? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| You're so smart | 🧠 | `1f9e0.webp` | `public/options/x-compliment-love/you-re-so-smart.webp` |
+| You look hot | 🔥 | `1f525.webp` | `public/options/x-compliment-love/you-look-hot.webp` |
+| I need you | 💓 | `1f493.webp` | `public/options/x-compliment-love/i-need-you.webp` |
+| You feel safe | 😌 | `1f60c.webp` | `public/options/x-compliment-love/you-feel-safe.webp` |
+| You're addictive | ✨ | `2728.webp` | `public/options/x-compliment-love/you-re-addictive.webp` |
+
+### 92. `x-private-nickname` — What kind of private name does {name} like? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Sweet ones | 💕 | `1f495.webp` | `public/options/x-private-nickname/sweet-ones.webp` |
+| Spicy ones | 🔥 | `1f525.webp` | `public/options/x-private-nickname/spicy-ones.webp` |
+| Playful ones | 😏 | `1f60f.webp` | `public/options/x-private-nickname/playful-ones.webp` |
+| Possessive ones | 👑 | `1f451.webp` | `public/options/x-private-nickname/possessive-ones.webp` |
+
+### 93. `x-weekend-plan` — What does {name} want most on a free weekend? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Stay in all day | 🛏️ | `1f6cf-fe0f.webp` | `public/options/x-weekend-plan/stay-in-all-day.webp` |
+| Spontaneous drive | 🚗 | `1f697.webp` | `public/options/x-weekend-plan/spontaneous-drive.webp` |
+| Cozy night in | 🕯️ | `1f56f-fe0f.webp` | `public/options/x-weekend-plan/cozy-night-in.webp` |
+| Go out late | 🎉 | `1f389.webp` | `public/options/x-weekend-plan/go-out-late.webp` |
+| Sleep and chill | 😴 | `1f634.webp` | `public/options/x-weekend-plan/sleep-and-chill.webp` |
+
+### 94. `x-eye-contact` — When does {name} hold eye contact the longest? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| During deep talk | 💬 | `1f4ac.webp` | `public/options/x-eye-contact/during-deep-talk.webp` |
+| In charged moments | 🔥 | `1f525.webp` | `public/options/x-eye-contact/in-charged-moments.webp` |
+| While smiling | 😌 | `1f60c.webp` | `public/options/x-eye-contact/while-smiling.webp` |
+| When teasing | 🤫 | `1f92b.webp` | `public/options/x-eye-contact/when-teasing.webp` |
+| Before saying something | 💓 | `1f493.webp` | `public/options/x-eye-contact/before-saying-something.webp` |
+
+### 95. `x-touch-craving` — Where does {name} crave your touch most? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Full hug | 🤗 | `1f917.webp` | `public/options/x-touch-craving/full-hug.webp` |
+| Hand holding | ✋ | `270b.webp` | `public/options/x-touch-craving/hand-holding.webp` |
+| Back of neck | 😌 | `1f60c.webp` | `public/options/x-touch-craving/back-of-neck.webp` |
+| Waist pull | 💓 | `1f493.webp` | `public/options/x-touch-craving/waist-pull.webp` |
+| Light arm touch | 🤏 | `1f90f.webp` | `public/options/x-touch-craving/light-arm-touch.webp` |
+
+### 96. `x-mood-reader` — How well can you read {name}'s mood without words? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Always know | 💯 | `1f4af.webp` | `public/options/x-mood-reader/always-know.webp` |
+| Most times | 😊 | `1f60a.webp` | `public/options/x-mood-reader/most-times.webp` |
+| Sometimes miss | 🤔 | `1f914.webp` | `public/options/x-mood-reader/sometimes-miss.webp` |
+| Often guess wrong | 😅 | `1f605.webp` | `public/options/x-mood-reader/often-guess-wrong.webp` |
+
+### 97. `x-late-confession` — What does {name} confess more easily late at night? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Feelings | 💓 | `1f493.webp` | `public/options/x-late-confession/feelings.webp` |
+| Desires | 🔥 | `1f525.webp` | `public/options/x-late-confession/desires.webp` |
+| Secrets | 🤫 | `1f92b.webp` | `public/options/x-late-confession/secrets.webp` |
+| Insecurities | 😌 | `1f60c.webp` | `public/options/x-late-confession/insecurities.webp` |
+| Random thoughts | 💭 | `1f4ad.webp` | `public/options/x-late-confession/random-thoughts.webp` |
+
+### 98. `x-energy-match` — What energy from you matches {name} best? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Bold and direct | 🔥 | `1f525.webp` | `public/options/x-energy-match/bold-and-direct.webp` |
+| Calm and soft | 😌 | `1f60c.webp` | `public/options/x-energy-match/calm-and-soft.webp` |
+| Playful tease | 😏 | `1f60f.webp` | `public/options/x-energy-match/playful-tease.webp` |
+| Warm and close | 💓 | `1f493.webp` | `public/options/x-energy-match/warm-and-close.webp` |
+| Unpredictable | 🎲 | `1f3b2.webp` | `public/options/x-energy-match/unpredictable.webp` |
+
+### 99. `x-forbidden-thought` — What kind of thought does {name} have but rarely says? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| How badly they want you | 🔥 | `1f525.webp` | `public/options/x-forbidden-thought/how-badly-they-want-you.webp` |
+| How much they need you | 💓 | `1f493.webp` | `public/options/x-forbidden-thought/how-much-they-need-you.webp` |
+| What they would do | 😏 | `1f60f.webp` | `public/options/x-forbidden-thought/what-they-would-do.webp` |
+| How you looked last night | 🌙 | `1f319.webp` | `public/options/x-forbidden-thought/how-you-looked-last-night.webp` |
+
+### 100. `x-aftercare-style` — What does {name} need most after intense moments? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Tight hugs | 🤗 | `1f917.webp` | `public/options/x-aftercare-style/tight-hugs.webp` |
+| Soft words | 💬 | `1f4ac.webp` | `public/options/x-aftercare-style/soft-words.webp` |
+| Quiet closeness | 😌 | `1f60c.webp` | `public/options/x-aftercare-style/quiet-closeness.webp` |
+| Water and rest | 💧 | `1f4a7.webp` | `public/options/x-aftercare-style/water-and-rest.webp` |
+| More kisses | 😘 | `1f618.webp` | `public/options/x-aftercare-style/more-kisses.webp` |
+
+### 101. `x-risk-level` — How risky does {name} like things to feel? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Safe and soft | 😌 | `1f60c.webp` | `public/options/x-risk-level/safe-and-soft.webp` |
+| A little daring | 😏 | `1f60f.webp` | `public/options/x-risk-level/a-little-daring.webp` |
+| Quite bold | 🔥 | `1f525.webp` | `public/options/x-risk-level/quite-bold.webp` |
+| Depends on day | ⚡ | `26a1.webp` | `public/options/x-risk-level/depends-on-day.webp` |
+
+### 102. `x-last-thought` — What is usually {name}'s last thought before sleep with you? *(couples extreme, 21+)*
+
+| Option | Emoji | Abhi ki file (`public/emoji/`) | Proposed unique naam |
+|---|---|---|---|
+| Stay close | 💓 | `1f493.webp` | `public/options/x-last-thought/stay-close.webp` |
+| This feels right | 😌 | `1f60c.webp` | `public/options/x-last-thought/this-feels-right.webp` |
+| Want more | 🔥 | `1f525.webp` | `public/options/x-last-thought/want-more.webp` |
+| Don't let go | 😴 | `1f634.webp` | `public/options/x-last-thought/don-t-let-go.webp` |
+| Tomorrow again | 💭 | `1f4ad.webp` | `public/options/x-last-thought/tomorrow-again.webp` |
+
 ## 5. Same emoji, kai jagah
 
-**109 emoji** ek se zyada jagah use hue hain. Abhi inki **ek hi file** sab jagah dikhti hai. Alag-alag photo chahiye to per-option change zaroori hai.
+**123 emoji** ek se zyada jagah use hue hain. Abhi inki **ek hi file** sab jagah dikhti hai. Alag-alag photo chahiye to per-option change zaroori hai.
 
 | Emoji | File | Kitni baar | Kahan-kahan |
 |---|---|---|---|
-| 💬 | `1f4ac.webp` | 10 | `app` → WhatsApp; topic of `texts`; `text-call` → Text; `peeve` → Group-chat spam; `c-love-lang` → Words of affirmation; `c-flirt` → Compliments; `c-call` → Texts only, no calls; `s-swoon` → A sincere compliment; topic of `s-pillow-talk`; `s-into-you` → Texts nonstop |
-| 🌙 | `1f319.webp` | 9 | topic of `owl`; `festival` → Eid; `music` → Lo-fi; `sleep` → Around midnight; topic of `c-evening`; `c-song` → Lo-fi; topic of `s-late-text`; `s-romantic-time` → Late at night; `s-mood-song` → Lo-fi beats |
-| 👀 | `1f440.webp` | 8 | `fear` → Being ignored; `texts` → Seen-zone; `c-flirt` → Eye contact; `s-late-text` → Are you awake?; topic of `s-notice`; `s-notice` → Eyes; `s-into-you` → Stares a little too long; `s-dance` → Eyes locked the whole time |
+| 💬 | `1f4ac.webp` | 17 | `app` → WhatsApp; topic of `texts`; `text-call` → Text; `peeve` → Group-chat spam; `c-love-lang` → Words of affirmation; `c-flirt` → Compliments; `c-call` → Texts only, no calls; `s-swoon` → A sincere compliment; topic of `s-pillow-talk`; `s-into-you` → Texts nonstop; `x-first-attraction` → Your vibe; `x-after-midnight` → Deep talk; `x-body-language` → Close whispering; `x-morning-mood` → Wants to talk; `x-jealous-trigger` → Flirty jokes; `x-eye-contact` → During deep talk; `x-aftercare-style` → Soft words |
+| 🔥 | `1f525.webp` | 15 | `c-kiss` → Passionate; topic of `c-attract`; `s-blush` → A bold compliment; `x-late-night-text` → Come over; `x-kissing-pref` → Intense and long; `x-after-midnight` → Stay up longer; `x-morning-mood` → Already playful; `x-compliment-love` → You look hot; `x-private-nickname` → Spicy ones; `x-eye-contact` → In charged moments; `x-late-confession` → Desires; `x-energy-match` → Bold and direct; `x-forbidden-thought` → How badly they want you; `x-risk-level` → Quite bold; `x-last-thought` → Want more |
+| 👀 | `1f440.webp` | 13 | `fear` → Being ignored; `texts` → Seen-zone; `c-flirt` → Eye contact; `s-late-text` → Are you awake?; topic of `s-notice`; `s-notice` → Eyes; `s-into-you` → Stares a little too long; `s-dance` → Eyes locked the whole time; topic of `x-first-attraction`; `x-turn-on-style` → Direct eye contact; `x-body-language` → Looking back; `x-tease-style` → Across room; `x-jealous-trigger` → Too much attention |
+| 😌 | `1f60c.webp` | 13 | `c-first-date` → Totally calm; `x-first-attraction` → Your smile; `x-kissing-pref` → Soft and sweet; `x-body-language` → Biting lip; `x-morning-mood` → Quiet and soft; `x-compliment-love` → You feel safe; `x-eye-contact` → While smiling; `x-touch-craving` → Back of neck; `x-late-confession` → Insecurities; `x-energy-match` → Calm and soft; `x-aftercare-style` → Quiet closeness; `x-risk-level` → Safe and soft; `x-last-thought` → This feels right |
+| 🌙 | `1f319.webp` | 11 | topic of `owl`; `festival` → Eid; `music` → Lo-fi; `sleep` → Around midnight; topic of `c-evening`; `c-song` → Lo-fi; topic of `s-late-text`; `s-romantic-time` → Late at night; `s-mood-song` → Lo-fi beats; topic of `x-late-night-text`; `x-forbidden-thought` → How you looked last night |
+| 😏 | `1f60f.webp` | 11 | topic of `s-line`; topic of `s-into-you`; `s-flirted` → Smirks and plays it cool; `x-late-night-text` → Can't sleep; `x-turn-on-style` → Confident talk; `x-body-language` → Confident walk; `x-jealous-trigger` → Someone else staring; `x-private-nickname` → Playful ones; `x-energy-match` → Playful tease; `x-forbidden-thought` → What they would do; `x-risk-level` → A little daring |
+| 📱 | `1f4f1.webp` | 10 | topic of `app`; `never-share` → Phone; `watch` → Reels; `c-flirt` → Memes and reels; topic of `c-first-text`; `c-argue` → Phone time; topic of `s-bold-text`; `x-turn-on-style` → Flirty texts; `x-tease-style` → Over text; `x-jealous-trigger` → Late replies |
+| 😴 | `1f634.webp` | 10 | `app` → None — sleeps in; `weekend` → Sleeping; `sad` → Sleeps; `c-first-text` → Nothing, still asleep; `c-evening` → Cuddling till we sleep; `c-call` → Until we fall asleep; `x-after-midnight` → Sleep together; `x-morning-mood` → Still sleepy; `x-weekend-plan` → Sleep and chill; `x-last-thought` → Don't let go |
+| ⚡ | `26a1.webp` | 9 | `cartoon` → Pokémon; `texts` → Instantly; `superpower` → Super speed; `c-say-love` → In the first week; `s-kiss-length` → A quick peck; topic of `x-turn-on-style`; `x-kissing-pref` → Quick and hungry; topic of `x-energy-match`; `x-risk-level` → Depends on day |
+| 🤗 | `1f917.webp` | 9 | `c-love-lang` → Physical touch; `c-apology` → A warm hug; `s-touch` → A long hug; `s-type` → Sweet and caring; `s-bold-text` → Missing your hugs; `s-weakness` → Your hugs; `x-morning-mood` → Super clingy; `x-touch-craving` → Full hug; `x-aftercare-style` → Tight hugs |
+| 😘 | `1f618.webp` | 9 | `c-kiss` → Playful pecks; `c-wakeup` → A soft kiss; `s-swoon` → A surprise kiss; `s-pda` → A quick kiss is fine; `s-line` → Can I steal a kiss?; `s-blush` → A surprise kiss; `s-bold-text` → A flirty compliment; `x-late-night-text` → Miss you; `x-aftercare-style` → More kisses |
+| 💋 | `1f48b.webp` | 8 | topic of `c-kiss`; `c-evening` → Long kisses; topic of `s-kiss-spot`; `s-daring` → A kiss in a crowd; topic of `s-first-kiss`; `s-after-date` → A long goodnight kiss; topic of `s-kiss-length`; topic of `x-kissing-pref` |
+| 💓 | `1f493.webp` | 8 | `c-cuddle` → Head on your chest; `x-compliment-love` → I need you; `x-eye-contact` → Before saying something; `x-touch-craving` → Waist pull; `x-late-confession` → Feelings; `x-energy-match` → Warm and close; `x-forbidden-thought` → How much they need you; `x-last-thought` → Stay close |
 | 📺 | `1f4fa.webp` | 7 | topic of `cartoon`; `weekend` → Binge-watching; `watch` → Web series; `c-evening` → Netflix and chill; `c-argue` → The TV remote; `s-late-text` → Netflix?; `s-after-date` → Netflix and sleep |
-| 📱 | `1f4f1.webp` | 7 | topic of `app`; `never-share` → Phone; `watch` → Reels; `c-flirt` → Memes and reels; topic of `c-first-text`; `c-argue` → Phone time; topic of `s-bold-text` |
-| 💋 | `1f48b.webp` | 7 | topic of `c-kiss`; `c-evening` → Long kisses; topic of `s-kiss-spot`; `s-daring` → A kiss in a crowd; topic of `s-first-kiss`; `s-after-date` → A long goodnight kiss; topic of `s-kiss-length` |
-| 😘 | `1f618.webp` | 7 | `c-kiss` → Playful pecks; `c-wakeup` → A soft kiss; `s-swoon` → A surprise kiss; `s-pda` → A quick kiss is fine; `s-line` → Can I steal a kiss?; `s-blush` → A surprise kiss; `s-bold-text` → A flirty compliment |
-| 😴 | `1f634.webp` | 6 | `app` → None — sleeps in; `weekend` → Sleeping; `sad` → Sleeps; `c-first-text` → Nothing, still asleep; `c-evening` → Cuddling till we sleep; `c-call` → Until we fall asleep |
+| 🤫 | `1f92b.webp` | 7 | `never-share` → Secrets; `s-swoon` → A whisper in the ear; `s-blush` → A whisper; `s-pillow-talk` → Secrets and confessions; topic of `x-secret-desire`; `x-eye-contact` → When teasing; `x-late-confession` → Secrets |
 | 💃 | `1f483.webp` | 6 | `festival` → Navratri; `c-evening` → A slow dance; `s-night-in` → Slow dancing at home; `s-line` → Dance with me?; `s-after-date` → Dancing in the kitchen; topic of `s-dance` |
-| 🤗 | `1f917.webp` | 6 | `c-love-lang` → Physical touch; `c-apology` → A warm hug; `s-touch` → A long hug; `s-type` → Sweet and caring; `s-bold-text` → Missing your hugs; `s-weakness` → Your hugs |
+| ✨ | `2728.webp` | 6 | `superpower` → Teleport; `c-kiss` → Surprise kisses; `s-first-kiss` → Under the stars; `s-pillow-talk` → Wild dreams; `x-first-attraction` → Your energy; `x-compliment-love` → You're addictive |
+| 🌅 | `1f305.webp` | 6 | `c-date` → Beach sunset; topic of `s-romantic-time`; `s-romantic-time` → Early morning; `s-after-date` → Cuddling till sunrise; `x-secret-desire` → Morning together; `x-fantasy-setting` → Early morning |
 | 😂 | `1f602.webp` | 6 | `c-first-text` → A meme; `c-apology` → A funny meme; `c-attract` → A great sense of humour; `s-pillow-talk` → Silly memories; `s-flirted` → Laughs it off; `s-weakness` → Your jokes |
+| 😈 | `1f608.webp` | 6 | `c-jealous` → Makes you jealous back; topic of `s-daring`; topic of `s-type`; `s-type` → Bad boy or bad girl; `s-bold-text` → A teasing dare; topic of `x-tease-style` |
+| 😊 | `1f60a.webp` | 6 | `s-kiss-spot` → Cheek; topic of `s-blush`; `s-notice` → Smile; `s-weakness` → Your smile; `x-kissing-pref` → Playful; `x-mood-reader` → Most times |
 | 🎧 | `1f3a7.webp` | 5 | `money` → Gadgets; `never-share` → Earphones; `music` → Hip-hop; `sad` → Plays songs; `c-gesture` → A playlist made for you |
-| ⚡ | `26a1.webp` | 5 | `cartoon` → Pokémon; `texts` → Instantly; `superpower` → Super speed; `c-say-love` → In the first week; `s-kiss-length` → A quick peck |
 | 🌧️ | `1f327-fe0f.webp` | 5 | topic of `sad`; `season` → Monsoon; `s-night-in` → Rain outside and cuddles; `s-first-kiss` → In the rain; `s-romantic-time` → Rainy days |
-| 😈 | `1f608.webp` | 5 | `c-jealous` → Makes you jealous back; topic of `s-daring`; topic of `s-type`; `s-type` → Bad boy or bad girl; `s-bold-text` → A teasing dare |
+| ⏰ | `23f0.webp` | 5 | `peeve` → Late friends; `c-love-lang` → Quality time; `c-wakeup` → Just the alarm; `c-argue` → Being late; `x-jealous-trigger` → Busy all day |
+| 🤝 | `1f91d.webp` | 5 | `c-love-lang` → Acts of service; `c-cuddle` → Holding hands; `s-pda` → Hand-holding only; `s-touch` → Holding hands; `x-control-pref` → Switch often |
+| 🕯️ | `1f56f-fe0f.webp` | 5 | `c-date` → Candlelight dinner; topic of `s-night-in`; `s-night-in` → Candles and soft music; `x-secret-desire` → Slow evening; `x-weekend-plan` → Cozy night in |
+| 🤍 | `1f90d.webp` | 5 | `c-kiss` → Forehead kisses; `c-attract` → A kind heart; `s-kiss-spot` → Forehead; `s-kiss-length` → Forehead, then a hug; topic of `x-aftercare-style` |
+| 💭 | `1f4ad.webp` | 5 | `s-late-text` → Thinking of you; `s-line` → I can't stop thinking about you; `x-late-night-text` → Thinking of you; `x-late-confession` → Random thoughts; `x-last-thought` → Tomorrow again |
+| 🎵 | `1f3b5.webp` | 4 | `app` → Spotify; topic of `music`; `s-kiss-length` → As long as the song plays; `x-after-midnight` → Music and vibes |
 | ✈️ | `2708-fe0f.webp` | 4 | topic of `trip`; topic of `c-trip`; `c-valentine` → A little trip; `s-pillow-talk` → Dream trips |
-| 🤫 | `1f92b.webp` | 4 | `never-share` → Secrets; `s-swoon` → A whisper in the ear; `s-blush` → A whisper; `s-pillow-talk` → Secrets and confessions |
+| 🛏️ | `1f6cf-fe0f.webp` | 4 | `never-share` → Bed; topic of `sleep`; `x-late-night-text` → Are you up; `x-weekend-plan` → Stay in all day |
 | 🏏 | `1f3cf.webp` | 4 | topic of `ipl`; `weekend` → Playing sports; `watch` → Cricket; `sport` → Cricket |
 | 🎙️ | `1f399-fe0f.webp` | 4 | `texts` → Voice notes; `s-notice` → Voice; `s-bold-text` → A low-voice voice note; `s-weakness` → Your voice |
+| 🛋️ | `1f6cb-fe0f.webp` | 4 | topic of `weekend`; `c-valentine` → Staying in together; `s-anniv` → Staying in and cuddling; `x-after-midnight` → Cuddle close |
+| 🏠 | `1f3e0.webp` | 4 | `weekend` → Family time; topic of `c-future`; `s-late-text` → Come over; `x-fantasy-setting` → At home |
 | 🍫 | `1f36b.webp` | 4 | `snack` → Chocolates; `gift` → Chocolates; topic of `c-apology`; `c-apology` → Chocolates |
 | 🎬 | `1f3ac.webp` | 4 | topic of `watch`; `music` → Bollywood; `c-date` → Movie night at home; `s-first-kiss` → In a movie theatre |
-| ✨ | `2728.webp` | 4 | `superpower` → Teleport; `c-kiss` → Surprise kisses; `s-first-kiss` → Under the stars; `s-pillow-talk` → Wild dreams |
-| ⏰ | `23f0.webp` | 4 | `peeve` → Late friends; `c-love-lang` → Quality time; `c-wakeup` → Just the alarm; `c-argue` → Being late |
-| 🤝 | `1f91d.webp` | 4 | `c-love-lang` → Acts of service; `c-cuddle` → Holding hands; `s-pda` → Hand-holding only; `s-touch` → Holding hands |
-| 🌅 | `1f305.webp` | 4 | `c-date` → Beach sunset; topic of `s-romantic-time`; `s-romantic-time` → Early morning; `s-after-date` → Cuddling till sunrise |
-| 🤍 | `1f90d.webp` | 4 | `c-kiss` → Forehead kisses; `c-attract` → A kind heart; `s-kiss-spot` → Forehead; `s-kiss-length` → Forehead, then a hug |
+| ⏳ | `23f3.webp` | 4 | `superpower` → Time travel; `s-kiss-length` → A few slow seconds; `x-kissing-pref` → Slow and deep; `x-tease-style` → All day long |
+| 🧠 | `1f9e0.webp` | 4 | `superpower` → Mind reading; `c-attract` → Smart conversation; `x-first-attraction` → Your mind; `x-compliment-love` → You're so smart |
+| 🚗 | `1f697.webp` | 4 | `ride` → Car; `c-date` → Long drive; `x-fantasy-setting` → In the car; `x-weekend-plan` → Spontaneous drive |
+| ☀️ | `2600-fe0f.webp` | 4 | `season` → Summer; `c-first-text` → Good morning; topic of `c-wakeup`; topic of `x-morning-mood` |
+| 🗣️ | `1f5e3-fe0f.webp` | 4 | `c-jealous` → Asks you directly; `s-flirted` → Asks about it later; `x-first-attraction` → Your voice; `x-turn-on-style` → Soft voice |
 | 🍳 | `1f373.webp` | 4 | `c-gesture` → Cooking for you; `s-night-in` → Cooking together; `s-line` → Let me cook for you; `s-weakness` → Your cooking |
-| 😊 | `1f60a.webp` | 4 | `s-kiss-spot` → Cheek; topic of `s-blush`; `s-notice` → Smile; `s-weakness` → Your smile |
+| ✋ | `270b.webp` | 4 | `s-kiss-spot` → On the hands; `s-notice` → Hands; topic of `x-touch-craving`; `x-touch-craving` → Hand holding |
+| 🤏 | `1f90f.webp` | 4 | `x-turn-on-style` → Light touch; `x-body-language` → Light touch back; `x-tease-style` → With touch; `x-touch-craving` → Light arm touch |
 | 🍔 | `1f354.webp` | 3 | `money` → Food; `street-food` → Vada pav; `sad` → Eats food |
+| 🎮 | `1f3ae.webp` | 3 | `money` → Games; `weekend` → Gaming; topic of `x-control-pref` |
 | 🥟 | `1f95f.webp` | 3 | `cartoon` → Motu Patlu; `street-food` → Momos; `snack` → Samosa |
-| 🎵 | `1f3b5.webp` | 3 | `app` → Spotify; topic of `music`; `s-kiss-length` → As long as the song plays |
 | 🏖️ | `1f3d6-fe0f.webp` | 3 | `trip` → Goa; `c-trip` → Goa; `s-first-kiss` → On a beach |
 | 🏙️ | `1f3d9-fe0f.webp` | 3 | `trip` → Dubai; `s-daring` → A rooftop slow dance; `s-first-kiss` → On a rooftop |
 | 🍕 | `1f355.webp` | 3 | `never-share` → Food; `c-evening` → Midnight snacks; `s-after-date` → A late-night snack run |
-| 🛋️ | `1f6cb-fe0f.webp` | 3 | topic of `weekend`; `c-valentine` → Staying in together; `s-anniv` → Staying in and cuddling |
-| 🏠 | `1f3e0.webp` | 3 | `weekend` → Family time; topic of `c-future`; `s-late-text` → Come over |
 | 🤷 | `1f937.webp` | 3 | `sleep` → Whenever; `c-future` → Still figuring it out; `s-pda` → Depends on the mood |
 | 📞 | `1f4de.webp` | 3 | `sad` → Calls a friend; `text-call` → Call; topic of `c-call` |
-| ☀️ | `2600-fe0f.webp` | 3 | `season` → Summer; `c-first-text` → Good morning; topic of `c-wakeup` |
 | 🎁 | `1f381.webp` | 3 | topic of `gift`; `c-love-lang` → Gifts; `c-valentine` → A big surprise |
-| 🕯️ | `1f56f-fe0f.webp` | 3 | `c-date` → Candlelight dinner; topic of `s-night-in`; `s-night-in` → Candles and soft music |
+| 🌌 | `1f30c.webp` | 3 | `c-date` → Stargazing on the terrace; `s-kiss-length` → Long enough to lose track of time; topic of `x-last-thought` |
 | 😜 | `1f61c.webp` | 3 | `c-flirt` → Teasing; `s-blush` → Teasing in public; `s-into-you` → Teases you |
+| 🥰 | `1f970.webp` | 3 | topic of `c-pet-name`; `s-touch` → A gentle cheek stroke; topic of `x-compliment-love` |
 | 😒 | `1f612.webp` | 3 | topic of `c-jealous`; `c-dealbreaker` → Rudeness to waiters; `s-flirted` → Gets visibly jealous |
 | 💌 | `1f48c.webp` | 3 | `c-apology` → A long message; `s-bold-text` → A poem for you; `s-anniv` → A letter and a gift |
-| 🔥 | `1f525.webp` | 3 | `c-kiss` → Passionate; topic of `c-attract`; `s-blush` → A bold compliment |
 | 😎 | `1f60e.webp` | 3 | `c-attract` → Confidence; `s-pda` → Loves showing off; topic of `s-flirted` |
 | 🧳 | `1f9f3.webp` | 3 | `c-gesture` → A surprise trip; `s-daring` → A surprise weekend away; `s-anniv` → A surprise trip |
 | 🍽️ | `1f37d-fe0f.webp` | 3 | `c-argue` → Where to eat; `c-valentine` → Dinner out; `s-anniv` → A private dinner for two |
-| 😏 | `1f60f.webp` | 3 | topic of `s-line`; topic of `s-into-you`; `s-flirted` → Smirks and plays it cool |
-| 🎮 | `1f3ae.webp` | 2 | `money` → Games; `weekend` → Gaming |
+| 🌃 | `1f303.webp` | 3 | `s-daring` → Sneaking out for a date; topic of `s-after-date`; `x-fantasy-setting` → Late balcony |
+| 🎲 | `1f3b2.webp` | 3 | `x-control-pref` → Depends on mood; `x-energy-match` → Unpredictable; topic of `x-risk-level` |
 | 👫 | `1f46b.webp` | 2 | `money` → Going out; `weekend` → Hanging out |
 | 🐈 | `1f408.webp` | 2 | `cartoon` → Oggy; `pet` → Cat |
 | 🦉 | `1f989.webp` | 2 | `owl` → Night owl; `sleep` → 1–2 am |
@@ -983,11 +1256,12 @@ Answer cards ki thumbnail. Code: `components/Stepper.tsx`. "Proposed unique naam
 | 🗼 | `1f5fc.webp` | 2 | `trip` → Paris; `c-trip` → Paris |
 | 🏝️ | `1f3dd-fe0f.webp` | 2 | `trip` → Maldives; `c-trip` → Maldives |
 | 🙅 | `1f645.webp` | 2 | topic of `never-share`; `pet` → No pets |
-| 🛏️ | `1f6cf-fe0f.webp` | 2 | `never-share` → Bed; topic of `sleep` |
 | ☕ | `2615.webp` | 2 | topic of `drink`; `drink` → Coffee |
 | 🍵 | `1f375.webp` | 2 | `drink` → Chai; `c-wakeup` → Chai |
+| 💧 | `1f4a7.webp` | 2 | `drink` → Water only; `x-aftercare-style` → Water and rest |
 | 💜 | `1f49c.webp` | 2 | `ipl` → KKR; `music` → K-pop |
 | 🙄 | `1f644.webp` | 2 | `ipl` → Doesn't watch; `c-valentine` → Skip it, overrated |
+| 🌑 | `1f311.webp` | 2 | `fear` → Dark; topic of `x-late-confession` |
 | 🐕 | `1f415.webp` | 2 | `fear` → Dogs; `pet` → Dog |
 | 🪔 | `1fa94.webp` | 2 | topic of `festival`; `festival` → Diwali |
 | 👕 | `1f455.webp` | 2 | topic of `outfit`; `s-outfit-wow` → Wearing their shirt |
@@ -998,31 +1272,30 @@ Answer cards ki thumbnail. Code: `components/Stepper.tsx`. "Proposed unique naam
 | 🛌 | `1f6cc.webp` | 2 | `outfit` → Pyjamas; topic of `c-cuddle` |
 | 🍿 | `1f37f.webp` | 2 | topic of `snack`; `snack` → Popcorn |
 | 🕊️ | `1f54a-fe0f.webp` | 2 | `superpower` → Flying; `c-kiss` → Slow and soft |
-| ⏳ | `23f3.webp` | 2 | `superpower` → Time travel; `s-kiss-length` → A few slow seconds |
-| 🧠 | `1f9e0.webp` | 2 | `superpower` → Mind reading; `c-attract` → Smart conversation |
 | 🎤 | `1f3a4.webp` | 2 | `music` → Punjabi; `c-song` → Punjabi |
 | 🎸 | `1f3b8.webp` | 2 | `music` → Rock; `s-mood-song` → Soft acoustic |
+| 🌆 | `1f306.webp` | 2 | `sleep` → Before 10 pm; topic of `x-fantasy-setting` |
 | 🍰 | `1f370.webp` | 2 | `dessert` → Cake; `sweet-spicy` → Sweet |
-| 🚗 | `1f697.webp` | 2 | `ride` → Car; `c-date` → Long drive |
 | 🙂 | `1f642.webp` | 2 | `sad` → Acts fine; `c-jealous` → Acts totally fine |
 | 🌶️ | `1f336-fe0f.webp` | 2 | topic of `sweet-spicy`; `sweet-spicy` → Spicy |
 | ❄️ | `2744-fe0f.webp` | 2 | `season` → Winter; `c-trip` → Kashmir |
 | 😤 | `1f624.webp` | 2 | topic of `peeve`; `peeve` → Loud chewing |
 | 🙈 | `1f648.webp` | 2 | `peeve` → Spoilers; `s-pda` → Totally private |
+| 🎉 | `1f389.webp` | 2 | `gift` → Surprise party; `x-weekend-plan` → Go out late |
 | 💞 | `1f49e.webp` | 2 | topic of `c-love-lang`; `s-dance` → Slow and close |
-| 🌌 | `1f30c.webp` | 2 | `c-date` → Stargazing on the terrace; `s-kiss-length` → Long enough to lose track of time |
 | 😉 | `1f609.webp` | 2 | topic of `c-flirt`; `s-blush` → A wink |
-| 🥰 | `1f970.webp` | 2 | topic of `c-pet-name`; `s-touch` → A gentle cheek stroke |
 | 🧸 | `1f9f8.webp` | 2 | `c-pet-name` → Babu / Shona; `c-wakeup` → Cuddles |
 | 🤪 | `1f92a.webp` | 2 | `c-pet-name` → Something silly; `s-dance` → Wild and silly |
+| 🤔 | `1f914.webp` | 2 | `c-first-text` → Where are you?; `x-mood-reader` → Sometimes miss |
 | 🤐 | `1f910.webp` | 2 | `c-jealous` → Goes quiet; `s-into-you` → Goes shy and quiet |
-| 🗣️ | `1f5e3-fe0f.webp` | 2 | `c-jealous` → Asks you directly; `s-flirted` → Asks about it later |
 | ⏱️ | `23f1-fe0f.webp` | 2 | `c-mad` → A few minutes; `c-call` → Under 10 minutes |
+| 📅 | `1f4c5.webp` | 2 | `c-mad` → A whole day; topic of `x-weekend-plan` |
 | 🥺 | `1f97a.webp` | 2 | `c-mad` → Until you say sorry; `s-late-text` → I miss you |
 | 💅 | `1f485.webp` | 2 | `c-attract` → Looks and style; `s-notice` → Style |
 | 🥻 | `1f97b.webp` | 2 | `c-outfit` → Saree or kurta; `s-outfit-wow` → Saree |
 | 🖤 | `1f5a4.webp` | 2 | `c-outfit` → An all-black look; `s-outfit-wow` → Little black dress |
 | 💘 | `1f498.webp` | 2 | topic of `c-say-love`; topic of `s-weakness` |
+| 💯 | `1f4af.webp` | 2 | `c-say-love` → Only when 100% sure; `x-mood-reader` → Always know |
 | 📵 | `1f4f5.webp` | 2 | `c-dealbreaker` → Ignoring them; `s-night-in` → Lights low, phones off |
 | 💐 | `1f490.webp` | 2 | topic of `c-gesture`; `c-gesture` → Flowers |
 | 🎶 | `1f3b6.webp` | 2 | topic of `c-song`; topic of `s-mood-song` |
@@ -1030,11 +1303,11 @@ Answer cards ki thumbnail. Code: `components/Stepper.tsx`. "Proposed unique naam
 | 🏡 | `1f3e1.webp` | 2 | `c-future` → Living together; `s-pillow-talk` → Future plans |
 | 💝 | `1f49d.webp` | 2 | topic of `c-valentine`; topic of `s-anniv` |
 | 🦋 | `1f98b.webp` | 2 | topic of `c-first-date`; `c-first-date` → Butterflies |
-| ✋ | `270b.webp` | 2 | `s-kiss-spot` → On the hands; `s-notice` → Hands |
-| 💭 | `1f4ad.webp` | 2 | `s-late-text` → Thinking of you; `s-line` → I can't stop thinking about you |
 | 😍 | `1f60d.webp` | 2 | topic of `s-swoon`; `s-line` → You look incredible |
 | 🫂 | `1fac2.webp` | 2 | `s-swoon` → A tight hug from behind; `s-flirted` → Pulls you closer |
-| 🌃 | `1f303.webp` | 2 | `s-daring` → Sneaking out for a date; topic of `s-after-date` |
+| 👁️ | `1f441-fe0f.webp` | 2 | `s-swoon` → Eye contact across the room; topic of `x-eye-contact` |
+| 📍 | `1f4cd.webp` | 2 | `s-anniv` → Revisiting the first-date spot; `x-secret-desire` → Spontaneous plan |
+| 👑 | `1f451.webp` | 2 | `x-control-pref` → Always lead; `x-private-nickname` → Possessive ones |
 
 ## 6. Baaki jagah jahan image dikhti hai
 
@@ -1077,16 +1350,16 @@ Result screen (24 px) aur creator scoreboard pill (20 px) me dikhte hain. Data `
 | File : line | Kya dikhata hai | Size (px) |
 |---|---|---|
 | `app/page.tsx:58` | How-to-play step icon (landing) | 38 |
-| `app/q/[slug]/page.tsx:124` | Tier badge (player result screen) | 24 |
-| `app/q/[slug]/page.tsx:157` | Chip icon 👥 | 18 |
-| `app/q/[slug]/page.tsx:158` | Chip icon ❓ | 18 |
-| `app/q/[slug]/page.tsx:159` | quiz.level === "spicy" ? "🔥" : "💕" | 18 |
+| `app/q/[slug]/page.tsx:127` | Tier badge (player result screen) | 24 |
+| `app/q/[slug]/page.tsx:160` | Chip icon 👥 | 18 |
+| `app/q/[slug]/page.tsx:161` | Chip icon ❓ | 18 |
+| `app/q/[slug]/page.tsx:162` | quiz.level === "extreme" ? "🔞" : quiz.level === "spicy" ? "🔥" : "💕" | 18 |
 | `app/s/[slug]/page.tsx:110` | Tier pill (creator scoreboard) | 20 |
 | `app/s/[slug]/page.tsx:119` | Creator ka jawab (scoreboard comparison) | 22 |
 | `app/s/[slug]/page.tsx:120` | Player ka jawab (scoreboard comparison) | 22 |
 | `components/AdultBanner.tsx:12` | 18+ warning icon 🔞 | 18 |
 | `components/AgeGate.tsx:26` | 18+ warning icon 🔞 | 22 |
-| `components/CreateFlow.tsx:172` | em | 52 |
+| `components/CreateFlow.tsx:175` | em | 52 |
 | `components/ModeToggle.tsx:37` | Friends/Couples toggle icon 👫 | 22 |
 | `components/ModeToggle.tsx:40` | Friends/Couples toggle icon 💕 | 22 |
 | `components/Stepper.tsx:121` | Question ka topic icon (question card) | 44 |
@@ -1101,28 +1374,30 @@ Ye **text ke andar** hain (sentence ke beech), image nahi. Inhe badalna ho to te
 | `app/s/[slug]/page.tsx:52` | UI | 🔥 | `` const text = `${t("howWell1")} ${b.name} ${t("howWell2")} ${b.mode === "couples" ? `${b.level === "spicy" ? "🔥 `` |
 | `app/s/[slug]/page.tsx:52` | UI | 💕 | `` const text = `${t("howWell1")} ${b.name} ${t("howWell2")} ${b.mode === "couples" ? `${b.level === "spicy" ? "🔥 `` |
 | `app/s/[slug]/page.tsx:52` | UI | 👀 | `` const text = `${t("howWell1")} ${b.name} ${t("howWell2")} ${b.mode === "couples" ? `${b.level === "spicy" ? "🔥 `` |
-| `components/CreateFlow.tsx:143` | UI | 👋 | `<p className="hand text-2xl">{t("hi")} <span style={{ color: "#FF9F43" }}>{name.trim()}</span> 👋</p>` |
-| `components/CreateFlow.tsx:170` | UI | 💕 | `{([["sweet", "💕", "levelSweet", "levelSweetD", "#FFE3EE"], ["spicy", "🔥", "levelSpicy", "levelSpicyD", "#FFE0C` |
-| `components/CreateFlow.tsx:170` | UI | 🔥 | `{([["sweet", "💕", "levelSweet", "levelSweetD", "#FFE3EE"], ["spicy", "🔥", "levelSpicy", "levelSpicyD", "#FFE0C` |
-| `components/CreateFlow.tsx:198` | UI | 🔥 | `` const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `${level === "spicy" ? "🔥" : "💕"} ( `` |
-| `components/CreateFlow.tsx:198` | UI | 💕 | `` const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `${level === "spicy" ? "🔥" : "💕"} ( `` |
-| `components/CreateFlow.tsx:198` | UI | 👀 | `` const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `${level === "spicy" ? "🔥" : "💕"} ( `` |
+| `components/CreateFlow.tsx:146` | UI | 👋 | `<p className="hand text-2xl">{t("hi")} <span style={{ color: "#FF9F43" }}>{name.trim()}</span> 👋</p>` |
+| `components/CreateFlow.tsx:173` | UI | 💕 | `{([["sweet", "💕", "levelSweet", "levelSweetD", "#FFE3EE"], ["spicy", "🔥", "levelSpicy", "levelSpicyD", "#FFE0C` |
+| `components/CreateFlow.tsx:173` | UI | 🔥 | `{([["sweet", "💕", "levelSweet", "levelSweetD", "#FFE3EE"], ["spicy", "🔥", "levelSpicy", "levelSpicyD", "#FFE0C` |
+| `components/CreateFlow.tsx:173` | UI | 🔞 | `{([["sweet", "💕", "levelSweet", "levelSweetD", "#FFE3EE"], ["spicy", "🔥", "levelSpicy", "levelSpicyD", "#FFE0C` |
+| `components/CreateFlow.tsx:202` | UI | 🔞 | `` const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `${level === "extreme" ? "🔞" : leve `` |
+| `components/CreateFlow.tsx:202` | UI | 🔥 | `` const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `${level === "extreme" ? "🔞" : leve `` |
+| `components/CreateFlow.tsx:202` | UI | 💕 | `` const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `${level === "extreme" ? "🔞" : leve `` |
+| `components/CreateFlow.tsx:202` | UI | 👀 | `` const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `${level === "extreme" ? "🔞" : leve `` |
 | `components/LangPill.tsx:22` | UI | 🌐 | `<span aria-hidden>🌐</span>` |
-| `lib/i18n.ts:83` | EN · `howSub` | 🚫 | Find your fake friends & decide who to block 🚫 |
-| `lib/i18n.ts:90` | EN · `making` | 🤫 | hiding answers 🤫 |
-| `lib/i18n.ts:92` | EN · `saveWarn` | ⚠️ | ⚠️ Save your secret link or screenshot this — it's your only key to see results. |
-| `lib/i18n.ts:95` | EN · `tease` | 🚫 | Score low and you might get blocked 🚫 |
-| `lib/i18n.ts:96` | EN · `missingKey` | 🔒 | This link is missing the secret key 🔒 |
-| `lib/i18n.ts:160` | Hinglish · `howSub` | 🚫 | Fake friends dhoondo aur decide karo kise block karna hai 🚫 |
-| `lib/i18n.ts:167` | Hinglish · `making` | 🤫 | jawab chhupa rahe hain 🤫 |
-| `lib/i18n.ts:169` | Hinglish · `saveWarn` | ⚠️ | ⚠️ Apna secret link save karo ya screenshot le lo — results dekhne ki yahi ek chaabi hai. |
-| `lib/i18n.ts:172` | Hinglish · `tease` | 🚫 | Score kam aaya to block ho sakte ho 🚫 |
-| `lib/i18n.ts:173` | Hinglish · `missingKey` | 🔒 | Is link me secret key nahi hai 🔒 |
-| `lib/i18n.ts:237` | Hindi · `howSub` | 🚫 | फेक फ्रेंड्स ढूँढो और तय करो किसे ब्लॉक करना है 🚫 |
-| `lib/i18n.ts:244` | Hindi · `making` | 🤫 | जवाब छुपा रहे हैं 🤫 |
-| `lib/i18n.ts:246` | Hindi · `saveWarn` | ⚠️ | ⚠️ अपना सीक्रेट लिंक सेव करो या स्क्रीनशॉट ले लो — नतीजे देखने की यही एक चाबी है। |
-| `lib/i18n.ts:249` | Hindi · `tease` | 🚫 | स्कोर कम आया तो ब्लॉक हो सकते हो 🚫 |
-| `lib/i18n.ts:250` | Hindi · `missingKey` | 🔒 | इस लिंक में सीक्रेट की नहीं है 🔒 |
+| `lib/i18n.ts:86` | EN · `howSub` | 🚫 | Find your fake friends & decide who to block 🚫 |
+| `lib/i18n.ts:93` | EN · `making` | 🤫 | hiding answers 🤫 |
+| `lib/i18n.ts:95` | EN · `saveWarn` | ⚠️ | ⚠️ Save your secret link or screenshot this — it's your only key to see results. |
+| `lib/i18n.ts:98` | EN · `tease` | 🚫 | Score low and you might get blocked 🚫 |
+| `lib/i18n.ts:99` | EN · `missingKey` | 🔒 | This link is missing the secret key 🔒 |
+| `lib/i18n.ts:166` | Hinglish · `howSub` | 🚫 | Fake friends dhoondo aur decide karo kise block karna hai 🚫 |
+| `lib/i18n.ts:173` | Hinglish · `making` | 🤫 | jawab chhupa rahe hain 🤫 |
+| `lib/i18n.ts:175` | Hinglish · `saveWarn` | ⚠️ | ⚠️ Apna secret link save karo ya screenshot le lo — results dekhne ki yahi ek chaabi hai. |
+| `lib/i18n.ts:178` | Hinglish · `tease` | 🚫 | Score kam aaya to block ho sakte ho 🚫 |
+| `lib/i18n.ts:179` | Hinglish · `missingKey` | 🔒 | Is link me secret key nahi hai 🔒 |
+| `lib/i18n.ts:246` | Hindi · `howSub` | 🚫 | फेक फ्रेंड्स ढूँढो और तय करो किसे ब्लॉक करना है 🚫 |
+| `lib/i18n.ts:253` | Hindi · `making` | 🤫 | जवाब छुपा रहे हैं 🤫 |
+| `lib/i18n.ts:255` | Hindi · `saveWarn` | ⚠️ | ⚠️ अपना सीक्रेट लिंक सेव करो या स्क्रीनशॉट ले लो — नतीजे देखने की यही एक चाबी है। |
+| `lib/i18n.ts:258` | Hindi · `tease` | 🚫 | स्कोर कम आया तो ब्लॉक हो सकते हो 🚫 |
+| `lib/i18n.ts:259` | Hindi · `missingKey` | 🔒 | इस लिंक में सीक्रेट की नहीं है 🔒 |
 
 ## 8. Text symbols (emoji nahi, par chaaho to icons bana sakte ho)
 
@@ -1132,9 +1407,9 @@ Ye Unicode **symbols** hain jo font se aate hain. Dikhne me icon jaise hain, par
 |---|---|---|
 | ✓ | tick | `app/s/[slug]/page.tsx`:120; `components/LangPill.tsx`:35; `components/Stepper.tsx`:135 |
 | ✕ | cross | `app/s/[slug]/page.tsx`:120; `components/Stepper.tsx`:136 |
-| ‹ | back arrow | `app/s/[slug]/page.tsx`:88; `components/CreateFlow.tsx`:30; `components/Stepper.tsx`:102 |
+| ‹ | back arrow | `app/s/[slug]/page.tsx`:88; `components/CreateFlow.tsx`:31; `components/Stepper.tsx`:102 |
 | › | row chevron | `app/s/[slug]/page.tsx`:111 |
-| → | arrow in buttons | `app/page.tsx`:47; `app/q/[slug]/page.tsx`:139; `components/CreateFlow.tsx`:134 |
+| → | arrow in buttons | `app/page.tsx`:47; `app/q/[slug]/page.tsx`:142; `components/CreateFlow.tsx`:137 |
 | ⌃ | chevron up | `app/s/[slug]/page.tsx`:111 |
 | ⌄ | chevron down | `components/LangPill.tsx`:25 |
 | ⟳ | skip | `components/Stepper.tsx`:146 |

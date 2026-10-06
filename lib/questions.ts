@@ -94,11 +94,42 @@ export const SPICY: Question[] = [
   { id: "s-anniv", emoji: "💝", text: "What is {name}'s dream anniversary?", options: [o("🍽️", "A private dinner for two"), o("🧳", "A surprise trip"), o("📍", "Revisiting the first-date spot"), o("💌", "A letter and a gift"), o("🛋️", "Staying in and cuddling")] },
 ];
 
+// Extreme pack (21+). Intentionally empty: the owner supplies these questions (same shape as the other packs, ids start with "x-").
+// The Extreme level only appears once there are at least EXTREME_MIN of them (10 to play + 10 spare for skips).
+export const EXTREME: Question[] = [
+  { id: "x-late-night-text", emoji: "🌙", text: "What does {name} usually text late at night?", options: [o("😘", "Miss you"), o("🔥", "Come over"), o("😏", "Can't sleep"), o("💭", "Thinking of you"), o("🛏️", "Are you up")] },
+  { id: "x-first-attraction", emoji: "👀", text: "What first attracted {name} to you the most?", options: [o("💬", "Your vibe"), o("😌", "Your smile"), o("🧠", "Your mind"), o("✨", "Your energy"), o("🗣️", "Your voice")] },
+  { id: "x-secret-desire", emoji: "🤫", text: "What is {name}'s biggest secret desire right now?", options: [o("🌅", "Morning together"), o("🔓", "No limits night"), o("📍", "Spontaneous plan"), o("🕯️", "Slow evening"), o("🚪", "Just us alone")] },
+  { id: "x-turn-on-style", emoji: "⚡", text: "What turns {name} on the fastest?", options: [o("📱", "Flirty texts"), o("👀", "Direct eye contact"), o("🤏", "Light touch"), o("🗣️", "Soft voice"), o("😏", "Confident talk")] },
+  { id: "x-kissing-pref", emoji: "💋", text: "How does {name} prefer kissing most?", options: [o("⏳", "Slow and deep"), o("⚡", "Quick and hungry"), o("😌", "Soft and sweet"), o("🔥", "Intense and long"), o("😊", "Playful")] },
+  { id: "x-after-midnight", emoji: "🕛", text: "What does {name} want most after midnight?", options: [o("🛋️", "Cuddle close"), o("💬", "Deep talk"), o("🔥", "Stay up longer"), o("😴", "Sleep together"), o("🎵", "Music and vibes")] },
+  { id: "x-control-pref", emoji: "🎮", text: "Does {name} like to lead or follow in private?", options: [o("👑", "Always lead"), o("🤝", "Switch often"), o("🙇", "Prefer follow"), o("🎲", "Depends on mood")] },
+  { id: "x-body-language", emoji: "🪞", text: "What body language of yours drives {name} crazy?", options: [o("👀", "Looking back"), o("😌", "Biting lip"), o("🤏", "Light touch back"), o("😏", "Confident walk"), o("💬", "Close whispering")] },
+  { id: "x-fantasy-setting", emoji: "🌆", text: "Where does {name} most want a private moment?", options: [o("🚗", "In the car"), o("🏨", "Hotel room"), o("🏠", "At home"), o("🌅", "Early morning"), o("🌃", "Late balcony")] },
+  { id: "x-tease-style", emoji: "😈", text: "How does {name} like to be teased?", options: [o("📱", "Over text"), o("👂", "In ear"), o("👀", "Across room"), o("🤏", "With touch"), o("⏳", "All day long")] },
+  { id: "x-morning-mood", emoji: "☀️", text: "What is {name} like right after waking up with you?", options: [o("🤗", "Super clingy"), o("😴", "Still sleepy"), o("🔥", "Already playful"), o("💬", "Wants to talk"), o("😌", "Quiet and soft")] },
+  { id: "x-jealous-trigger", emoji: "💚", text: "What makes {name} a little jealous fastest?", options: [o("📱", "Late replies"), o("👀", "Too much attention"), o("💬", "Flirty jokes"), o("⏰", "Busy all day"), o("😏", "Someone else staring")] },
+  { id: "x-compliment-love", emoji: "🥰", text: "Which compliment does {name} melt over most?", options: [o("🧠", "You're so smart"), o("🔥", "You look hot"), o("💓", "I need you"), o("😌", "You feel safe"), o("✨", "You're addictive")] },
+  { id: "x-private-nickname", emoji: "🙊", text: "What kind of private name does {name} like?", options: [o("💕", "Sweet ones"), o("🔥", "Spicy ones"), o("😏", "Playful ones"), o("👑", "Possessive ones")] },
+  { id: "x-weekend-plan", emoji: "📅", text: "What does {name} want most on a free weekend?", options: [o("🛏️", "Stay in all day"), o("🚗", "Spontaneous drive"), o("🕯️", "Cozy night in"), o("🎉", "Go out late"), o("😴", "Sleep and chill")] },
+  { id: "x-eye-contact", emoji: "👁️", text: "When does {name} hold eye contact the longest?", options: [o("💬", "During deep talk"), o("🔥", "In charged moments"), o("😌", "While smiling"), o("🤫", "When teasing"), o("💓", "Before saying something")] },
+  { id: "x-touch-craving", emoji: "✋", text: "Where does {name} crave your touch most?", options: [o("🤗", "Full hug"), o("✋", "Hand holding"), o("😌", "Back of neck"), o("💓", "Waist pull"), o("🤏", "Light arm touch")] },
+  { id: "x-mood-reader", emoji: "🔮", text: "How well can you read {name}'s mood without words?", options: [o("💯", "Always know"), o("😊", "Most times"), o("🤔", "Sometimes miss"), o("😅", "Often guess wrong")] },
+  { id: "x-late-confession", emoji: "🌑", text: "What does {name} confess more easily late at night?", options: [o("💓", "Feelings"), o("🔥", "Desires"), o("🤫", "Secrets"), o("😌", "Insecurities"), o("💭", "Random thoughts")] },
+  { id: "x-energy-match", emoji: "⚡", text: "What energy from you matches {name} best?", options: [o("🔥", "Bold and direct"), o("😌", "Calm and soft"), o("😏", "Playful tease"), o("💓", "Warm and close"), o("🎲", "Unpredictable")] },
+  { id: "x-forbidden-thought", emoji: "🚫", text: "What kind of thought does {name} have but rarely says?", options: [o("🔥", "How badly they want you"), o("💓", "How much they need you"), o("😏", "What they would do"), o("🌙", "How you looked last night")] },
+  { id: "x-aftercare-style", emoji: "🤍", text: "What does {name} need most after intense moments?", options: [o("🤗", "Tight hugs"), o("💬", "Soft words"), o("😌", "Quiet closeness"), o("💧", "Water and rest"), o("😘", "More kisses")] },
+  { id: "x-risk-level", emoji: "🎲", text: "How risky does {name} like things to feel?", options: [o("😌", "Safe and soft"), o("😏", "A little daring"), o("🔥", "Quite bold"), o("⚡", "Depends on day")] },
+  { id: "x-last-thought", emoji: "🌌", text: "What is usually {name}'s last thought before sleep with you?", options: [o("💓", "Stay close"), o("😌", "This feels right"), o("🔥", "Want more"), o("😴", "Don't let go"), o("💭", "Tomorrow again")] },
+];
+export const EXTREME_MIN = 20;
+export const extremeReady = () => EXTREME.length >= EXTREME_MIN;
+
 export type Mode = "friends" | "couples";
-export type Level = "sweet" | "spicy";
+export type Level = "sweet" | "spicy" | "extreme";
 /** The question pool for a quiz: friends, or couples at the chosen level (sweet = romantic, spicy = more adult). */
-export const packOf = (m: Mode, level: Level = "sweet") => (m === "friends" ? QUESTIONS : level === "spicy" ? SPICY : COUPLES);
-export const byId = (id: string) => QUESTIONS.find((q) => q.id === id) ?? COUPLES.find((q) => q.id === id) ?? SPICY.find((q) => q.id === id);
+export const packOf = (m: Mode, level: Level = "sweet") => (m === "friends" ? QUESTIONS : level === "extreme" ? EXTREME : level === "spicy" ? SPICY : COUPLES);
+export const byId = (id: string) => QUESTIONS.find((q) => q.id === id) ?? COUPLES.find((q) => q.id === id) ?? SPICY.find((q) => q.id === id) ?? EXTREME.find((q) => q.id === id);
 
 const TIERS = {
   friends: [
@@ -124,7 +155,7 @@ const TIERS = {
 /** 0–3 → 0, 4–6 → 1, 7–8 → 2, 9–10 → 3 */
 export const band = (s: number) => (s <= 3 ? 0 : s <= 6 ? 1 : s <= 8 ? 2 : 3);
 export const tier = (s: number, mode: Mode = "friends", level: Level = "sweet") =>
-  ({ ...TIERS[mode === "couples" && level === "spicy" ? "spicy" : mode][band(s)], band: band(s) });
+  ({ ...TIERS[mode === "couples" && level !== "sweet" ? "spicy" : mode][band(s)], band: band(s) });
 /** [soft background, text, ring arc] per band (DESIGN.md §4.13) */
 export const TIER_COLORS = [
   ["#FFE1E4", "#C21F33", "#FF4D5E"],

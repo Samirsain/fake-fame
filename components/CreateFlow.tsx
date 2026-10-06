@@ -6,14 +6,15 @@ import Stepper from "@/components/Stepper";
 import Logo from "@/components/Logo";
 import LangPill from "@/components/LangPill";
 import AgeGate from "@/components/AgeGate";
+import AgeGate21 from "@/components/AgeGate21";
 import Emoji from "@/components/Emoji";
 import { Boo, Pip } from "@/components/Mascot";
 import { Confetti, Heart, Sparkle } from "@/components/Doodles";
 import { FaInstagram, FaShareNodes, FaSnapchat, FaWhatsapp } from "react-icons/fa6";
 import { useToast } from "@/components/Toast";
 import { useT } from "@/lib/i18n";
-import { cleanName, packOf, type Level, type Mode } from "@/lib/questions";
-import { confirmAdult, isAdult, setMode, usePinMode } from "@/lib/theme";
+import { cleanName, extremeReady, packOf, type Level, type Mode } from "@/lib/questions";
+import { confirmAdult, isAdult, isAdult21, setMode, useNight, usePinMode } from "@/lib/theme";
 
 const PRON = [["he", "-rotate-[5deg]"], ["she", "rotate-3"], ["they", "-rotate-2"]] as const;
 const MAX_SKIPS = 10;
@@ -50,6 +51,7 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
   const [name, setName] = useState("");
   const [pron, setPron] = useState("");
   const [level, setLevel] = useState<Level>("sweet"); // couples only: sweet (romantic) or spicy (more adult)
+  const [ask21, setAsk21] = useState(false); // the 21+ name + date-of-birth sheet for Extreme
   const [pool, setPool] = useState(() => packOf(mode));
   const [link, setLink] = useState("");
   const [token, setToken] = useState("");
@@ -57,13 +59,14 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
   const [toast, say] = useToast();
   const [copied, setCopied] = useState(false);
   const valid = !!cleanName(name);
+  useNight(level === "extreme" && (step === "q" || step === "making" || step === "share")); // dark look once Extreme is chosen
 
   // C6: a webview reload mid-quiz resumes where the creator left off
   useEffect(() => {
     try {
       const d = JSON.parse(sessionStorage.getItem(DRAFT) ?? "null");
       if (d?.step === "q" && cleanName(d.name)) {
-        const lv: Level = d.level === "spicy" ? "spicy" : "sweet";
+        const lv: Level = d.level === "spicy" || (d.level === "extreme" && extremeReady()) ? d.level : "sweet";
         setName(d.name); setPron(d.pron); setLevel(lv); setPool(packOf(mode, lv)); setStep("q");
       }
     } catch {}
@@ -167,8 +170,8 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
       <div className="px-4 space-y-5 text-center">
         <div className="card"><div className="in"><h2 className="text-3xl font-extrabold leading-9">{t("levelTitle")}</h2></div></div>
         <div className="space-y-[18px]">
-          {([["sweet", "💕", "levelSweet", "levelSweetD", "#FFE3EE"], ["spicy", "🔥", "levelSpicy", "levelSpicyD", "#FFE0CC"]] as const).map(([lv, em, title, desc, tile], k) => (
-            <button key={lv} className="opt" style={{ animationDelay: `${k * 60}ms` }} onClick={() => begin(pron, lv)}>
+          {([["sweet", "💕", "levelSweet", "levelSweetD", "#FFE3EE"], ["spicy", "🔥", "levelSpicy", "levelSpicyD", "#FFE0CC"], ...(extremeReady() ? [["extreme", "🔞", "levelExtreme", "levelExtremeD", "#EBD3F5"] as const] : [])] as const).map(([lv, em, title, desc, tile], k) => (
+            <button key={lv} className="opt" style={{ animationDelay: `${k * 60}ms` }} onClick={() => (lv === "extreme" && !isAdult21() ? setAsk21(true) : begin(pron, lv))}>
               <span className="thumb" style={{ background: tile }}><Emoji e={em} size={52} /></span>
               <span className="min-w-0">
                 <b className="block text-2xl font-extrabold leading-tight">{t(title)}</b>
@@ -179,6 +182,7 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
         </div>
         <button className="btn ghost" onClick={() => setStep("pron")}>{t("back")}</button>
       </div>
+      <AgeGate21 open={ask21} onYes={(n) => { setName(n); setAsk21(false); begin(pron, "extreme"); }} onNo={() => setAsk21(false)} />
     </>
   );
 
@@ -195,7 +199,7 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
     </div>
   );
 
-  const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `${level === "spicy" ? "🔥" : "💕"} (${t(level === "spicy" ? "spicyTag" : "couplesTag")})` : "👀"} ${link}`;
+  const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `${level === "extreme" ? "🔞" : level === "spicy" ? "🔥" : "💕"} (${t(level === "extreme" ? "extremeTag" : level === "spicy" ? "spicyTag" : "couplesTag")})` : "👀"} ${link}`;
   const canShare = typeof navigator !== "undefined" && "share" in navigator;
   const slug = link.split("/q/")[1];
   return (

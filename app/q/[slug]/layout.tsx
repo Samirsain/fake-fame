@@ -7,8 +7,8 @@ export async function generateMetadata({ params }: LayoutProps<"/q/[slug]">): Pr
   const q = await getQuizOnce((await params).slug);
   if (!q) return { title: "Fake or Fam" };
   const couples = q.mode === "couples";
-  const spicy = couples && q.level === "spicy";
-  const title = `How well do you know ${q.name}?${couples ? (spicy ? " (18+ spicy couples quiz)" : " (18+ couples quiz)") : ""}`;
+  const tag = q.level === "extreme" ? "21+ couples quiz" : q.level === "spicy" ? "18+ spicy couples quiz" : "18+ couples quiz"; // neutral: never any question text
+  const title = `How well do you know ${q.name}?${couples ? ` (${tag})` : ""}`;
   const description = couples ? "A flirty couples quiz for adults (18+). 10 questions." : "10 questions. Find out who your real friends are.";
   return { title, description, openGraph: { title, description } };
 }
@@ -19,8 +19,8 @@ export default async function Layout({ children, params }: LayoutProps<"/q/[slug
   return (
     <>
       {/* set before first paint so a couples quiz never flashes the blue theme */}
-      {q && <script dangerouslySetInnerHTML={{ __html: `document.documentElement.dataset.theme=${JSON.stringify(mode === "couples" ? "love" : "friends")}` }} />}
-      {q && <PinMode mode={mode} />}
+      {q && <script dangerouslySetInnerHTML={{ __html: `document.documentElement.dataset.theme=${JSON.stringify(mode === "couples" ? "love" : "friends")};${q.level === "extreme" ? `document.documentElement.dataset.night="1"` : ""}` }} />}
+      {q && <PinMode mode={mode} night={q.level === "extreme"} />}
       {children}
     </>
   );
