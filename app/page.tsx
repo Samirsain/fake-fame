@@ -1,69 +1,61 @@
-import Image from "next/image";
+"use client";
+import Link from "next/link";
+import Mine from "@/components/Mine";
+import LangPill from "@/components/LangPill";
+import { Boo, Pip } from "@/components/Mascot";
+import Logo from "@/components/Logo";
+import { Clouds, Heart, Sparkle } from "@/components/Doodles";
+import Emoji from "@/components/Emoji";
+import { useT } from "@/lib/i18n";
+
+const steps = [["✍️", "s1"], ["📤", "s2"], ["🏆", "s3"]];
 
 export default function Home() {
+  const t = useT();
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <header className="sky relative text-center px-4 pt-4 pb-6">
+        <div className="flex justify-end"><LangPill /></div>
+        <Sparkle c="#fff" className="right-4 top-16" /><Sparkle className="left-6 top-20" s={30} delay={1} /><Sparkle c="#B79CFF" className="right-10 top-52" s={20} delay={2} />
+        <div className="absolute left-2 top-32 bob"><Pip mood="shock" size={96} /></div>
+        <div className="absolute right-2 top-32 bob" style={{ animationDelay: "1s" }}><Boo mood="smug" wave size={100} /></div>
+        <Logo />
+        <p className="hand inline-block mt-6 bg-white/90 rounded-xl px-6 py-2 -rotate-1 shadow">{t("tagline")}</p>
+        <div className="mt-6 -mx-4 -mb-6"><Clouds /></div>
+      </header>
+
+      <div className="px-4 space-y-10 pb-10">
+        <div className="card relative mt-2">
+          <Heart className="-right-1 -top-3 z-10" s={44} />
+          <Sparkle className="left-6 top-14 z-10" s={22} />
+          <div className="in text-center space-y-4">
+            <div className="flex justify-center items-end gap-3 rounded-full bg-sky-100 mx-6 pt-4 px-4">
+              <Pip size={110} /><Boo size={110} />
+            </div>
+            <h2 className="text-[34px] leading-10 font-extrabold">
+              {t("heroA")}<br /><span className="text-pink-500">&amp;</span><br />
+              <span className="tape">{t("heroBlock")}</span> {t("heroB")}
+            </h2>
+            <div className="wavy mx-8" />
+            <Link href="/create" className="btn">{t("create")} <span className="arrow">→</span></Link>
+            <Mine />
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        <section className="text-center space-y-4">
+          <h3 className="text-3xl font-extrabold">{t("howTitle")}</h3>
+          <p className="text-pink-500 font-extrabold">{t("howSub")}</p>
+          <ul className="text-left divide-y divide-[#DCE5F0]">
+            {steps.map(([e, k]) => (
+              <li key={k} className="flex gap-4 py-5">
+                <span className="w-14 h-14 shrink-0 grid place-items-center rounded-2xl bg-pink-100"><Emoji e={e} size={38} /></span>
+                <div><b className="uppercase text-lg">{t(k + "t")}</b><p className="leading-6 text-ink/80">{t(k + "d")}</p></div>
+              </li>
+            ))}
+          </ul>
+        </section>
+        <footer className="text-center text-xs opacity-60">{t("footer")}</footer>
+      </div>
+    </>
   );
 }

@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fake or Fam
 
-## Getting Started
+A friendship-quiz web app: make a 10-question quiz about yourself, share the link, and see which friends actually know you.
+Next.js 16 (App Router) · TypeScript · Tailwind v4 · MongoDB Atlas. English, हिन्दी and Hinglish.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local      # then put your Atlas username/password in MONGODB_URI
+npm run dev                     # http://localhost:3000   (or: npm run dev -- -p 3111)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+In Atlas, **Network Access** must allow your IP (or `0.0.0.0/0` for a deploy) and the database user needs read/write.
+Collections (`quizzes`, `attempts`) and their TTL indexes are created on first request; data expires after 90 days.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where things are
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| | |
+|---|---|
+| `app/page.tsx`, `app/create`, `app/q/[slug]`, `app/s/[slug]` | landing · creator flow · player flow · creator scoreboard |
+| `app/api/quizzes/**` | REST API. Answers never reach the client before a player answers (`answer` is checked server-side, first answer wins) |
+| `lib/db.ts` | MongoDB access: atomic writes, so many players can answer one quiz at once |
+| `lib/questions.ts` | the 30-question India pack. Ids are stable keys — never rename one |
+| `lib/i18n.ts` | all UI strings + Hindi/Hinglish for every question and option |
+| `components/Stepper.tsx` | the question screen shared by creator and player |
+| `components/Mascot.tsx` | Pip & Boo (original SVG mascots) |
+| `public/emoji/` | option/topic pictures (Fluent 3D, MIT — see `NOTICE.txt` there) |
 
-## Learn More
+## Swapping artwork
 
-To learn more about Next.js, take a look at the following resources:
+Option pictures are files named after the emoji's code points (`1f354.webp` = 🍔). Drop your own image with the same name
+into `public/emoji/` and it replaces the stock one. To change a mascot, edit `components/Mascot.tsx`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Rate limits (`lib/rate.ts`) are per-process and only active in production; use Upstash Redis once you run more than one instance.
+- Share buttons use the platforms' own glyphs via `react-icons`; follow each platform's brand guidelines before launch.
+- `.env.local` holds the database password and is git-ignored. Never commit it.

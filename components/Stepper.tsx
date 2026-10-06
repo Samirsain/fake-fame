@@ -1,0 +1,151 @@
+"use client";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Pip } from "@/components/Mascot";
+import Emoji, { preloadEmoji } from "@/components/Emoji";
+import { byId, type Question } from "@/lib/questions";
+import { locQ, useLang, useT } from "@/lib/i18n";
+
+const TILES = ["#FFE8D6", "#E3F1FF", "#EAF9E3", "#F3E8FF", "#FFF4CC", "#FFE3EE"];
+const WAVES = ["#FFD23F", "#38BDF8", "#FF5C93", "#2FBF68", "#B79CFF", "#FF9F43"];
+
+type Ans = { questionId: string; optionId: string };
+
+// Shared by creator (pick your answer) and player (instant right/wrong via `check`).
+export default function Stepper({ name, questions, onDone, check, skippable, storageKey }: {
+  name: string;
+  questions: Question[];
+  onDone: (answers: Ans[]) => void;
+  check?: (questionId: string, optionId: string) => Promise<{ correct: boolean; correctOptionId: string }>;
+  skippable?: Question[]; // spare questions for "skip" (creator only)
+  storageKey?: string; // sessionStorage key: progress survives a webview reload (PRD C6)
+}) {
+  const lang = useLang();
+  const t = useT();
+  const [qs, setQs] = useState(questions);
+  const [spare, setSpare] = useState(skippable ?? []);
+  const [i, setI] = useState(0);
+  const [ans, setAns] = useState<Record<string, string>>({});
+  const [res, setRes] = useState<{ picked: string; correctOptionId?: string } | null>(null);
+  const [hydrated, setHydrated] = useState(!storageKey);
+  const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  // restore before paint (this component only mounts client-side, after a step change)
+  useLayoutEffect(() => {
+    if (!storageKey) return;
+    try {
+      const d = JSON.parse(sessionStorage.getItem(storageKey) ?? "null");
+      const list = (ids: string[]) => ids.map(byId).filter((x): x is Question => !!x);
+      if (d && Array.isArray(d.qs) && d.qs.length === questions.length) {
+        setQs(list(d.qs)); setSpare(list(d.spare ?? [])); setI(Math.min(d.i | 0, d.qs.length - 1)); setAns(d.ans ?? {});
+      }
+    } catch {}
+    setHydrated(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    if (!storageKey || !hydrated) return;
+    try { sessionStorage.setItem(storageKey, JSON.stringify({ qs: qs.map((x) => x.id), spare: spare.map((x) => x.id), i, ans })); } catch {}
+  }, [storageKey, hydrated, qs, spare, i, ans]);
+
+  // each new question starts at the top (the option list is taller than a phone screen)
+  useEffect(() => { window.scrollTo(0, 0); }, [i]);
+
+  const q = locQ(qs[i], lang);
+
+  async function pick(optionId: string) {
+    if (res) return;
+    const next = { ...ans, [qs[i].id]: optionId };
+    setAns(next);
+    const up = qs[i + 1]; // load the next question's pictures during the 600–900 ms advance delay
+    if (up) preloadEmoji([up.emoji, ...up.options.map((o) => o.emoji)]);
+    let wait = 600;
+    if (check) {
+      setRes({ picked: optionId }); // lock the UI immediately, reveal when the server answers
+      try {
+        const r = await check(qs[i].id, optionId);
+        setRes({ picked: optionId, correctOptionId: r.correctOptionId });
+        navigator.vibrate?.(30);
+        wait = 900;
+      } catch {
+        setRes(null); // network blip: let them tap again
+        return;
+      }
+    } else setRes({ picked: optionId });
+    timer.current = setTimeout(() => {
+      setRes(null);
+      if (i === qs.length - 1) onDone(qs.map((x) => ({ questionId: x.id, optionId: next[x.id] })));
+      else setI(i + 1);
+    }, wait);
+  }
+
+  function skip() {
+    if (!spare.length || res) return;
+    setQs(qs.map((x, k) => (k === i ? spare[0] : x)));
+    setSpare(spare.slice(1));
+  }
+
+  const revealed = !!res?.correctOptionId;
+  const wrong = revealed && res!.picked !== res!.correctOptionId;
+  const cls = (id: string) =>
+    !res ? (ans[qs[i].id] === id ? "sel" : "")
+    : revealed ? (id === res.correctOptionId ? "ok" : id === res.picked ? "bad" : "dim")
+    : id === res.picked ? "sel" : "dim";
+
+  const mood = wrong ? "sad" : revealed ? "closed" : res ? "shock" : "happy";
+  const parts = q.text.split("{name}");
+  const tiles = q.options.length > 6;
+
+  return (
+    <div className="space-y-5 px-4 py-5">
+      <div className="flex items-center gap-3">
+        <button className="sqbtn disabled:opacity-40" disabled={i === 0 || !!res} onClick={() => setI(i - 1)} aria-label={t("back")}>‹</button>
+        <div className="flex-1 flex items-center gap-2 h-[30px] rounded-full bg-white p-1">
+          <div className="flex-1 h-full rounded-full bg-cream overflow-hidden" role="progressbar" aria-valuenow={i + 1} aria-valuemin={1} aria-valuemax={qs.length}>
+            <div className="h-full rounded-full transition-all duration-[400ms] ease-out" style={{ width: `${((i + 1) / qs.length) * 100}%`, background: "linear-gradient(#FF7AA6,#FF5C93)" }} />
+          </div>
+          <span className="text-sm font-extrabold pr-2">{i + 1}/{qs.length}</span>
+        </div>
+      </div>
+
+      {/* keyed so every question slides in and its options re-stagger */}
+      <div key={qs[i].id} className="stepin space-y-5">
+        <div className="paper">
+          <span className="washi" aria-hidden />
+          <div className="rings" aria-hidden>{Array.from({ length: 7 }, (_, k) => <i key={k} />)}</div>
+          <span className="tapeq hand">{t("question")} {i + 1}</span>
+          <h2 className={`font-extrabold mt-4 ${q.text.length > 60 ? "text-2xl leading-8" : "text-[28px] leading-9"}`}>
+            {parts[0]}<span className="text-pink-500 underline decoration-wavy decoration-sky-500 underline-offset-4">{name}</span>{parts[1]}
+          </h2>
+          <div className="flex items-end justify-between mt-2">
+            <Emoji e={q.emoji} size={44} />
+            <span key={mood} className="hop"><Pip size={84} mood={mood} /></span>
+          </div>
+        </div>
+
+        <div role="radiogroup" aria-label={t("answers")} className={tiles ? "grid grid-cols-2 gap-x-4 gap-y-[18px] pt-1" : "space-y-[18px] pt-1"}>
+          {q.options.map((o, k) => (
+            <button key={o.id} role="radio" aria-checked={ans[qs[i].id] === o.id} className={`opt ${tiles ? "tile" : ""} ${cls(o.id)}`}
+              style={{ animationDelay: `${k * 40}ms` }} disabled={!!res} onClick={() => pick(o.id)}>
+              <span className="thumb" style={{ background: TILES[k % 6] }}><Emoji e={o.emoji} size={tiles ? 52 : 58} /></span>
+              <span className={tiles ? "" : "min-w-0"}>
+                <span className="lbl block">{o.label}</span>
+                {!tiles && <span className="wv mt-1 w-[84px]" style={{ ["--wv" as string]: WAVES[k % 6] }} />}
+              </span>
+              {revealed && o.id === res!.correctOptionId && <span className="badge bg-ok" aria-hidden>✓</span>}
+              {revealed && o.id === res!.picked && o.id !== res!.correctOptionId && <span className="badge bg-bad" aria-hidden>✕</span>}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div aria-live="polite" className="sr-only">{revealed ? (wrong ? t("wrong") : t("correct")) : ""}</div>
+
+      {skippable && (
+        <button className="btn mx-auto !w-[250px] !min-h-[60px]" disabled={!spare.length || !!res} onClick={skip}>
+          {t("skip")} ⟳
+        </button>
+      )}
+    </div>
+  );
+}
