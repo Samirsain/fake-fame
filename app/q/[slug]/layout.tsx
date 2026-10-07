@@ -8,8 +8,9 @@ export async function generateMetadata({ params }: LayoutProps<"/q/[slug]">): Pr
   if (!q) return { title: "Fake or Fam" };
   const couples = q.mode === "couples";
   const tag = q.level === "extreme" ? "21+ couples quiz" : q.level === "spicy" ? "18+ spicy couples quiz" : "18+ couples quiz"; // neutral: never any question text
-  const title = `How well do you know ${q.name}?${couples ? ` (${tag})` : ""}`;
-  const description = couples ? "A flirty couples quiz for adults (18+). 10 questions." : "10 questions. Find out who your real friends are.";
+  // reads like a message from the friend, so the chat preview says who sent it
+  const title = `${q.name} ne tumhare liye kuch bheja hai 💌${couples ? ` (${tag})` : ""}`;
+  const description = couples ? `Dekho tum ${q.name} ko kitna jaante ho. A flirty couples quiz for adults (18+), 10 questions.` : `Dekho tum ${q.name} ko kitna jaante ho. 10 sawaal, 1 minute.`;
   return { title, description, openGraph: { title, description } };
 }
 

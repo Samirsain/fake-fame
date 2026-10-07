@@ -9,6 +9,8 @@ const baloo = Baloo_2({ variable: "--font-baloo", subsets: ["latin", "devanagari
 const shantell = Shantell_Sans({ variable: "--font-shantell", subsets: ["latin"], weight: ["700"], display: "swap" });
 
 export const metadata: Metadata = {
+  // og:image must be an absolute URL; without this a non-Vercel host would point previews at localhost
+  ...(process.env.NEXT_PUBLIC_SITE_URL && { metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL) }),
   title: "Fake or Fam — find your fake friends",
   description: "Make a 10-question quiz about yourself, share it, and see which friends actually know you.",
 };
