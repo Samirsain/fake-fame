@@ -11,8 +11,10 @@ import { Confetti } from "@/components/Doodles";
 import Emoji from "@/components/Emoji";
 import { useToast } from "@/components/Toast";
 import { TIER_COLORS, band, cleanName, type Level, type Mode, type Question } from "@/lib/questions";
-import { useT } from "@/lib/i18n";
+import { useLang, useT } from "@/lib/i18n";
 import { confirmAdult, isAdult, isAdult21, setMode } from "@/lib/theme";
+import { speak, unlockVoice } from "@/lib/voice";
+import VoiceToggle from "@/components/VoiceToggle";
 
 type Quiz = { name: string; mode?: Mode; level?: Level; players: number; questions: Question[] };
 type Result = { id: string; name: string; score: number; rank?: number; tier: { emoji: string; name: string; copy: string; band?: number }; top5: { id: string; name: string; score: number }[] };
@@ -34,6 +36,7 @@ function CountUp({ to }: { to: number }) {
 export default function Play({ params }: PageProps<"/q/[slug]">) {
   const { slug } = use(params);
   const t = useT();
+  const lang = useLang();
   const router = useRouter();
   const [toast, say] = useToast();
   const [quiz, setQuiz] = useState<Quiz | null | undefined>();
@@ -52,12 +55,14 @@ export default function Play({ params }: PageProps<"/q/[slug]">) {
 
   async function start() {
     if (!cleanName(me) || starting) return;
+    unlockVoice();
     setStarting(true); setErr("");
     try {
       const r = await fetch(`/api/quizzes/${slug}/attempts`, { method: "POST", body: JSON.stringify({ name: me.trim() }) });
       if (r.status === 429) throw new Error(t("tooMany"));
       if (!r.ok) throw new Error(t("err"));
       setAttempt((await r.json()).attemptId);
+      speak("start", lang);
     } catch (e) {
       setErr((e as Error).message || t("err"));
     }
@@ -76,6 +81,7 @@ export default function Play({ params }: PageProps<"/q/[slug]">) {
     const out: Result = await r.json();
     localStorage.setItem(`done:${slug}`, JSON.stringify(out));
     setRes(out);
+    if (quiz?.mode !== "couples") speak(`tier${out.tier.band ?? band(out.score)}`, lang); // the tier lines are written for friends quizzes
   }
 
   // Share the score card as an image where the browser can (phones: straight into Instagram/Snapchat/WhatsApp), else share the text + link.
@@ -158,7 +164,7 @@ export default function Play({ params }: PageProps<"/q/[slug]">) {
   if (!attempt) return (
     <>
       <div className="sky text-center px-4 pt-4 pb-12">
-        <div className="flex justify-end"><LangPill /></div>
+        <div className="flex justify-end gap-2"><VoiceToggle /><LangPill /></div>
         <div className="flex justify-center mt-4"><Pip size={110} mood={couples ? "love" : "shock"} className="bob" /><Boo size={110} mood={couples ? "love" : "smug"} className="bob" flip /></div>
       </div>
       <form className="px-4 -mt-4 space-y-4 text-center" onSubmit={(e) => { e.preventDefault(); start(); }}>

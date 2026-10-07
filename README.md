@@ -34,6 +34,7 @@ Collections (`quizzes`, `attempts`) and their TTL indexes are created on first r
 | `components/Stepper.tsx` | the question screen shared by creator and player |
 | `components/Mascot.tsx` | Pip & Boo (original SVG mascots) |
 | `public/emoji/` | option/topic pictures (Fluent 3D, MIT — see `NOTICE.txt` there) |
+| `lib/voice.ts`, `components/VoiceToggle.tsx`, `public/voice/` | spoken feedback for players: right/wrong, "let's go", result tier. Hindi (also used for Hinglish) and English clips, on by default, speaker button mutes it. How the clips were made is in `NOTICE.txt` there |
 
 ## Swapping artwork
 

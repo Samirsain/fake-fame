@@ -1,0 +1,33 @@
+Spoken lines for the quiz (see lib/voice.ts)
+
+Made with HeyGen text-to-speech (starfish engine) through the media-use skill's heygen-tts.mjs, then trimmed and
+loudness-normalised with ffmpeg (mono, 24 kHz, mp3). Hinglish uses the Hindi clips.
+  Hindi voice:   "Young Yumna"  (c76a2a4b9976410aa76a1c5f57f38c78), female, --lang hi
+  English voice: "Cecily - Warm & Friendly" (41f17b4ebd334ac99a91c2aada5f86d7), female
+Check HeyGen's terms for your plan before commercial use of generated audio.
+
+hi/ and en/ hold the same file names:
+  ok1, ok2      right answer
+  bad1, bad2    wrong answer
+  start         "let's go" when the player taps start
+  tier0..tier3  result: Fake friend, Sus, Real one, Bestie (friends quizzes only)
+
+Hindi lines (Devanagari, as given to the voice)
+  ok1    सही जवाब!
+  ok2    बिल्कुल सही!
+  bad1   अरे, ग़लत जवाब!
+  bad2   ओह, ये ग़लत है!
+  start  तो चलिए, शुरू करते हैं!
+  tier0  फ़ेक फ़्रेंड! तुम कौन हो? ब्लॉक!
+  tier1  सस! पतली बर्फ़ पर हो।
+  tier2  असली दोस्त! तुम सच में ध्यान देते हो।
+  tier3  बेस्टी! सर्टिफ़ाइड फ़ैम!
+
+English lines
+  ok1 Correct!  ok2 Nailed it!  bad1 Wrong!  bad2 Oops, not quite!  start Let's go!
+  tier0 Fake friend! Who even are you? Blocked.   tier1 Sus. You're on thin ice.
+  tier2 Real one! You actually pay attention.      tier3 Bestie! Certified fam.
+
+To change a line (needs `npx hyperframes auth login` once):
+  node ~/.claude/skills/media-use/audio/scripts/heygen-tts.mjs "<line>" --voice c76a2a4b9976410aa76a1c5f57f38c78 --lang hi -o line.wav
+  ffmpeg -i line.wav -af loudnorm=I=-16:TP=-1.5:LRA=11 -ac 1 -ar 24000 -c:a libmp3lame -q:a 4 hi/<name>.mp3
