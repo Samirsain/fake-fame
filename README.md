@@ -1,4 +1,4 @@
-<a href="https://trendshift.io/repositories/977?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-977" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/977/daily?language=Python" alt="donnemartin%2Fsystem-design-primer | Trendshift" width="250" height="55"/></a>
+<a href="https://trendshift.io/repositories/977?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-977" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/977/daily?language=javascript" alt="donnemartin%2Fsystem-design-primer | Trendshift" width="250" height="55"/></a>
 # Fake or Fam
 
 A friendship-quiz web app: make a 10-question quiz about yourself, share the link, and see which friends actually know you.
