@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Doc from "@/components/Doc";
-import { EMAIL } from "@/lib/site";
+import { EMAIL, TEL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact — Fake or Fam",
@@ -13,7 +13,7 @@ export default function Contact() {
     <Doc title="Contact us" sub="We read every message.">
       <p>
         Questions, bug reports, feedback or a quiz you want removed: email us at{" "}
-        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>, or WhatsApp / call <a href={`tel:${TEL}`}>+91 93119 08389</a>.
       </p>
 
       <h2>To report or remove a quiz</h2>
@@ -32,7 +32,8 @@ export default function Contact() {
       <h2>Everything else</h2>
       <p>
         Fake or Fam is made by Zenviq Digital, Hanumangarh, Rajasthan, India. You can also reach us through{" "}
-        <a href="https://www.zenviqdigital.in/contact" target="_blank" rel="noopener">zenviqdigital.in</a>.
+        <a href="https://www.zenviqdigital.in/contact" target="_blank" rel="noopener">zenviqdigital.in</a>. Want a website, app or
+        quiz campaign for your business? See <Link href="/for-business">what we build</Link>.
       </p>
     </Doc>
   );

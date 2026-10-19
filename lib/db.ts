@@ -135,6 +135,13 @@ export const newToken = () => randomBytes(32).toString("base64url");
 export const newSlug = () => randomBytes(6).toString("base64url");
 export const newId = () => randomBytes(8).toString("base64url");
 
+/** Public totals for /for-business. Everything expires after 90 days, so these are "last 90 days" numbers. */
+export const siteStats = async () => {
+  const [qs, ats] = [await quizzes(), await attempts()];
+  const [q, p] = await Promise.all([qs.estimatedDocumentCount(), ats.countDocuments({ done: true })]);
+  return { quizzes: q, plays: p };
+};
+
 // ---------- admin overview (counts and names only: no tokens, answers or birth dates) ----------
 export const adminOverview = async () => {
   const [qs, ats] = [await quizzes(), await attempts()];

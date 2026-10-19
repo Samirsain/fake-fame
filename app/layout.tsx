@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1 };
 
-const LINKS = [["/guides", "Guides"], ["/about", "About"], ["/contact", "Contact"], ["/privacy", "Privacy"], ["/terms", "Terms"]];
+const LINKS = [["/guides", "Guides"], ["/for-business", "For brands"], ["/about", "About"], ["/contact", "Contact"], ["/privacy", "Privacy"], ["/terms", "Terms"]];
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
