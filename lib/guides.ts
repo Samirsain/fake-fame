@@ -1,6 +1,6 @@
 // Original articles for /guides. Each section is an optional heading, paragraphs and an optional list.
 export type Section = { h?: string; p?: string[]; ul?: string[]; ol?: string[] };
-export type Guide = { slug: string; title: string; description: string; date: string; read: string; body: Section[] };
+export type Guide = { slug: string; title: string; description: string; date: string; read: string; body: Section[]; lang?: "hi" };
 
 export const GUIDES: Guide[] = [
   {
@@ -202,6 +202,316 @@ export const GUIDES: Guide[] = [
       ] },
       { h: "Be the friend you want to have", p: [
         "Every sign above works in both directions. Remember the small things, show up when it is hard, keep secrets, and celebrate other people's wins. And if you want a light-hearted way to see how well your friends know you, or how well you know them, a quick quiz is a fun place to start.",
+      ] },
+    ],
+  },
+  {
+    slug: "best-friend-birthday-ideas",
+    title: "Birthday surprise ideas for your best friend, on any budget",
+    description: "Thoughtful birthday ideas for your best friend, from free handmade surprises to group plans and long-distance celebrations, with tips to make them feel personal.",
+    date: "2026-10-19",
+    read: "6 min read",
+    body: [
+      { p: [
+        "The best birthday surprises are rarely the most expensive ones. What people remember is the feeling that someone paid attention: you knew their favourite snack, you remembered the inside joke from three years ago, you got the whole gang together. Here are ideas for every budget, plus a few rules that make any plan feel personal.",
+      ] },
+      { h: "First, think about your friend, not the idea", p: [
+        "Before picking anything from a list, answer three questions. Does your friend love attention or hate being the centre of it? Do they prefer people or quiet time? Is there something they have been talking about wanting for months? A midnight crowd at the door is a dream for one person and a nightmare for another. Plan for the friend you actually have.",
+      ] },
+      { h: "Almost free (under ₹200)", ul: [
+        "A handwritten letter. Write about a specific memory, what you admire about them, and one thing you are looking forward to doing together this year. People keep these for decades.",
+        "A memory jar. Fill a jar with small folded notes: memories, jokes, compliments, \"open when you're sad\" messages. Ask other friends to add a few.",
+        "A personal playlist. Pick songs that remind you of trips, college days or late-night talks, and name the playlist after an inside joke.",
+        "A photo timeline. Dig out old photos from your phone and make a simple slideshow or printed collage, from the first picture together to the latest.",
+        "Their favourite home-cooked dish. If they always praise your Maggi or your mother's parathas, that is the gift.",
+      ] },
+      { h: "Mid-range (₹200 to ₹1,500)", ul: [
+        "A midnight cake with the closest two or three people. Keep it small if your friend is shy.",
+        "Something customised: a mug, notebook or phone cover with an old photo or a line only the two of you understand.",
+        "An experience instead of a thing: a movie they have been waiting for, a go-karting session, a pottery class or a food walk in your city.",
+        "Their favourite street food, delivered in bulk. A box of pani puri or momos for the whole group says \"I know you\" better than a generic gift.",
+      ] },
+      { h: "Group plans", ul: [
+        "A wishes video. Ask friends and family to record ten-second clips and stitch them together. Keep it under three minutes so it gets watched more than once.",
+        "A treasure hunt. Hide clues in places that mean something: the canteen, the chai stall, the bench where you used to sit.",
+        "A day trip. Pick a place within a couple of hours, share the cost, and leave the planning stress out of your friend's hands.",
+        "A theme night: their favourite movie franchise, a decade, or a cricket-match screening with matching jerseys.",
+      ] },
+      { h: "If you live far apart", ul: [
+        "Time a delivery for midnight or the morning: cake, flowers, or a box of their favourite snacks from a local shop near them.",
+        "Cut a cake together on a video call, each with your own slice.",
+        "Send a parcel with small items that each carry a note: a chocolate for \"the exam we survived\", a keychain for \"the trip we still need to take\".",
+        "Plan a visit and give them the dates as the gift.",
+      ] },
+      { h: "Small touches that make any plan better", ul: [
+        "Tag the photos, but ask first before posting anything embarrassing.",
+        "Be on time. For a surprise, the timing matters more than the budget.",
+        "Do not compare with what others spent. A thoughtful ₹100 gift beats a careless ₹2,000 one.",
+        "Follow up the next day. A simple \"hope you had a good one\" keeps the warmth going.",
+      ] },
+      { p: [
+        "Want to find out how well everyone in the group knows the birthday person? Ask them to make a Fake or Fam quiz about themselves and share it in the group. The leaderboard makes a fun birthday-week game.",
+      ] },
+    ],
+  },
+  {
+    slug: "fix-a-fight-with-best-friend",
+    title: "How to fix a fight with your best friend",
+    description: "A calm, practical way to make up after a fight with a close friend: when to talk, what to say, how to apologise properly, and when to give it time.",
+    date: "2026-10-19",
+    read: "6 min read",
+    body: [
+      { p: [
+        "Every close friendship has fights. Spending a lot of time together, caring about each other's opinion and knowing each other's weak spots means that, sooner or later, something lands badly. A fight does not mean the friendship was fake. What matters is how you repair it.",
+      ] },
+      { h: "1. Let the first wave of anger pass", p: [
+        "Messages sent in the first hour after a fight are usually the ones people regret. Give yourself time to cool down, whether that is a few hours or a day. If you need space, say so in one line (\"I need a bit of time, I'll call you tomorrow\") instead of disappearing. Silence without explanation often hurts more than the fight itself.",
+      ] },
+      { h: "2. Work out what actually hurt", p: [
+        "Fights are often about one thing on the surface and something else underneath. The argument may be about a cancelled plan, but the hurt is \"I feel like I'm always the one making the effort\". Before you talk, try to name the real feeling. It makes the conversation much shorter and much kinder.",
+      ] },
+      { h: "3. Talk, don't type", p: [
+        "Text loses tone. A short message can sound cold even when it isn't meant to. If you can, meet in person or call. If you must use text, avoid long paragraphs that read like a court case. Ask to talk instead: \"Can we talk properly? I don't want this to sit between us.\"",
+      ] },
+      { h: "4. Use \"I\" instead of \"you\"", p: [
+        "\"You never care about my plans\" starts a defence. \"I felt left out when the plan changed and nobody told me\" starts a conversation. Describe what happened and how you felt, without guessing at the other person's motives.",
+      ] },
+      { h: "5. Listen to their side, fully", p: [
+        "Your friend probably experienced the same event very differently. Let them finish. Repeat back what you heard (\"So you thought I was angry with you, that's why you didn't call?\"). Feeling understood often settles more than any explanation.",
+      ] },
+      { h: "6. Apologise for your part, specifically", p: [
+        "A real apology names what you did and does not come with a \"but\". Compare \"Sorry if you felt bad\" with \"I'm sorry I made that joke in front of everyone. It was unfair to you.\" You can apologise for your part even if you think they were also wrong. It usually makes it easier for them to do the same.",
+      ] },
+      { h: "7. Leave old fights out of it", p: [
+        "Bringing up every past mistake turns one problem into ten. Solve today's issue. If a pattern keeps repeating, talk about the pattern calmly on another day.",
+      ] },
+      { h: "8. Agree on what changes", p: [
+        "End with something small and concrete: \"Let's just tell each other when plans change\" or \"If something bothers you, tell me directly instead of in the group\". Then follow through.",
+      ] },
+      { h: "9. Do something normal together", p: [
+        "After the talk, go back to an ordinary thing you both enjoy: chai, a match, a game, a walk. It signals that the friendship is bigger than the fight.",
+      ] },
+      { h: "When it doesn't work", p: [
+        "Sometimes one conversation is not enough, and that's okay. Give it time and try again later. And sometimes a friendship has simply run its course. If you have tried honestly and the other person keeps hurting you, it is fine to step back with kindness instead of keeping a fight alive.",
+      ] },
+    ],
+  },
+  {
+    slug: "whatsapp-group-games",
+    title: "12 fun games to play in your WhatsApp group",
+    description: "Twelve easy games for WhatsApp groups that bring a quiet chat back to life, from emoji movie quizzes and voice-note antakshari to polls and photo challenges.",
+    date: "2026-10-19",
+    read: "5 min read",
+    body: [
+      { p: [
+        "Every friend group has a WhatsApp chat that was buzzing once and is now mostly forwards and \"happy birthday\" messages. A good game can bring it back to life in minutes. These twelve need nothing more than the chat itself, and most of them work for school groups, college groups, cousins and office friends alike.",
+      ] },
+      { h: "Quick games (five minutes)", ol: [
+        "Emoji movie quiz. One person sends a film title in emojis only, like 🧑‍🚀🌌 or 🦁👑, and the first correct guess sets the next one. Bollywood titles make it harder than you think.",
+        "Would you rather. Post two options using WhatsApp's poll feature: \"Would you rather never eat Maggi again or never drink chai again?\" The results start debates instantly.",
+        "Two truths and a lie. Someone shares three facts about themselves; everyone votes on the lie. Great for groups where people don't know each other well yet.",
+        "Rate my plate. Everyone posts a photo of their lunch and the group rates it out of ten. The lowest score picks the next game.",
+        "Guess the baby photo. One person collects childhood photos privately and posts them one at a time. Everyone guesses who it is.",
+      ] },
+      { h: "Games that run all day", ol: [
+        "Photo of the day. Pick a theme each morning (something blue, your view right now, your desk) and everyone posts one photo before night.",
+        "Story chain. One person writes the first line of a story, and each member adds exactly one sentence. It gets ridiculous fast.",
+        "Throwback hour. Everyone digs up their oldest photo with someone else in the group. Expect a lot of bad haircuts.",
+        "Guess the voice note. Someone sends a ten-second voice note with a disguised voice or an accent; others guess who it is.",
+      ] },
+      { h: "Bigger games", ol: [
+        "Voice-note antakshari. The classic song game, but in voice notes: each person sings a few seconds of a song starting with the last letter of the previous one.",
+        "Quiz battle. Each person makes a quiz about themselves and shares the link. Fake or Fam shows a leaderboard for every quiz, so you can see who knows the group best overall.",
+        "Group awards. At the end of the month, run polls for awards like \"most likely to be late\", \"best meme of the month\" and \"replies only at 2 am\". Keep the categories kind.",
+      ] },
+      { h: "Tips so nobody feels left out", ul: [
+        "Keep games short and optional. People join when they're free.",
+        "Avoid categories that mock looks, money, marks or anyone's relationship.",
+        "Rotate the host so the same person isn't always carrying the group.",
+        "Mute the game, not the person: if the chat gets too busy, suggest a time window instead of a ban.",
+        "If someone's photos or voice notes are shared, keep them inside the group.",
+      ] },
+    ],
+  },
+  {
+    slug: "make-friends-in-a-new-city",
+    title: "How to make friends in a new city or college",
+    description: "Practical steps to make real friends after moving to a new city, hostel, college or job, including where to meet people, how to turn acquaintances into friends, and staying safe.",
+    date: "2026-10-19",
+    read: "6 min read",
+    body: [
+      { p: [
+        "Moving for college, a job or a family transfer is exciting, and also lonely. The friends you had were built over years of seeing each other almost every day; now you are starting from zero. The good news is that friendship follows a fairly predictable pattern, and you can help it along.",
+      ] },
+      { h: "Friendship takes time, and that's normal", p: [
+        "A 2018 study by communication researcher Jeffrey Hall estimated that it takes around 50 hours together to go from acquaintance to casual friend, around 90 hours to become a real friend, and more than 200 hours to become a close friend. In other words, nobody becomes your best friend after one good conversation. What matters is repeated time together, so the goal is to put yourself where the same people keep seeing you.",
+      ] },
+      { h: "Where to meet people", ul: [
+        "Your floor, hostel or PG. Leave the door open, cook something and share it, and join the late-night chai runs even when you're tired.",
+        "Clubs and societies. College fests, sports teams, coding clubs, dance and music groups, NSS and volunteering all give you a reason to meet the same people every week.",
+        "Classes and offices. Sit near the same people, form study groups before exams, and say yes to lunch invitations in your first few weeks.",
+        "Hobby groups. Running clubs, book clubs, trekking groups, cricket or football on weekends, gaming communities and religious or cultural events in your new city.",
+        "Friends of friends. Ask people back home if they know anyone in your new city. One introduction can open a whole group.",
+      ] },
+      { h: "How to turn an acquaintance into a friend", ol: [
+        "Say yes early. In the first month, accept as many invitations as you reasonably can. Groups form fast.",
+        "Be the one who suggests a plan. Most people are waiting for someone else to say \"Shall we get dinner on Friday?\" Be that person.",
+        "Follow up on small details. \"How did your presentation go?\" shows you were listening, and that's how closeness starts.",
+        "Share a little about yourself. Friendship grows when both people open up gradually, not when one person only asks questions.",
+        "Make it a routine. A weekly badminton game or Sunday breakfast builds those hours without needing a new plan every time.",
+      ] },
+      { h: "If you're shy", p: [
+        "You don't need to be the loudest person in the room. Start with one-to-one conversations rather than big groups, arrive early to events (it's easier to talk when the room is quiet), and prepare two or three easy questions: where are you from, what are you studying or working on, what do you do on weekends. Activities help a lot, because doing something together takes the pressure off talking.",
+      ] },
+      { h: "Stay safe while meeting new people", ul: [
+        "Meet people from online groups in busy public places first.",
+        "Tell a friend or family member where you're going.",
+        "Don't share your address, ID details or bank information with someone you just met.",
+        "Trust your instincts. If a situation feels wrong, leave.",
+      ] },
+      { h: "Keep your old friends too", p: [
+        "New friends don't replace old ones. A quick voice note to your school group or a monthly call keeps those friendships alive while you build new ones. And once your new group forms, a friendship quiz is a fun way to see how well they've got to know you.",
+      ] },
+    ],
+  },
+  {
+    slug: "long-distance-friendship",
+    title: "How to stay close to friends after you move away",
+    description: "Simple habits that keep long-distance friendships strong after school, college or a move to a new city, from voice notes and watch parties to planning visits.",
+    date: "2026-10-19",
+    read: "5 min read",
+    body: [
+      { p: [
+        "School ends, people move for college or work, and the friends you saw every day are suddenly in different cities, sometimes different countries. Long-distance friendships don't fade because people stop caring. They fade because staying in touch takes small, regular effort and life gets busy. Here are habits that make that effort easy.",
+      ] },
+      { h: "Small, frequent beats big and rare", p: [
+        "A two-minute voice note every few days does more than a three-hour call twice a year. Share small things: a photo of your lunch, a meme that reminded you of them, a quick \"guess who I saw today\". Small updates keep you part of each other's ordinary life, which is what made you close in the first place.",
+      ] },
+      { h: "Ideas that work", ul: [
+        "A fixed call slot. First Sunday of the month, 9 pm. A routine removes the \"we should talk sometime\" problem.",
+        "Watch parties. Watch the same match, series or movie at the same time and keep a chat or call open.",
+        "Play together online. Mobile games, online board games or a shared quiz keep things playful instead of only catching up.",
+        "Send something physical. A postcard, a box of sweets from your new city, or a book with notes in the margins.",
+        "Keep a shared album. Add photos from both sides so you can see each other's lives.",
+        "Celebrate the dates. Birthdays, results, first salaries and festivals are good reasons to call.",
+      ] },
+      { h: "Plan visits early", p: [
+        "Visits that are \"someday\" rarely happen. Pick dates months in advance, around festivals or long weekends, and book what you can. Even one meeting a year gives the friendship something to look forward to.",
+      ] },
+      { h: "Accept that the friendship will change", p: [
+        "Your friend will make new friends, start new routines and maybe change in ways you didn't expect. That's not betrayal; it's growth. Be curious about their new life instead of comparing it with the old one. Friendships that survive distance are usually the ones where both people are happy for each other's changes.",
+      ] },
+      { h: "If you've drifted already", p: [
+        "It's never too awkward to restart. Send a simple message: \"Saw this and thought of you. How are you, really?\" Most people are glad to hear from an old friend. A light, low-pressure reason to reconnect also helps, like sharing a friendship quiz and asking if they still remember your favourite things.",
+      ] },
+    ],
+  },
+  {
+    slug: "online-quiz-privacy-tips",
+    title: "Online quizzes and privacy: what's safe to share",
+    description: "How to enjoy online friendship quizzes without oversharing: answers to avoid, why some quiz questions match bank security questions, fake quiz sites, and tips for parents.",
+    date: "2026-10-19",
+    read: "5 min read",
+    body: [
+      { p: [
+        "Quizzes are fun, and most are harmless. But every quiz asks you to share something about yourself, and some websites use that curiosity to collect far more than they need. A few simple habits let you enjoy quizzes without giving away information you'll regret.",
+      ] },
+      { h: "Watch out for \"security question\" answers", p: [
+        "Many accounts, from email to banking apps, use security questions like \"What was the name of your first pet?\", \"What was your first school?\" or \"What is your mother's maiden name?\". Some quizzes ask exactly these things in a playful way. Posting those answers publicly can make it easier for someone to break into your accounts. Skip any quiz question that sounds like a password reset question.",
+      ] },
+      { h: "Signs of a quiz site to avoid", ul: [
+        "It asks you to log in with your social media account, or asks for your password, phone number or an OTP. A real quiz never needs an OTP.",
+        "It wants access to your contacts, photos or friends list.",
+        "It promises prizes, recharges or cash for sharing the link.",
+        "It has no privacy policy, or you can't tell who runs it.",
+        "It redirects you through several pages of ads before showing a result.",
+      ] },
+      { h: "What's safe to share", p: [
+        "Tastes and habits are generally fine: your favourite snack, your music taste, whether you're a night owl. Use a nickname instead of your full name. Avoid sharing your address, school or office name together with your photo, your date of birth, or anything about your finances or health.",
+      ] },
+      { h: "Sharing results", ul: [
+        "Before posting a scoreboard screenshot, check whether it shows other people's names, and blur them if they wouldn't want it public.",
+        "Keep private links private. On Fake or Fam, the scoreboard link contains a secret key; share only the quiz link.",
+        "Delete quizzes you no longer want online. Fake or Fam deletes everything after 90 days anyway, and the creator can delete earlier from the scoreboard.",
+      ] },
+      { h: "How Fake or Fam handles it", p: [
+        "We built Fake or Fam to need as little as possible: no account, no email or phone number, only a nickname. Answers are checked on our server, quizzes expire after 90 days, and our privacy policy lists exactly what is stored. Our questions are about everyday tastes, not security questions.",
+      ] },
+      { h: "A note for parents", p: [
+        "If your child enjoys online quizzes, talk about which details are private (full name, school, address, phone number, photos) and agree that they will never enter a password or OTP into a game or quiz. Keeping the conversation open works better than banning quizzes completely.",
+      ] },
+    ],
+  },
+  {
+    slug: "friendship-day-ideas",
+    lang: "hi",
+    title: "फ्रेंडशिप डे कैसे मनाएँ: दोस्तों के लिए 15 आसान आइडिया",
+    description: "फ्रेंडशिप डे पर दोस्तों को खास महसूस कराने के 15 आसान और कम बजट वाले आइडिया: हाथ से लिखा खत, ग्रुप प्लान, दूर रहने वाले दोस्तों के लिए सरप्राइज़ और भी बहुत कुछ।",
+    date: "2026-10-19",
+    read: "5 मिनट",
+    body: [
+      { p: [
+        "भारत में फ्रेंडशिप डे आमतौर पर अगस्त के पहले रविवार को मनाया जाता है, और संयुक्त राष्ट्र ने 30 जुलाई को अंतरराष्ट्रीय मित्रता दिवस घोषित किया है। तारीख चाहे जो हो, असली बात यह है कि दोस्तों को बताया जाए कि वे हमारे लिए कितने मायने रखते हैं। इसके लिए महँगे तोहफ़ों की ज़रूरत नहीं है। यहाँ 15 आसान आइडिया हैं।",
+      ] },
+      { h: "बिना ख़र्च वाले आइडिया", ol: [
+        "हाथ से लिखा खत: किसी एक ख़ास याद के बारे में लिखो, और बताओ कि तुम्हें उनकी कौन-सी बात सबसे अच्छी लगती है।",
+        "पुरानी फ़ोटो का कोलाज: फ़ोन की गैलरी से पहली फ़ोटो से लेकर आज तक की तस्वीरें जोड़ो।",
+        "एक प्लेलिस्ट: उन गानों की लिस्ट बनाओ जो तुम्हें साथ बिताए पलों की याद दिलाते हैं।",
+        "वॉइस नोट: दिल से एक छोटा-सा मैसेज रिकॉर्ड करके भेजो। लिखने से ज़्यादा असर करता है।",
+        "\"याद है जब…\" वाला मैसेज: कोई मज़ेदार पुराना किस्सा याद दिलाओ और बात अपने आप शुरू हो जाएगी।",
+      ] },
+      { h: "दोस्तों के साथ मिलकर", ol: [
+        "चाय-नाश्ते की छोटी पार्टी: घर पर या पसंदीदा टपरी पर, सबको एक साथ बुलाओ।",
+        "पुरानी जगहों की सैर: स्कूल, कॉलेज का कैंटीन या वो गली जहाँ तुम सब मिलते थे।",
+        "मूवी नाइट: सबकी पसंद की एक पुरानी फ़िल्म जिसके डायलॉग सबको याद हों।",
+        "छोटा-सा डे ट्रिप: पास के किसी पहाड़, झील या किले पर एक दिन की सैर।",
+        "क्विज़ चैलेंज: हर कोई अपने बारे में एक दोस्ती क्विज़ बनाकर ग्रुप में शेयर करे, और देखो कौन सबको सबसे अच्छी तरह जानता है।",
+      ] },
+      { h: "दूर रहने वाले दोस्तों के लिए", ol: [
+        "वीडियो कॉल पर साथ में केक काटो या चाय पियो।",
+        "उनके शहर की किसी दुकान से उनकी पसंदीदा मिठाई या स्नैक्स भिजवाओ।",
+        "सब दोस्तों के छोटे-छोटे वीडियो मैसेज जोड़कर एक वीडियो बनाओ।",
+        "अगली मुलाक़ात की तारीख़ तय करो और उसे ही तोहफ़ा बना दो।",
+        "डाक से एक पोस्टकार्ड भेजो। आजकल चिट्ठी मिलना अपने आप में एक सरप्राइज़ है।",
+      ] },
+      { h: "कुछ ज़रूरी बातें", ul: [
+        "दोस्त के स्वभाव का ध्यान रखो: किसी को भीड़ वाला सरप्राइज़ पसंद है, तो किसी को शांत मुलाक़ात।",
+        "किसी की शर्मिंदा करने वाली फ़ोटो पोस्ट करने से पहले पूछ लो।",
+        "दूसरों से तुलना मत करो। सोच-समझकर दिया गया छोटा तोहफ़ा भी बहुत क़ीमती होता है।",
+        "जो दोस्त दूर हो गए हैं, उन्हें भी एक मैसेज भेजो। फ्रेंडशिप डे दोबारा जुड़ने का अच्छा बहाना है।",
+      ] },
+    ],
+  },
+  {
+    slug: "how-to-support-a-sad-friend",
+    lang: "hi",
+    title: "उदास दोस्त का साथ कैसे दें: 10 आसान तरीक़े",
+    description: "जब कोई दोस्त उदास या परेशान हो तो क्या कहें और क्या न कहें: सुनने के तरीक़े, छोटी-छोटी मदद, और कब किसी प्रोफ़ेशनल की मदद लेने को कहें।",
+    date: "2026-10-19",
+    read: "5 मिनट",
+    body: [
+      { p: [
+        "हर किसी की ज़िंदगी में ऐसे दिन आते हैं जब मन भारी रहता है: परीक्षा का रिज़ल्ट, ब्रेकअप, घर की परेशानी या बस बिना वजह की उदासी। ऐसे वक़्त में एक अच्छा दोस्त बहुत बड़ा सहारा बन सकता है। अच्छी बात यह है कि इसके लिए किसी ख़ास ट्रेनिंग की ज़रूरत नहीं, बस थोड़ी समझदारी चाहिए।",
+      ] },
+      { h: "क्या करें", ol: [
+        "पहल करो: \"सब ठीक है?\" की जगह पूछो, \"मैंने देखा तुम कुछ दिनों से चुप हो, बात करना चाहोगे?\"",
+        "पूरा सुनो: बीच में टोको मत, तुरंत सलाह मत दो। कई बार इंसान बस अपनी बात कहना चाहता है।",
+        "उनकी भावना को सही मानो: \"ऐसा लगना बिल्कुल समझ में आता है\" जैसी बात से उन्हें हल्का महसूस होता है।",
+        "छोटी मदद की पेशकश करो: खाना ले आना, साथ में टहलने चलना, या कोई काम निपटाने में हाथ बँटाना।",
+        "साथ में कुछ आम करो: फ़िल्म देखना, गेम खेलना या चाय पीना। हर बार बात करना ज़रूरी नहीं, साथ होना काफ़ी है।",
+        "बाद में भी हालचाल पूछते रहो: एक दिन की बातचीत के बाद ग़ायब मत हो जाओ। दो-चार दिन बाद फिर मैसेज करो।",
+      ] },
+      { h: "क्या न करें", ol: [
+        "\"इतनी छोटी बात पर उदास हो?\" जैसी बातें मत कहो। जो बात तुम्हें छोटी लगे, वो उनके लिए बड़ी हो सकती है।",
+        "उनकी बात को अपनी कहानी में मत बदलो: \"मेरे साथ तो इससे भी बुरा हुआ था\" कहने से वे अनसुना महसूस करते हैं।",
+        "उनकी निजी बातें दूसरों को मत बताओ, जब तक उनकी सुरक्षा का सवाल न हो।",
+        "ज़बरदस्ती ख़ुश करने की कोशिश मत करो। \"बस पॉज़िटिव सोचो\" से उदासी दूर नहीं होती।",
+      ] },
+      { h: "कब ज़्यादा मदद ज़रूरी है", p: [
+        "अगर दोस्त हफ़्तों से बहुत उदास है, खाना-सोना बदल गया है, किसी से मिलना बंद कर दिया है, या ख़ुद को नुकसान पहुँचाने की बात करता है, तो यह सिर्फ़ दोस्ती से सँभलने वाली बात नहीं है। उन्हें प्यार से समझाओ कि किसी डॉक्टर, काउंसलर या किसी भरोसेमंद बड़े से बात करें, और ज़रूरत हो तो साथ चलने की पेशकश करो। भारत सरकार की मुफ़्त मानसिक स्वास्थ्य हेल्पलाइन Tele-MANAS (14416) पर भी बात की जा सकती है। अगर किसी की जान को तुरंत ख़तरा हो, तो तुरंत आपातकालीन सेवा (112) से मदद लो।",
+      ] },
+      { h: "अपना भी ध्यान रखो", p: [
+        "किसी का सहारा बनना थका सकता है। अपनी नींद, पढ़ाई या काम का ध्यान रखो और ज़रूरत हो तो किसी और भरोसेमंद इंसान को भी साथ जोड़ो। एक अच्छा दोस्त होने का मतलब सब कुछ अकेले उठाना नहीं है।",
       ] },
     ],
   },

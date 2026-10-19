@@ -15,9 +15,9 @@ export async function generateMetadata({ params }: PageProps<"/guides/[slug]">):
 export default async function GuidePage({ params }: PageProps<"/guides/[slug]">) {
   const g = guideBySlug((await params).slug);
   if (!g) notFound();
-  const date = new Date(g.date).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+  const date = new Date(g.date).toLocaleDateString(g.lang === "hi" ? "hi-IN" : "en-IN", { day: "numeric", month: "long", year: "numeric" });
   return (
-    <Doc title={g.title} sub={`${date} · ${g.read}`}>
+    <Doc title={g.title} sub={`${date} · ${g.read}`} lang={g.lang}>
       {g.body.map((s, i) => (
         <section key={i}>
           {s.h && <h2>{s.h}</h2>}
@@ -26,9 +26,11 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
           {s.ol && <ol>{s.ol.map((t, k) => <li key={k}>{t}</li>)}</ol>}
         </section>
       ))}
-      <MakeQuiz />
-      <h2>More guides</h2>
-      <ul>{GUIDES.filter((x) => x !== g).map((x) => <li key={x.slug}><Link href={`/guides/${x.slug}`}>{x.title}</Link></li>)}</ul>
+      <div lang="en">
+        <MakeQuiz />
+        <h2>More guides</h2>
+        <ul>{GUIDES.filter((x) => x !== g).map((x) => <li key={x.slug} lang={x.lang}><Link href={`/guides/${x.slug}`}>{x.title}</Link></li>)}</ul>
+      </div>
     </Doc>
   );
 }

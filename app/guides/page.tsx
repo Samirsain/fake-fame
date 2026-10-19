@@ -13,7 +13,7 @@ export default function Guides() {
     <Doc title="Guides" sub="Tips for better quizzes and better friendships.">
       <ul className="!list-none !p-0 space-y-3 mt-5">
         {GUIDES.map((g) => (
-          <li key={g.slug}>
+          <li key={g.slug} lang={g.lang}>
             <Link href={`/guides/${g.slug}`} className="card block">
               <span className="in block space-y-1">
                 <b className="block text-xl leading-tight font-extrabold">{g.title}</b>

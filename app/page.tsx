@@ -57,11 +57,12 @@ export default function Home() {
         </section>
         <section className="space-y-3">
           <h3 className="text-2xl font-extrabold text-center">{t("guidesTitle")}</h3>
-          {GUIDES.map((g) => (
-            <Link key={g.slug} href={`/guides/${g.slug}`} className="row !min-h-[72px] py-3">
+          {GUIDES.slice(0, 4).map((g) => (
+            <Link key={g.slug} href={`/guides/${g.slug}`} lang={g.lang} className="row !min-h-[72px] py-3">
               <span className="flex-1 font-extrabold leading-snug">{g.title}</span><span aria-hidden className="text-pink-500 text-xl">→</span>
             </Link>
           ))}
+          <Link href="/guides" className="btn ghost">{t("allGuides").replace("{n}", String(GUIDES.length))} <span aria-hidden>→</span></Link>
         </section>
         <footer className="text-center text-xs opacity-60">{t("footer")}</footer>
       </div>
