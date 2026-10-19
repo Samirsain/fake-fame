@@ -6,13 +6,11 @@
 A friendship-quiz web app: make a 10-question quiz about yourself, share the link, and see which friends actually know you.
 Next.js 16 (App Router) · TypeScript · Tailwind v4 · MongoDB Atlas. English, हिन्दी and Hinglish.
 
-## Two quiz types
+## Ads and content pages
 
-A toggle at the top of the landing page switches the whole app between **Friends** (blue, playful, "block your fake friends") and **Couples 18+** (wine and rose, heart-eyed mascots, flirty questions, "test your partner").
-
-- **Two couples levels, picked when creating the quiz:** *Sweet* (`COUPLES`, ids `c-`, 24 questions: cute and romantic) and *Spicy* (`SPICY`, ids `s-`, 24 questions: more adult, flirty and suggestive). Both stay **non-explicit**. Spicy quizzes have their own tier names (Cold feet → Perfect match). A quiz only accepts questions from its own pack (checked on the server).
-- **18+ warning:** choosing Couples, opening `/create/couples` or opening a couples quiz link shows an "Adults only (18+)" sheet first, and every couples page has an "18+ · Adults only" strip. It is a self-declared warning saved on the device, **not age verification**. Get legal advice before relying on it (PRD §10).
-- **Theme:** `<html data-theme="friends|love">` flips the CSS variables in `app/globals.css`; the couples-only copy lives in `lib/i18n.ts` as `love:<key>` overrides. A quiz link pins its own theme, whatever the visitor last chose.
+- **AdSense:** the publisher id lives in `lib/site.ts` (`PUB`) and in `public/ads.txt`; `app/layout.tsx` puts the AdSense tag and the `google-adsense-account` meta on every page. Ad placement (Auto ads) and the EEA consent message are set in the AdSense dashboard.
+- **Text pages:** `/about`, `/contact`, `/privacy`, `/terms` and `/guides` (articles in `lib/guides.ts`, add one there and it shows up on the home page, the guides list and the sitemap). `app/robots.ts` and `app/sitemap.ts` cover crawling; quiz links (`/q/`) are `noindex`.
+- **No 18+ content:** the couples / spicy / extreme mode was removed (Oct 2026) to stay within AdSense policy. Old couples quizzes still in the database answer "not found" (`getQuiz` in `lib/db.ts`) until they expire.
 
 ## Run it
 

@@ -5,9 +5,11 @@ import { createHash, createHmac, timingSafeEqual } from "crypto";
 const sha = (s: string) => createHash("sha256").update(s).digest();
 const same = (a: string, b: string) => timingSafeEqual(sha(a), sha(b));
 
-export const adminConfigured = () => !!(process.env.ADMIN_ID && process.env.ADMIN_PASSWORD);
+// trimmed on both sides: a value pasted into the Vercel dashboard or typed on a phone keyboard often carries a stray space
+const env = (k: string) => process.env[k]?.trim() ?? "";
+export const adminConfigured = () => !!(env("ADMIN_ID") && env("ADMIN_PASSWORD"));
 export const checkLogin = (id: unknown, pw: unknown) =>
-  adminConfigured() && same(String(id), process.env.ADMIN_ID!) && same(String(pw), process.env.ADMIN_PASSWORD!);
+  adminConfigured() && same(String(id).trim(), env("ADMIN_ID")) && same(String(pw).trim(), env("ADMIN_PASSWORD"));
 
 const secret = () => process.env.ADMIN_SECRET ?? sha("fof:" + (process.env.ADMIN_PASSWORD ?? "")).toString("hex");
 const sign = (exp: string) => createHmac("sha256", secret()).update(exp).digest("base64url");

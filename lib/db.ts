@@ -9,8 +9,8 @@ export type Answer = { questionId: string; optionId: string; correct: boolean };
 export type Quiz = {
   _id: string; // = slug
   slug: string; tokenHash: string; name: string; pronoun: string;
-  mode?: "friends" | "couples"; // missing on quizzes made before couples mode existed = friends
-  level?: "sweet" | "spicy" | "extreme"; // couples quizzes only; missing = sweet
+  mode?: "friends" | "couples"; // legacy: the 18+ couples mode was removed; old couples quizzes stay hidden until they expire
+  level?: "sweet" | "spicy" | "extreme"; // legacy, couples quizzes only
   items: { questionId: string; answerOptionId: string }[];
   at: number; expiresAt: Date;
 };
@@ -48,7 +48,8 @@ const visible = (slug: string) => ({ slug, done: true, hidden: { $ne: true } });
 export const getQuiz = async (slug: string) => {
   if (!SLUG.test(slug)) return null;
   const q = await (await quizzes()).findOne({ _id: slug });
-  return q && q.expiresAt > new Date() ? q : null; // the TTL sweep runs about once a minute, so double-check
+  // the TTL sweep runs about once a minute, so double-check; legacy couples (18+) quizzes are "not found" everywhere
+  return q && q.expiresAt > new Date() && q.mode !== "couples" ? q : null;
 };
 
 /** Same as getQuiz, but a layout, its metadata and the OG image of one request share a single DB read. */

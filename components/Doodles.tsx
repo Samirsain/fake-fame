@@ -1,19 +1,13 @@
-"use client";
-import { useMode } from "@/lib/theme";
-
-// Decorative doodles + cloud strip from DESIGN.md §3.2. All aria-hidden. In couples mode the sparkles become hearts.
+// Decorative doodles + cloud strip from DESIGN.md §3.2. All aria-hidden.
 const ink = "var(--c-ink, #1E2640)";
 const HEART = "M12 21C5 16 2 12 2 8.5 2 5.500 4.400 3.500 7 3.500 9 3.500 11 4.800 12 6.600 13 4.800 15 3.500 17 3.500 19.600 3.500 22 5.500 22 8.500 22 12 19 16 12 21Z";
 const STAR = "M12 1C13 8 16 11 23 12 16 13 13 16 12 23 11 16 8 13 1 12 8 11 11 8 12 1Z";
 
-export const Sparkle = ({ c = "#FFD23F", s = 24, className = "", delay = 0 }: { c?: string; s?: number; className?: string; delay?: number }) => {
-  const love = useMode() === "couples";
-  return (
-    <svg aria-hidden width={s} height={s} viewBox="0 0 24 24" className={`bob absolute pointer-events-none ${className}`} style={{ animationDelay: `${delay}s` }}>
-      <path d={love ? HEART : STAR} style={{ fill: love && c !== "#fff" ? "var(--c-accent)" : c, stroke: ink, strokeWidth: 1.6, strokeLinejoin: "round" }} />
-    </svg>
-  );
-};
+export const Sparkle = ({ c = "#FFD23F", s = 24, className = "", delay = 0 }: { c?: string; s?: number; className?: string; delay?: number }) => (
+  <svg aria-hidden width={s} height={s} viewBox="0 0 24 24" className={`bob absolute pointer-events-none ${className}`} style={{ animationDelay: `${delay}s` }}>
+    <path d={STAR} style={{ fill: c, stroke: ink, strokeWidth: 1.6, strokeLinejoin: "round" }} />
+  </svg>
+);
 
 export const Heart = ({ c = "#FF5C93", s = 26, className = "", delay = 0 }: { c?: string; s?: number; className?: string; delay?: number }) => (
   <svg aria-hidden width={s} height={s} viewBox="0 0 24 24" className={`bob absolute pointer-events-none ${className}`} style={{ animationDelay: `${delay}s` }}>

@@ -2,7 +2,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { FaArrowRight, FaChartSimple, FaCrown, FaTrash, FaUsers, FaBolt, FaHeart } from "react-icons/fa6";
 import Confirm from "@/components/Confirm";
-import { usePinMode } from "@/lib/theme";
 
 type Quiz = { slug: string; name: string; kind: string; players: number; at: number };
 type Player = { id: string; name: string; score: number; hidden: boolean; at: number; slug: string; creator: string; kind: string };
@@ -18,7 +17,6 @@ const kind = (k: string) => KIND[k] ?? [k, "#EEF1F8", "#9AA5C4"];
 
 // Admin panel: every creator (quiz) and every player (nickname + score). Names only; the app never stores birth dates.
 export default function Admin() {
-  usePinMode("friends");
   const [data, setData] = useState<Data | null>(null);
   const [state, setState] = useState<"loading" | "login" | "ok">("loading");
   const [id, setId] = useState("");
@@ -40,7 +38,7 @@ export default function Admin() {
     e.preventDefault();
     setErr("");
     const r = await fetch("/api/admin/login", { method: "POST", body: JSON.stringify({ id, password: pw }) });
-    if (r.ok) { setPw(""); load(); } else setErr(r.status === 429 ? "Too many tries, wait a few minutes." : "Wrong id or password.");
+    if (r.ok) { setPw(""); load(); } else setErr(r.status === 429 ? "Too many tries, wait a few minutes." : r.status === 503 ? "Admin login is not set up on the server (ADMIN_ID / ADMIN_PASSWORD)." : "Wrong id or password.");
   }
   async function logout() { await fetch("/api/admin/logout", { method: "POST" }); setData(null); setState("login"); }
   async function remove(slug: string) { setDel(null); await fetch(`/api/admin/quizzes/${slug}`, { method: "DELETE" }); load(); }
@@ -52,7 +50,7 @@ export default function Admin() {
       <form onSubmit={login} className="qz-card w-full max-w-sm p-6 space-y-4 text-center">
         <span className="qz-tile mx-auto !w-16 !h-16 !rounded-[20px] text-2xl" style={{ background: "#FFF1C2", color: "#F5A524" }}><FaCrown /></span>
         <h1 className="text-3xl font-extrabold">Admin</h1>
-        <input className="qz-input" value={id} onChange={(e) => setId(e.target.value)} placeholder="Id" autoComplete="username" aria-label="Id" />
+        <input className="qz-input" value={id} onChange={(e) => setId(e.target.value)} placeholder="Id" autoComplete="username" autoCapitalize="none" autoCorrect="off" spellCheck={false} aria-label="Id" />
         <input className="qz-input" type="password" value={pw} onChange={(e) => setPw(e.target.value)} placeholder="Password" autoComplete="current-password" aria-label="Password" />
         {err && <p className="font-bold text-bad" role="alert">{err}</p>}
         <button className="qz-btn w-full" disabled={!id || !pw}>Log in <FaArrowRight /></button>

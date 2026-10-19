@@ -1,23 +1,20 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Stepper from "@/components/Stepper";
 import Logo from "@/components/Logo";
 import LangPill from "@/components/LangPill";
-import AgeGate from "@/components/AgeGate";
-import AgeGate21 from "@/components/AgeGate21";
-import Emoji from "@/components/Emoji";
 import { Boo, Pip } from "@/components/Mascot";
 import { Confetti, Heart, Sparkle } from "@/components/Doodles";
 import { FaInstagram, FaShareNodes, FaSnapchat, FaWhatsapp } from "react-icons/fa6";
 import { useToast } from "@/components/Toast";
 import { useT } from "@/lib/i18n";
-import { cleanName, extremeReady, packOf, type Level, type Mode } from "@/lib/questions";
-import { confirmAdult, isAdult, isAdult21, setMode, useNight, usePinMode } from "@/lib/theme";
+import { QUESTIONS, cleanName } from "@/lib/questions";
 
 const PRON = [["he", "-rotate-[4deg]"], ["she", "rotate-[4deg]"]] as const; // two characters: He = Pip, She = Boo
 const MAX_SKIPS = 10;
+// storage keys keep their old ":friends" names so drafts saved before the couples mode was removed still resume
+const DRAFT = "draft:friends", STEP = "stepper:create:friends", MINE = "mine";
 
 const shuffle = <T,>(a: T[]) => {
   const r = [...a];
@@ -35,48 +32,32 @@ function Band() {
   );
 }
 
-// One creator flow for both quiz kinds. `mode` picks the question pack, the theme and where drafts/results are remembered.
-export default function CreateFlow({ mode }: { mode: Mode }) {
-  usePinMode(mode);
-  const router = useRouter();
+// The creator flow: name → pronoun → 10 questions → share.
+export default function CreateFlow() {
   const t = useT();
-  const couples = mode === "couples";
-  const DRAFT = `draft:${mode}`, STEP = `stepper:create:${mode}`, MINE = couples ? "mine:couples" : "mine";
-
-  // couples quizzes need the 18+ confirmation first (null = not checked yet)
-  const [adult, setAdult] = useState<boolean | null>(couples ? null : true);
-  useEffect(() => { if (couples) setAdult(isAdult()); }, [couples]);
-
-  const [step, setStep] = useState<"name" | "pron" | "level" | "q" | "making" | "share">("name");
+  const [step, setStep] = useState<"name" | "pron" | "q" | "making" | "share">("name");
   const [name, setName] = useState("");
   const [pron, setPron] = useState("");
-  const [level, setLevel] = useState<Level>("sweet"); // couples only: sweet (romantic) or spicy (more adult)
-  const [ask21, setAsk21] = useState(false); // the 21+ name + date-of-birth sheet for Extreme
-  const [pool, setPool] = useState(() => packOf(mode));
+  const [pool, setPool] = useState(QUESTIONS);
   const [link, setLink] = useState("");
   const [token, setToken] = useState("");
   const [err, setErr] = useState("");
   const [toast, say] = useToast();
   const [copied, setCopied] = useState(false);
   const valid = !!cleanName(name);
-  useNight(level === "extreme" && (step === "q" || step === "making" || step === "share")); // dark look once Extreme is chosen
 
   // C6: a webview reload mid-quiz resumes where the creator left off
   useEffect(() => {
     try {
       const d = JSON.parse(sessionStorage.getItem(DRAFT) ?? "null");
-      if (d?.step === "q" && cleanName(d.name)) {
-        const lv: Level = d.level === "spicy" || (d.level === "extreme" && extremeReady()) ? d.level : "sweet";
-        setName(d.name); setPron(d.pron); setLevel(lv); setPool(packOf(mode, lv)); setStep("q");
-      }
+      if (d?.step === "q" && cleanName(d.name)) { setName(d.name); setPron(d.pron); setStep("q"); }
     } catch {}
-  }, [DRAFT, mode]);
+  }, []);
 
-  // start the question round with a fresh random mix from the chosen pack
-  function begin(p: string, lv: Level) {
-    setLevel(lv);
-    setPool(shuffle(packOf(mode, lv)));
-    try { sessionStorage.setItem(DRAFT, JSON.stringify({ step: "q", name: name.trim(), pron: p, level: lv })); sessionStorage.removeItem(STEP); } catch {}
+  // start the question round with a fresh random mix
+  function begin(p: string) {
+    setPool(shuffle(QUESTIONS));
+    try { sessionStorage.setItem(DRAFT, JSON.stringify({ step: "q", name: name.trim(), pron: p })); sessionStorage.removeItem(STEP); } catch {}
     setTimeout(() => setStep("q"), 300);
   }
 
@@ -84,7 +65,7 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
     setStep("making");
     try {
       const [res] = await Promise.all([
-        fetch("/api/quizzes", { method: "POST", body: JSON.stringify({ name: name.trim(), pronoun: pron, mode, level, items: items.map((i) => ({ questionId: i.questionId, answerOptionId: i.optionId })) }) }),
+        fetch("/api/quizzes", { method: "POST", body: JSON.stringify({ name: name.trim(), pronoun: pron, items: items.map((i) => ({ questionId: i.questionId, answerOptionId: i.optionId })) }) }),
         new Promise((r) => setTimeout(r, 1200)), // anticipation beat (C7)
       ]);
       if (!res.ok) throw new Error(String(res.status));
@@ -107,15 +88,6 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
     setCopied(true); say(t("linkCopied")); setTimeout(() => setCopied(false), 2000);
   };
 
-  if (adult !== true) return (
-    <>
-      <div className="min-h-dvh" />
-      <AgeGate open={adult === false} onYes={() => { confirmAdult(); setAdult(true); }} onNo={() => { setMode("friends"); router.push("/"); }} />
-    </>
-  );
-
-  const love = couples ? "love" : undefined;
-
   if (step === "name") return (
     <>
       <Band />
@@ -125,7 +97,7 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
           <div className="inline-block -rotate-[7deg] bg-pink-100 border-[3px] border-[#FFB3CC] rounded-[30px] px-8 py-4 hand">
             <span className="text-[22px] block">{t("whatsYour")}</span><span className="text-[34px] text-pink-500">{t("name")}</span>
           </div>
-          <div className="absolute right-2 -bottom-6"><Boo mood={love ?? "happy"} wave size={100} /></div>
+          <div className="absolute right-2 -bottom-6"><Boo mood="happy" wave size={100} /></div>
         </div>
         <div className="relative pt-10">
           <input className={`input pr-16 ${name.trim() && !valid ? "err" : ""}`} maxLength={15} value={name} onChange={(e) => { setName(e.target.value); setErr(""); }} placeholder={t("namePh")} autoFocus autoComplete="off" enterKeyHint="next" aria-label={t("name")} />
@@ -147,42 +119,16 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
         <div className="card"><div className="in"><h2 className="text-3xl font-extrabold">{t("howCall")} <span className="text-pink-500">{t("callYou")}</span></h2></div></div>
         <div className="flex justify-center gap-4">
           {PRON.map(([v, r]) => (
-            <button key={v} onClick={() => {
-              setPron(v);
-              if (couples) { setTimeout(() => setStep("level"), 300); return; } // couples choose sweet or spicy next
-              begin(v, "sweet");
-            }}
+            <button key={v} onClick={() => { setPron(v); begin(v); }}
               className={`w-[140px] h-[160px] bg-white rounded-[22px] flex flex-col items-center justify-center gap-1 transition-transform ${r} ${pron === v ? "outline outline-[3px] outline-offset-[3px] outline-pink-500 scale-105" : ""}`}
               style={{ boxShadow: "0 6px 0 var(--slab), 0 12px 22px rgb(var(--shadow-rgb) / .10)" }}>
-              <span className={pron === v ? "hop" : ""}>{v === "he" ? <Pip size={84} mood={pron === v ? "closed" : love ?? "happy"} /> : <Boo size={84} mood={pron === v ? "closed" : love ?? "happy"} />}</span><span className="hand text-lg">{t(v)}</span>
+              <span className={pron === v ? "hop" : ""}>{v === "he" ? <Pip size={84} mood={pron === v ? "closed" : "happy"} /> : <Boo size={84} mood={pron === v ? "closed" : "happy"} />}</span><span className="hand text-lg">{t(v)}</span>
             </button>
           ))}
         </div>
         <p className="text-sm">{t("pronHint")}</p>
         <button className="btn ghost" onClick={() => setStep("name")}>{t("back")}</button>
       </div>
-    </>
-  );
-
-  if (step === "level") return (
-    <>
-      <Band />
-      <div className="px-4 space-y-5 text-center">
-        <div className="card"><div className="in"><h2 className="text-3xl font-extrabold leading-9">{t("levelTitle")}</h2></div></div>
-        <div className="space-y-[18px]">
-          {([["sweet", "💕", "levelSweet", "levelSweetD", "#FFE3EE"], ["spicy", "🔥", "levelSpicy", "levelSpicyD", "#FFE0CC"], ...(extremeReady() ? [["extreme", "🔞", "levelExtreme", "levelExtremeD", "#EBD3F5"] as const] : [])] as const).map(([lv, em, title, desc, tile], k) => (
-            <button key={lv} className="opt" style={{ animationDelay: `${k * 60}ms` }} onClick={() => (lv === "extreme" && !isAdult21() ? setAsk21(true) : begin(pron, lv))}>
-              <span className="thumb" style={{ background: tile }}><Emoji e={em} size={52} /></span>
-              <span className="min-w-0">
-                <b className="block text-2xl font-extrabold leading-tight">{t(title)}</b>
-                <span className="block text-sm font-semibold leading-5 mt-1">{t(desc)}</span>
-              </span>
-            </button>
-          ))}
-        </div>
-        <button className="btn ghost" onClick={() => setStep("pron")}>{t("back")}</button>
-      </div>
-      <AgeGate21 open={ask21} onYes={(n) => { setName(n); setAsk21(false); begin(pron, "extreme"); }} onNo={() => setAsk21(false)} />
     </>
   );
 
@@ -195,11 +141,11 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
 
   if (step === "making") return (
     <div className="sky min-h-dvh grid place-items-center text-center px-6">
-      <div><span className="hop inline-block"><Pip size={120} mood={couples ? "love" : "closed"} /></span><p className="hand text-2xl mt-4 animate-pulse">{t("making")}</p></div>
+      <div><span className="hop inline-block"><Pip size={120} mood="closed" /></span><p className="hand text-2xl mt-4 animate-pulse">{t("making")}</p></div>
     </div>
   );
 
-  const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} ${couples ? `${level === "extreme" ? "🔞" : level === "spicy" ? "🔥" : "💕"} (${t(level === "extreme" ? "extremeTag" : level === "spicy" ? "spicyTag" : "couplesTag")})` : "👀"} ${link}`;
+  const text = `${t("howWell1")} ${name.trim()} ${t("howWell2")} 👀 ${link}`;
   const canShare = typeof navigator !== "undefined" && "share" in navigator;
   const slug = link.split("/q/")[1];
   return (
@@ -207,7 +153,7 @@ export default function CreateFlow({ mode }: { mode: Mode }) {
       <Band />
       <div className="px-4 space-y-4 text-center pb-8">
         <Confetti />
-        <div className="flex justify-center"><Pip size={90} mood={couples ? "love" : "closed"} wave /><Boo size={90} mood={couples ? "love" : "closed"} /></div>
+        <div className="flex justify-center"><Pip size={90} mood="closed" wave /><Boo size={90} mood="closed" /></div>
         <h2 className="text-3xl font-extrabold">{t("ready")}</h2>
         <div className="flex items-center gap-2 bg-white rounded-[22px] border-[2.5px] border-dashed border-cyan-300 p-2 pl-4">
           <span className="flex-1 truncate text-blue-600 font-bold text-left" dir="ltr">{link}</span>

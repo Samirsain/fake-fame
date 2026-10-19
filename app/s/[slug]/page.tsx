@@ -6,12 +6,12 @@ import Emoji from "@/components/Emoji";
 import LangPill from "@/components/LangPill";
 import Confirm from "@/components/Confirm";
 import { useToast } from "@/components/Toast";
-import { TIER_COLORS, byId, tier, type Level, type Mode } from "@/lib/questions";
-import { adultLang, locQ, tl, useLang, useT } from "@/lib/i18n";
+import { TIER_COLORS, byId, tier } from "@/lib/questions";
+import { locQ, tl, useLang, useT } from "@/lib/i18n";
 
 type Opt = { emoji: string; label: string } | null;
 type Player = { id: string; name: string; score: number; detail: { qid: string; correct: boolean; you: Opt; they: Opt }[] };
-type Board = { name: string; mode?: Mode; level?: Level; players: Player[] };
+type Board = { name: string; players: Player[] };
 
 export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
   const { slug } = use(params);
@@ -30,7 +30,8 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
     const fromHash = location.hash.match(/k=([\w-]+)/)?.[1];
     let tok = fromHash ?? "";
     try {
-      if (!tok) tok = localStorage.getItem(`tok:${slug}`) ?? ["mine", "mine:couples"].map((k) => JSON.parse(localStorage.getItem(k) ?? "null")).find((m) => m?.slug === slug)?.token ?? "";
+      const mine = JSON.parse(localStorage.getItem("mine") ?? "null");
+      if (!tok) tok = localStorage.getItem(`tok:${slug}`) ?? (mine?.slug === slug ? mine.token : "");
       if (tok) localStorage.setItem(`tok:${slug}`, tok);
     } catch {}
     token.current = tok;
@@ -49,7 +50,7 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
   const link = () => `${location.origin}/q/${slug}`;
   const shareAgain = useCallback(async () => {
     if (!b) return;
-    const text = `${t("howWell1")} ${b.name} ${t("howWell2")} ${b.mode === "couples" ? `${b.level === "spicy" ? "🔥" : "💕"} (${t(b.level === "spicy" ? "spicyTag" : "couplesTag")})` : "👀"}`;
+    const text = `${t("howWell1")} ${b.name} ${t("howWell2")} 👀`;
     if (navigator.share) { navigator.share({ text, url: link() }).catch(() => {}); return; }
     try { await navigator.clipboard.writeText(link()); say(t("linkCopied")); } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,7 +67,7 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
     if (!r.ok) return;
     try {
       localStorage.removeItem(`tok:${slug}`);
-      for (const k of ["mine", "mine:couples"]) { if (JSON.parse(localStorage.getItem(k) ?? "null")?.slug === slug) localStorage.removeItem(k); }
+      if (JSON.parse(localStorage.getItem("mine") ?? "null")?.slug === slug) localStorage.removeItem("mine");
     } catch {}
     setGone(true);
   }
@@ -100,7 +101,7 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
         )}
 
         {b.players.map((p, i) => {
-          const tr = tier(p.score, b.mode, b.level), [bg, fg] = TIER_COLORS[tr.band];
+          const tr = tier(p.score), [bg, fg] = TIER_COLORS[tr.band];
           return (
             <div key={p.id} className="space-y-2">
               <button className="row relative" onClick={() => setOpen(open === p.id ? null : p.id)} aria-expanded={open === p.id}>
@@ -116,8 +117,8 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
                     <div key={d.qid} className="bg-white rounded-[20px] p-3 space-y-2">
                       <p className="font-extrabold">{locQ(byId(d.qid)!, lang).text.replace("{name}", b.name)}</p>
                       <div className="grid grid-cols-2 gap-2 text-sm">
-                        <div className="rounded-xl bg-sky-100 p-2"><b className="block text-[11px] uppercase tracking-wider">{t("youSaid")}</b><span className="inline-flex items-center gap-1.5">{d.you && <Emoji e={d.you.emoji} size={22} />}{d.you && tl(d.you.label, adultLang(d.qid, lang))}</span></div>
-                        <div className={`rounded-xl p-2 ${d.correct ? "bg-ok-soft" : "bg-bad-soft"}`}><b className="block text-[11px] uppercase tracking-wider">{p.name} {t("said")} {d.correct ? "✓" : "✕"}</b>{d.they ? <span className="inline-flex items-center gap-1.5"><Emoji e={d.they.emoji} size={22} />{tl(d.they.label, adultLang(d.qid, lang))}</span> : "—"}</div>
+                        <div className="rounded-xl bg-sky-100 p-2"><b className="block text-[11px] uppercase tracking-wider">{t("youSaid")}</b><span className="inline-flex items-center gap-1.5">{d.you && <Emoji e={d.you.emoji} size={22} />}{d.you && tl(d.you.label, lang)}</span></div>
+                        <div className={`rounded-xl p-2 ${d.correct ? "bg-ok-soft" : "bg-bad-soft"}`}><b className="block text-[11px] uppercase tracking-wider">{p.name} {t("said")} {d.correct ? "✓" : "✕"}</b>{d.they ? <span className="inline-flex items-center gap-1.5"><Emoji e={d.they.emoji} size={22} />{tl(d.they.label, lang)}</span> : "—"}</div>
                       </div>
                     </div>
                   ))}

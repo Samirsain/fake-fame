@@ -1,16 +1,8 @@
 // Pip & Boo — original mascots from the design pack (DESIGN.md §3.1). Eyes blink on a slow loop.
-// "love" = heart eyes, used in couples mode. Boo's colours follow the theme (blue ghost / blush ghost).
 const ink = "#1E2640";
-type P = { mood?: "happy" | "shock" | "closed" | "sad" | "smug" | "love"; size?: number; wave?: boolean; flip?: boolean; className?: string };
+type P = { mood?: "happy" | "shock" | "closed" | "sad" | "smug"; size?: number; wave?: boolean; flip?: boolean; className?: string };
 const sw = { stroke: ink, strokeLinecap: "round" as const, fill: "none" };
 const boo = { body: { fill: "var(--boo-body, #D6ECFF)" }, hand: { fill: "var(--boo-hand, #CFE9FF)" } };
-
-// A little heart centred on (x, y) that pulses; wrapped in <g> so the CSS animation doesn't fight the SVG transform.
-const HeartEye = ({ x, y }: { x: number; y: number }) => (
-  <g transform={`translate(${x} ${y})`}>
-    <path className="beat" d="M0 5C-8-1-7-8-3-8c1.6 0 2.8.9 3 2.4C.2-7.1 1.4-8 3-8 7-8 8-1 0 5z" fill="#FF3D77" />
-  </g>
-);
 
 export function Pip({ mood = "happy", size = 120, wave, flip, className = "" }: P) {
   const r = mood === "shock" ? 5.5 : 4.6;
@@ -30,10 +22,8 @@ export function Pip({ mood = "happy", size = 120, wave, flip, className = "" }: 
       </g>
       {mood === "closed"
         ? <path d="M40 63q6-6 12 0M68 63q6-6 12 0" {...sw} strokeWidth="3.6" />
-        : mood === "love"
-          ? <><HeartEye x={46} y={62} /><HeartEye x={74} y={62} /></>
-          : <g className="blink"><circle cx="46" cy="62" r={r} fill={ink} /><circle cx="74" cy="62" r={r} fill={ink} /><circle cx="47.5" cy="60" r="1.6" fill="#fff" /><circle cx="75.5" cy="60" r="1.6" fill="#fff" /></g>}
-      <ellipse cx="36" cy="74" rx="7.5" ry="4.6" fill="#FF8FB1" opacity={mood === "love" ? 1 : 0.75} /><ellipse cx="84" cy="74" rx="7.5" ry="4.6" fill="#FF8FB1" opacity={mood === "love" ? 1 : 0.75} />
+        : <g className="blink"><circle cx="46" cy="62" r={r} fill={ink} /><circle cx="74" cy="62" r={r} fill={ink} /><circle cx="47.5" cy="60" r="1.6" fill="#fff" /><circle cx="75.5" cy="60" r="1.6" fill="#fff" /></g>}
+      <ellipse cx="36" cy="74" rx="7.5" ry="4.6" fill="#FF8FB1" opacity={0.75} /><ellipse cx="84" cy="74" rx="7.5" ry="4.6" fill="#FF8FB1" opacity={0.75} />
       {mood === "shock" ? <ellipse cx="60" cy="78" rx="5" ry="6" fill={ink} />
         : mood === "sad" ? <><path d="M54 79q6-5 12 0" {...sw} strokeWidth="3.2" /><path d="M80 68q3 8 0 12-3-4 0-12z" fill="#7CC8FF" /></>
         : <path d="M54 74q6 7 12 0" stroke={ink} strokeWidth="3.2" fill="#FF8AA8" strokeLinecap="round" />}
@@ -56,7 +46,6 @@ export function Boo({ mood = "happy", size = 120, wave, flip, className = "" }: 
       <ellipse cx="100" cy="76" rx="7" ry="9" style={boo.hand} stroke={ink} strokeWidth="3.6" />
       {mood === "smug" ? <path d="M40 60h12M68 60h12" {...sw} strokeWidth="4" />
         : mood === "closed" ? <path d="M40 62q6-7 12 0M68 62q6-7 12 0" {...sw} strokeWidth="3.6" />
-        : mood === "love" ? <><HeartEye x={46} y={60} /><HeartEye x={74} y={60} /></>
         : <g className="blink"><ellipse cx="46" cy="60" rx="4.4" ry="6" fill={ink} /><ellipse cx="74" cy="60" rx="4.4" ry="6" fill={ink} /><circle cx="47.3" cy="57.5" r="1.6" fill="#fff" /><circle cx="75.3" cy="57.5" r="1.6" fill="#fff" /></g>}
       <path d="M30 70q6-5 12 0-6 6-12 0zM78 70q6-5 12 0-6 6-12 0z" fill="#FF9DBB" opacity=".8" />
       {mood === "sad" ? <><path d="M54 76q6-5 12 0" {...sw} strokeWidth="3.2" /><path d="M42 68q-3 8 0 12 3-4 0-12z" fill="#7CC8FF" /></>
