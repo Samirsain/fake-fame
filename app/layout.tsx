@@ -11,7 +11,7 @@ const shantell = Shantell_Sans({ variable: "--font-shantell", subsets: ["latin"]
 export const metadata: Metadata = {
   // og:image must be an absolute URL; without this a non-Vercel host would point previews at localhost
   metadataBase: new URL(SITE),
-  title: "Friendship Quiz — Find Your Fake Friends | Fake or Fam",
+  title: "Friendship Quiz Game & Couple Quiz — Fake or Fam",
   description: DESCRIPTION,
   openGraph: { siteName: "Fake or Fam", type: "website", locale: "en_IN" },
   other: { "google-adsense-account": `ca-${PUB}` }, // AdSense site verification

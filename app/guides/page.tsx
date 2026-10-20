@@ -6,7 +6,7 @@ import { GUIDES } from "@/lib/guides";
 export const metadata: Metadata = {
   alternates: { canonical: "/guides" },
   title: "Friendship quiz guides — Fake or Fam",
-  description: "Guides on making a friendship quiz, the best quiz questions to ask, what your score means, and the signs of a real friend.",
+  description: "Guides on friendship and couple quizzes: the best quiz questions to ask, quiz game night ideas, what your score means and the signs of a real friend.",
 };
 
 export default function Guides() {

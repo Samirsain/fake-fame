@@ -20,7 +20,7 @@ export default function Home() {
         <Sparkle c="#fff" className="right-4 top-24 max-[359px]:hidden" /><Sparkle className="left-6 top-28 max-[359px]:hidden" s={30} delay={1} /><Sparkle c="#B79CFF" className="right-10 top-60 max-[359px]:hidden" s={20} delay={2} />
         <div className="absolute left-1 top-40 bob"><Pip mood="shock" size={96} className="size-[68px] min-[400px]:size-24" /></div>
         <div className="absolute right-1 top-40 bob" style={{ animationDelay: "1s" }}><Boo mood="smug" wave size={100} className="size-[72px] min-[400px]:size-[100px]" /></div>
-        <div className="mt-4"><Logo as="h1" label="Fake or Fam: the friendship quiz" /></div>
+        <div className="mt-4"><Logo as="h1" label="Fake or Fam: friendship quiz game and couple quiz" /></div>
         <p className="hand inline-block mt-6 bg-white/90 text-ink rounded-xl px-6 py-2 -rotate-1 shadow">{t("tagline")}</p>
         <div className="mt-6 -mx-4 -mb-6"><Clouds /></div>
       </header>

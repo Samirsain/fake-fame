@@ -12,8 +12,8 @@ location.replace(S+location.pathname+location.search+"#"+(h.length>1?h.slice(1)+
 var m=h.match(/(^#|&)mv=([^&]*)/);if(!m)return;
 try{var o=JSON.parse(decodeURIComponent(m[2]));for(var k in o)if(localStorage.getItem(k)===null)localStorage.setItem(k,o[k])}catch(e){}
 var r=h.replace(m[0],"").replace(/^#?&?/,"");history.replaceState(null,"",location.pathname+location.search+(r?"#"+r:""))})()`;
-export const DESCRIPTION = "Free friendship quiz (dosti quiz) in English, Hindi and Hinglish. Answer 10 questions, share the link on WhatsApp or Instagram, and see which friends really know you.";
-export const EMAIL ="info@zenviqdigital.in"; // Zenviq Digital's public contact address (shown on zenviqdigital.in)
+export const DESCRIPTION = "Free friendship quiz game and couple quiz in English, Hindi and Hinglish. Make a how-well-do-you-know-me quiz, share it on WhatsApp and see who knows you best.";
+export const EMAIL = "info@zenviqdigital.in"; // Zenviq Digital's public contact address (shown on zenviqdigital.in)
 
 // Zenviq Digital's WhatsApp + call number. The prefilled message names the spot the lead came from.
 export const TEL = "+919311908389";
