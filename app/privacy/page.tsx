@@ -22,7 +22,7 @@ export default function Privacy() {
         <li>No accounts, no email, no phone number. You only type a nickname.</li>
         <li>Quizzes and results delete themselves after 90 days.</li>
         <li>You can delete your quiz and all its results at any time from your scoreboard.</li>
-        <li>We show ads from Google, which may use cookies. You can opt out of personalised ads.</li>
+        <li>We show ads from Google and Adsterra, which may use cookies. You can opt out of personalised ads.</li>
       </ul>
 
       <h2>What we collect</h2>
@@ -64,6 +64,10 @@ export default function Privacy() {
         We use Google AdSense to show ads. Third-party vendors, including Google, use cookies to serve ads based on your
         previous visits to this website or other websites. Google&apos;s use of advertising cookies enables it and its partners
         to serve ads to you based on your visits to this site and/or other sites on the internet.
+      </p>
+      <p>
+        We also show ads from Adsterra, which may use cookies and similar technologies to measure and serve ads. See{" "}
+        <a href="https://adsterra.com/privacy-policy/" target="_blank" rel="noopener">Adsterra&apos;s privacy policy</a>.
       </p>
       <ul>
         <li>You can opt out of personalised advertising in Google&apos;s <a href="https://adssettings.google.com" target="_blank" rel="noopener">Ads Settings</a>.</li>

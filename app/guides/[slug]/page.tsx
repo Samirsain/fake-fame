@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Doc, { MakeQuiz } from "@/components/Doc";
+import Ad from "@/components/Ad";
 import { GUIDES, guideBySlug } from "@/lib/guides";
 
 export const generateStaticParams = () => GUIDES.map((g) => ({ slug: g.slug }));
@@ -26,6 +27,7 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
           {s.ol && <ol>{s.ol.map((t, k) => <li key={k}>{t}</li>)}</ol>}
         </section>
       ))}
+      <Ad unit="native" />
       <div lang="en">
         <MakeQuiz />
         <h2>More guides</h2>
