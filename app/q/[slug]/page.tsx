@@ -12,7 +12,6 @@ import { useLang, useT } from "@/lib/i18n";
 import { speak, unlockVoice } from "@/lib/voice";
 import VoiceToggle from "@/components/VoiceToggle";
 import ZenviqCard from "@/components/ZenviqCard";
-import Ad from "@/components/Ad";
 
 type Quiz = { name: string; players: number; questions: Question[] };
 type Result = { id: string; name: string; score: number; rank?: number; tier: { emoji: string; name: string; copy: string; band?: number }; top5: { id: string; name: string; score: number }[] };
@@ -139,7 +138,6 @@ export default function Play({ params }: PageProps<"/q/[slug]">) {
         <a className="btn ghost" href={cardUrl()} download="my-score.png">{t("saveCard")}</a>
         {good && <p className="sr-only">{t("c:" + res.tier.name)}</p>}
         <ZenviqCard from="result screen" />
-        <Ad unit="300x250" />
         {toast}
       </div>
     );

@@ -9,7 +9,6 @@ import { Confetti, Heart, Sparkle } from "@/components/Doodles";
 import { FaInstagram, FaShareNodes, FaSnapchat, FaWhatsapp } from "react-icons/fa6";
 import { useToast } from "@/components/Toast";
 import ZenviqCard from "@/components/ZenviqCard";
-import Ad from "@/components/Ad";
 import { useT } from "@/lib/i18n";
 import { QUESTIONS, cleanName } from "@/lib/questions";
 
@@ -170,7 +169,6 @@ export default function CreateFlow() {
         <div className="bg-yellow-100 border-2 border-yellow-400 rounded-[20px] p-4 text-sm font-bold">{t("saveWarn")}</div>
         <Link className="btn alt" href={`/s/${slug}#k=${token}`}>{t("viewBoard")}</Link>
         <ZenviqCard from="share screen" />
-        <Ad unit="320x50" />
       </div>
       {toast}
     </>
