@@ -4,6 +4,7 @@ import Doc, { MakeQuiz } from "@/components/Doc";
 import { GUIDES } from "@/lib/guides";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/guides" },
   title: "Friendship quiz guides — Fake or Fam",
   description: "Guides on making a friendship quiz, the best quiz questions to ask, what your score means, and the signs of a real friend.",
 };

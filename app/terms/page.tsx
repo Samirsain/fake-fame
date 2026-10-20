@@ -4,6 +4,7 @@ import Doc from "@/components/Doc";
 import { EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: "Terms of use — Fake or Fam",
   description: "The rules for using Fake or Fam, the free friendship quiz.",
 };

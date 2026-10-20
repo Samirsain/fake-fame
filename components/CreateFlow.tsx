@@ -27,7 +27,7 @@ function Band() {
   return (
     <div className="sky flex items-center justify-between px-4 pt-4 pb-8">
       <Link href="/" className="sqbtn" aria-label="Home">‹</Link>
-      <div className="scale-50 -my-8"><Logo /></div>
+      <div className="scale-50 -my-8"><Logo as="h1" label="Create your friendship quiz — Fake or Fam" /></div>
       <LangPill />
     </div>
   );

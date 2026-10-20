@@ -1,71 +1,26 @@
-"use client";
-import Link from "next/link";
-import Mine from "@/components/Mine";
-import LangPill from "@/components/LangPill";
-import { Boo, Pip } from "@/components/Mascot";
-import Logo from "@/components/Logo";
-import { Clouds, Heart, Sparkle } from "@/components/Doodles";
-import Emoji from "@/components/Emoji";
-import { useT } from "@/lib/i18n";
-import { GUIDES } from "@/lib/guides";
+import type { Metadata } from "next";
+import Home from "@/components/Home";
+import JsonLd from "@/components/JsonLd";
+import { DESCRIPTION, EMAIL, SITE } from "@/lib/site";
 
-const steps = [["✍️", "s1"], ["📤", "s2"], ["🏆", "s3"]];
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 
-export default function Home() {
-  const t = useT();
-  return (
-    <>
-      <header className="sky relative text-center px-4 pt-4 pb-6">
-        <div className="flex justify-end"><LangPill /></div>
-        <Sparkle c="#fff" className="right-4 top-24 max-[359px]:hidden" /><Sparkle className="left-6 top-28 max-[359px]:hidden" s={30} delay={1} /><Sparkle c="#B79CFF" className="right-10 top-60 max-[359px]:hidden" s={20} delay={2} />
-        <div className="absolute left-1 top-40 bob"><Pip mood="shock" size={96} className="size-[68px] min-[400px]:size-24" /></div>
-        <div className="absolute right-1 top-40 bob" style={{ animationDelay: "1s" }}><Boo mood="smug" wave size={100} className="size-[72px] min-[400px]:size-[100px]" /></div>
-        <div className="mt-4"><Logo /></div>
-        <p className="hand inline-block mt-6 bg-white/90 text-ink rounded-xl px-6 py-2 -rotate-1 shadow">{t("tagline")}</p>
-        <div className="mt-6 -mx-4 -mb-6"><Clouds /></div>
-      </header>
+// WebSite gives Google the site name for results; the app itself is a free quiz you play in the browser.
+const data = {
+  "@graph": [
+    { "@type": "WebSite", "@id": `${SITE}/#website`, url: `${SITE}/`, name: "Fake or Fam", alternateName: ["FakeFame", "Fake Fame", "Fake or Fam friendship quiz"], inLanguage: ["en", "hi"] },
+    {
+      "@type": "Organization", "@id": `${SITE}/#org`, name: "Fake or Fam", url: `${SITE}/`, logo: `${SITE}/logo.png`, email: EMAIL,
+      parentOrganization: { "@type": "Organization", name: "Zenviq Digital", url: "https://www.zenviqdigital.in" },
+    },
+    {
+      "@type": "WebApplication", name: "Fake or Fam", url: `${SITE}/`, description: DESCRIPTION, applicationCategory: "GameApplication",
+      operatingSystem: "Any", browserRequirements: "Requires JavaScript", inLanguage: ["en", "hi"], isAccessibleForFree: true,
+      offers: { "@type": "Offer", price: "0", priceCurrency: "INR" }, publisher: { "@id": `${SITE}/#org` },
+    },
+  ],
+};
 
-      <div className="px-4 space-y-10 pb-10">
-        <div className="card relative mt-2">
-          <Heart className="-right-1 -top-3 z-10" s={44} />
-          <Sparkle className="left-6 top-14 z-10" s={22} />
-          <div className="in text-center space-y-4">
-            <div className="flex justify-center items-end gap-3 rounded-full bg-sky-100 mx-6 pt-4 px-4">
-              <Pip size={110} mood="happy" /><Boo size={110} mood="happy" />
-            </div>
-            <h2 className="text-[28px] leading-9 min-[400px]:text-[34px] min-[400px]:leading-10 font-extrabold">
-              {t("heroA")}<br /><span className="text-pink-500">&amp;</span><br />
-              <span className="tape">{t("heroBlock")}</span> {t("heroB")}
-            </h2>
-            <div className="wavy mx-8" />
-            <Link href="/create" className="btn">{t("create")} <span className="arrow">→</span></Link>
-            <Mine />
-          </div>
-        </div>
-
-        <section className="text-center space-y-4">
-          <h3 className="text-3xl font-extrabold">{t("howTitle")}</h3>
-          <p className="text-pink-500 font-extrabold">{t("howSub")}</p>
-          <ul className="text-left divide-y divide-ink/10">
-            {steps.map(([e, k]) => (
-              <li key={k} className="flex gap-4 py-5">
-                <span className="w-14 h-14 shrink-0 grid place-items-center rounded-2xl bg-pink-100"><Emoji e={e} size={38} /></span>
-                <div><b className="uppercase text-lg">{t(k + "t")}</b><p className="leading-6 text-ink/80">{t(k + "d")}</p></div>
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section className="space-y-3">
-          <h3 className="text-2xl font-extrabold text-center">{t("guidesTitle")}</h3>
-          {GUIDES.slice(0, 4).map((g) => (
-            <Link key={g.slug} href={`/guides/${g.slug}`} lang={g.lang} className="row !min-h-[72px] py-3">
-              <span className="flex-1 font-extrabold leading-snug">{g.title}</span><span aria-hidden className="text-pink-500 text-xl">→</span>
-            </Link>
-          ))}
-          <Link href="/guides" className="btn ghost">{t("allGuides").replace("{n}", String(GUIDES.length))} <span aria-hidden>→</span></Link>
-        </section>
-        <footer className="text-center text-xs opacity-60">{t("footer")}</footer>
-      </div>
-    </>
-  );
+export default function Page() {
+  return <><JsonLd data={data} /><Home /></>;
 }

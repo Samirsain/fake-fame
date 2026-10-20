@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { Baloo_2, Shantell_Sans } from "next/font/google";
 import MadeBy from "@/components/MadeBy";
-import { MOVE, PUB, SITE } from "@/lib/site";
+import { DESCRIPTION, MOVE, PUB, SITE } from "@/lib/site";
 import "./globals.css";
 
 const baloo = Baloo_2({ variable: "--font-baloo", subsets: ["latin", "devanagari"], weight: ["500", "600", "700", "800"], display: "swap" });
@@ -11,8 +11,9 @@ const shantell = Shantell_Sans({ variable: "--font-shantell", subsets: ["latin"]
 export const metadata: Metadata = {
   // og:image must be an absolute URL; without this a non-Vercel host would point previews at localhost
   metadataBase: new URL(SITE),
-  title: "Fake or Fam — friendship quiz: find your fake friends",
-  description: "Make a free 10-question friendship quiz about yourself, share the link on WhatsApp or Instagram, and see which friends actually know you. English, Hindi and Hinglish.",
+  title: "Friendship Quiz — Find Your Fake Friends | Fake or Fam",
+  description: DESCRIPTION,
+  openGraph: { siteName: "Fake or Fam", type: "website", locale: "en_IN" },
   other: { "google-adsense-account": `ca-${PUB}` }, // AdSense site verification
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1 };

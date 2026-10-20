@@ -7,6 +7,7 @@ import { siteStats } from "@/lib/db";
 import { EMAIL, TEL, wa } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/for-business" },
   title: "For brands & businesses — Zenviq Digital, the team behind Fake or Fam",
   description: "Zenviq Digital built Fake or Fam. We build viral quiz campaigns, websites, apps, e-commerce stores and SEO for brands, colleges, events and small businesses in India.",
 };

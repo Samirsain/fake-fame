@@ -4,6 +4,7 @@ import Doc from "@/components/Doc";
 import { EMAIL, TEL } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact — Fake or Fam",
   description: "How to contact the Fake or Fam team about a quiz, a deletion request, a bug or a partnership.",
 };

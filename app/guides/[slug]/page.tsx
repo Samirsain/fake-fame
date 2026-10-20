@@ -2,15 +2,31 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Doc, { MakeQuiz } from "@/components/Doc";
-import { GUIDES, guideBySlug } from "@/lib/guides";
+import JsonLd from "@/components/JsonLd";
+import { GUIDES, guideBySlug, type Guide } from "@/lib/guides";
+import { SITE } from "@/lib/site";
 
 export const generateStaticParams = () => GUIDES.map((g) => ({ slug: g.slug }));
 export const dynamicParams = false; // unknown guide = real 404 (notFound() alone streams a 200 under the root loading.tsx)
 
 export async function generateMetadata({ params }: PageProps<"/guides/[slug]">): Promise<Metadata> {
   const g = guideBySlug((await params).slug);
-  return g ? { title: `${g.title} — Fake or Fam`, description: g.description, openGraph: { title: g.title, description: g.description, type: "article", images: "/opengraph-image" } } : {}; // a page-level openGraph drops the inherited card
+  if (!g) return {};
+  const openGraph = { title: g.title, description: g.description, type: "article", locale: g.lang === "hi" ? "hi_IN" : "en_IN", images: "/opengraph-image" } as const; // a page-level openGraph drops the inherited card
+  return { title: `${g.title} — Fake or Fam`, description: g.description, alternates: { canonical: `/guides/${g.slug}` }, openGraph };
 }
+
+const ORG = { "@type": "Organization", name: "Fake or Fam", url: `${SITE}/`, logo: `${SITE}/logo.png` };
+const schema = (g: Guide) => {
+  const url = `${SITE}/guides/${g.slug}`;
+  const crumbs = [["Home", `${SITE}/`], ["Guides", `${SITE}/guides`], [g.title, url]];
+  return {
+    "@graph": [
+      { "@type": "Article", headline: g.title, description: g.description, datePublished: g.date, dateModified: g.date, inLanguage: g.lang ?? "en", url, mainEntityOfPage: url, image: `${SITE}/opengraph-image`, author: ORG, publisher: ORG },
+      { "@type": "BreadcrumbList", itemListElement: crumbs.map(([name, item], i) => ({ "@type": "ListItem", position: i + 1, name, item })) },
+    ],
+  };
+};
 
 export default async function GuidePage({ params }: PageProps<"/guides/[slug]">) {
   const g = guideBySlug((await params).slug);
@@ -18,6 +34,7 @@ export default async function GuidePage({ params }: PageProps<"/guides/[slug]">)
   const date = new Date(g.date).toLocaleDateString(g.lang === "hi" ? "hi-IN" : "en-IN", { day: "numeric", month: "long", year: "numeric" });
   return (
     <Doc title={g.title} sub={`${date} · ${g.read}`} lang={g.lang}>
+      <JsonLd data={schema(g)} />
       {g.body.map((s, i) => (
         <section key={i}>
           {s.h && <h2>{s.h}</h2>}

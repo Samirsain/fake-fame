@@ -4,6 +4,7 @@ import Doc from "@/components/Doc";
 import { EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy policy — Fake or Fam",
   description: "What Fake or Fam stores, how long it keeps it, the cookies used by Google ads, and how to delete your data.",
 };

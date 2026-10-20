@@ -4,6 +4,7 @@ import Doc, { MakeQuiz } from "@/components/Doc";
 import { EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About Fake or Fam — the friendship quiz",
   description: "What Fake or Fam is, how the friendship quiz works, who makes it, and answers to common questions.",
 };
