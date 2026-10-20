@@ -224,11 +224,6 @@ main > *, .stepin { animation: slidein .26s cubic-bezier(.23,1,.32,1) both; } /*
 .qz-btn.soft { background: #fff; color: #5B6B9A; box-shadow: 0 4px 14px rgb(80 110 200 / .12); min-height: 44px; font-size: 15px; padding: 0 16px; }
 .qz-input { width: 100%; height: 54px; padding: 0 18px; font-size: 17px; font-weight: 700; border-radius: 18px; border: 2px solid #E1E8FA; background: #fff; outline: none; transition: border-color .15s ease-out; }
 .qz-input:focus { border-color: #2F8CFF; }
-.qz-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 999px; background: rgb(255 255 255 / .7); box-shadow: inset 0 1px 3px rgb(80 110 200 / .15); }
-.qz-tabs button { height: 44px; border-radius: 999px; font-weight: 800; color: #7C89B2; transition: background-color .15s ease-out, color .15s ease-out; }
-.qz-tabs button[aria-selected="true"] { background: linear-gradient(180deg, #3D9BFF, #0B5FEA); color: #fff; box-shadow: 0 6px 14px rgb(11 95 234 / .3); }
 .qz-tile { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 14px; font-size: 18px; font-weight: 800; }
-.qz-bar { height: 8px; border-radius: 99px; background: #E8EDFA; overflow: hidden; }
-.qz-bar > i { display: block; height: 100%; border-radius: 99px; }
 .qz-row { display: flex; align-items: center; gap: 12px; padding: 12px; }
 @media (prefers-reduced-motion: reduce) { .qz-btn { transition: none; } }

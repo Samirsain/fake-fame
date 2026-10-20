@@ -142,27 +142,11 @@ export const siteStats = async () => {
   return { quizzes: q, plays: p };
 };
 
-// ---------- admin overview (counts and names only: no tokens, answers or birth dates) ----------
+// ---------- admin overview: two counts, so the panel costs one small request ----------
 export const adminOverview = async () => {
-  const [qs, ats] = [await quizzes(), await attempts()];
-  const list = await qs.find({}, { projection: { tokenHash: 0, items: 0 } }).sort({ at: -1 }).limit(500).toArray();
-  const counts = await ats.aggregate<{ _id: string; n: number }>([{ $match: { done: true } }, { $group: { _id: "$slug", n: { $sum: 1 } } }]).toArray();
-  const n = new Map(counts.map((c) => [c._id, c.n]));
-  const kind = (q: Quiz) => (q.mode === "couples" ? q.level ?? "sweet" : "friends");
-  const info = new Map(list.map((q) => [q.slug, { creator: q.name, kind: kind(q) }]));
-  const day = Date.now() - 864e5;
-  const rows = list.map((q) => ({ slug: q.slug, name: q.name, kind: kind(q), players: n.get(q.slug) ?? 0, at: q.at }));
-  const players = (await ats.find({ done: true }, { projection: { answers: 0 } }).sort({ at: -1 }).limit(1000).toArray()).map((a) => ({
-    id: String(a._id), name: a.name, score: a.score, hidden: !!a.hidden, at: a.at, slug: a.slug,
-    creator: info.get(a.slug)?.creator ?? "(deleted)", kind: info.get(a.slug)?.kind ?? "-",
-  }));
-  const byKind: Record<string, number> = {};
-  for (const r of rows) byKind[r.kind] = (byKind[r.kind] ?? 0) + 1;
-  return {
-    totals: {
-      quizzes: await qs.countDocuments(), playersFinished: await ats.countDocuments({ done: true }),
-      quizzesLast24h: await qs.countDocuments({ at: { $gt: day } }), playersLast24h: await ats.countDocuments({ done: true, at: { $gt: day } }), byKind,
-    },
-    quizzes: rows, players,
-  };
+  const ats = await attempts();
+  const [players, playersLast24h] = await Promise.all([
+    ats.countDocuments({ done: true }), ats.countDocuments({ done: true, at: { $gt: Date.now() - 864e5 } }),
+  ]);
+  return { players, playersLast24h };
 };

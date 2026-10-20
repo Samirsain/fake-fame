@@ -43,8 +43,11 @@ export default function Scoreboard({ params }: PageProps<"/s/[slug]">) {
         .then((d) => alive && setB(d))
         .catch(() => alive && setBad(true));
     load();
-    const timer = setInterval(load, 15000); // polling (PRD §5.4)
-    return () => { alive = false; clearInterval(timer); };
+    // polling (PRD §5.4), paused while the tab is in the background so idle tabs don't burn Vercel requests
+    const tick = () => { if (!document.hidden) load(); };
+    const timer = setInterval(tick, 15000);
+    document.addEventListener("visibilitychange", tick);
+    return () => { alive = false; clearInterval(timer); document.removeEventListener("visibilitychange", tick); };
   }, [slug]);
 
   const link = () => `${location.origin}/q/${slug}`;
