@@ -9,7 +9,7 @@ export const dynamicParams = false; // unknown guide = real 404 (notFound() alon
 
 export async function generateMetadata({ params }: PageProps<"/guides/[slug]">): Promise<Metadata> {
   const g = guideBySlug((await params).slug);
-  return g ? { title: `${g.title} — Fake or Fam`, description: g.description, openGraph: { title: g.title, description: g.description, type: "article" } } : {};
+  return g ? { title: `${g.title} — Fake or Fam`, description: g.description, openGraph: { title: g.title, description: g.description, type: "article", images: "/opengraph-image" } } : {}; // a page-level openGraph drops the inherited card
 }
 
 export default async function GuidePage({ params }: PageProps<"/guides/[slug]">) {
